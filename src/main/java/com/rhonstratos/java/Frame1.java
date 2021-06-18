@@ -13,7 +13,23 @@ public class Frame1 extends JFrame{
     JTextArea userr, passw;
 
     void Load(){
+        //init
+        user = new JLabel();
+        pass = new JLabel();
+
+        userr = new JTextArea();
+        passw = new JTextArea();
+
+        
         //components settings
+        user.setText("rhonstratos");
+        pass.setText("adminadmin");
+
+        userr.setText("Enter Username:");
+            userr.setBounds(0,0,0,0);
+        passw.setText("Enter Password:");
+            passw.setBounds(0,0,0,0);
+
         setSize(400,300);
         setTitle("Java Project");
         setLocationRelativeTo(null);
