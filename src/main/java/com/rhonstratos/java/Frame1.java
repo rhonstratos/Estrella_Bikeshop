@@ -3,7 +3,6 @@ package com.rhonstratos.java;
     import javax.swing.*;
     import javax.swing.border.*;
     import java.awt.*;
-    import java.awt.event.*;
     import java.sql.Connection;
     import java.sql.DriverManager;
     import java.sql.ResultSet;
@@ -11,61 +10,68 @@ package com.rhonstratos.java;
     import java.sql.Statement;
 
 public class Frame1 extends JFrame{
+    private JLabel user, pass,titleApp;
+    private JTextArea userr;
+    private JPasswordField passw;
+    private JButton login;
+    private JPanel panel1,panel2;
+    private Container s;
+    private Border line;
 
     Frame1(){
         Load();
     }
 
     private void Login(){
-
-        try {
             // Connect to your database.
-            // Replace server name, username, and password with your credentials
             ResultSet resultSet = null;
-            String connectionUrl =
-                    "jdbc:sqlserver://SQLEXPRESS.database.windows.net:1433;"
-                            + "database=JavaProject;"
-                            + "user=root@SQLEXPRESS;"
-                            + "password=eykha6068;"
-                            + "encrypt=true;"
-                            + "trustServerCertificate=false;"
-                            + "loginTimeout=30;";
-            try (Connection connection = DriverManager.getConnection(connectionUrl);) {
-                Statement statement = connection.createStatement(); {
+            String test =   "jdbc:sqlserver://"+
+                            "localhost:1433;"+
+                            "databaseName=JavaProject;"+
+                            "user=root;"+
+                            "password=eykha6068";
+                            
+            try (Connection connection = DriverManager.getConnection(test);
+                 Statement stmt = connection.createStatement();) {
 
                     // Create and execute a SELECT SQL statement.
                     String selectSql = "SELECT * from LOGIN";
-                    resultSet = statement.executeQuery(selectSql);
+                    resultSet = stmt.executeQuery(selectSql);
         
                     // Print results from select statement
-                    while (resultSet.next()) {
-                        System.out.println(resultSet.getString(2) + " " + resultSet.getString(3));
+                    resultSet.next();
+                    if(!this.userr.getText().equals(resultSet.getString(1)) &&
+                       !this.passw.getPassword().toString().equals(resultSet.getString(2)))
+                        JOptionPane.showMessageDialog(
+                            null, 
+                            "Username or Password is Incorrect!!!\nPlease try again...", 
+                            "Java Project", 
+                            JOptionPane.YES_NO_OPTION);
+                    else{
+                        //do something
+                        JOptionPane.showMessageDialog(
+                            null, 
+                            "Done!", 
+                            "Java Project", 
+                            JOptionPane.OK_OPTION);
                     }
-                }
+                    connection.close();
             }
             catch (SQLException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+
                 JOptionPane.showMessageDialog(
                 null, 
                 e, 
                 "Java Project", 
                 JOptionPane.YES_NO_OPTION);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-            null, 
-            e, 
-            "Java Project", 
-            JOptionPane.YES_NO_OPTION);
-        }
+            finally{
+                resultSet=null;
+                this.userr.setText("");
+                this.passw.setText("");
+            }
     }
-
-    JLabel user, pass,titleApp;
-    JTextArea userr, passw;
-    JButton login;
-    JPanel panel1,panel2;
-    Container s;
-    Border line;
 
     void Load(){
         //init
@@ -80,7 +86,7 @@ public class Frame1 extends JFrame{
         titleApp = new JLabel("",JLabel.CENTER);
 
         userr = new JTextArea();
-        passw = new JTextArea();
+        passw = new JPasswordField();
 
         login = new JButton();
 
@@ -125,8 +131,8 @@ public class Frame1 extends JFrame{
         panel2.add(passw);
         panel2.add(login);
         panel2.add(titleApp);
-        add(panel2,BorderLayout.EAST);
-        add(panel1,BorderLayout.WEST);
+        s.add(panel2,BorderLayout.EAST);
+        s.add(panel1,BorderLayout.WEST);
     }
     public static void main(String[] args) {
         new Frame1().setVisible(true);
