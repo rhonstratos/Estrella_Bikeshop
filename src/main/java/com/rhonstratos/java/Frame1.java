@@ -17,6 +17,7 @@ public class Frame1 extends JFrame{
     private JPanel panel1,panel2;
     private Container s;
     private Border line;
+    private int x;
 
     Frame1(){
         Load();
@@ -49,11 +50,15 @@ public class Frame1 extends JFrame{
                             JOptionPane.YES_NO_OPTION);
                     else{
                         //do something
-                        JOptionPane.showMessageDialog(
+                        x = JOptionPane.showOptionDialog(
                             null, 
                             "Done!", 
                             "Java Project", 
-                            JOptionPane.OK_OPTION);
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            null,
+                            null);
                     }
                     connection.close();
             }
@@ -70,6 +75,10 @@ public class Frame1 extends JFrame{
                 resultSet=null;
                 this.userr.setText("");
                 this.passw.setText("");
+                if (x == JOptionPane.OK_OPTION){
+                    this.setVisible(false);
+                    new Frame2().setVisible(true);
+                }
             }
     }
 
@@ -119,12 +128,12 @@ public class Frame1 extends JFrame{
 
         //FInalization
         
-        setSize(1280,720);
-        setLayout(null);
-        setResizable(false);
-        setTitle("Java Project");
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        this.setSize(1280,720);
+        this.setLayout(null);
+        this.setResizable(false);
+        this.setTitle("Java Project");
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         panel2.add(user);
         panel2.add(userr);
         panel2.add(pass);
