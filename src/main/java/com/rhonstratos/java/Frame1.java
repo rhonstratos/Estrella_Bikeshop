@@ -17,39 +17,50 @@ public class Frame1 extends JFrame{
     private JPanel panel1,panel2;
     private Container s;
     private Border line;
-    private int x;
+    private int x = 0;
 
     Frame1(){
-        Load();
+        try {
+            Load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void warn(String y){
+        final JDialog xx = new JDialog();
+        xx.setAlwaysOnTop(true);    
+        JOptionPane.showMessageDialog(
+            null, 
+            y, 
+            "Alert", 
+            JOptionPane.YES_NO_OPTION);
+        xx.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+        xx.setAlwaysOnTop(true);
+        xx.setVisible(true);
     }
 
     private void Login(){
             // Connect to your database.
             ResultSet resultSet = null;
-            String test =   "jdbc:sqlserver://"+
+            String  test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=JavaProject;"+
                             "user=root;"+
-                            "password=eykha6068";
+                            "password=eykha6068",
+                    selectSql = "SELECT * from LOGIN";
                             
             try (Connection connection = DriverManager.getConnection(test);
                  Statement stmt = connection.createStatement();) {
 
+
                     // Create and execute a SELECT SQL statement.
-                    String selectSql = "SELECT * from LOGIN";
                     resultSet = stmt.executeQuery(selectSql);
         
                     // Print results from select statement
                     resultSet.next();
-                    if(!this.userr.getText().equals(resultSet.getString(1)) &&
-                       !this.passw.getPassword().toString().equals(resultSet.getString(2)))
-                        JOptionPane.showMessageDialog(
-                            null, 
-                            "Username or Password is Incorrect!!!\nPlease try again...", 
-                            "Java Project", 
-                            JOptionPane.YES_NO_OPTION);
-                    else{
-                        //do something
+                    if(this.userr.getText().equals(resultSet.getString(1)) &&
+                       this.passw.getPassword().toString().equals(resultSet.getString(2))){
                         x = JOptionPane.showOptionDialog(
                             null, 
                             "Done!", 
@@ -59,26 +70,25 @@ public class Frame1 extends JFrame{
                             null,
                             null,
                             null);
+                       }
+                    else{
+                        warn("Username or Password is Incorrect!!!\n"+
+                             "Please try again...");  
                     }
                     connection.close();
+                    if (x == JOptionPane.OK_OPTION){
+                        this.setVisible(false);
+                        new Frame2().setVisible(true);
+                    }
             }
             catch (SQLException e) {
                 //e.printStackTrace();
-
-                JOptionPane.showMessageDialog(
-                null, 
-                e, 
-                "Java Project", 
-                JOptionPane.YES_NO_OPTION);
+                warn(e.toString());
             }
             finally{
                 resultSet=null;
                 this.userr.setText("");
                 this.passw.setText("");
-                if (x == JOptionPane.OK_OPTION){
-                    this.setVisible(false);
-                    new Frame2().setVisible(true);
-                }
             }
     }
 
@@ -100,7 +110,6 @@ public class Frame1 extends JFrame{
         login = new JButton();
 
         //components settings
-
         panel1.setBounds(0, 0, 927, 720);
         panel1.setBorder(line);
         panel1.setBackground(Color.red);
@@ -127,7 +136,6 @@ public class Frame1 extends JFrame{
         login.addActionListener(e->{    Login();    });
 
         //FInalization
-        
         this.setSize(1280,720);
         this.setLayout(null);
         this.setResizable(false);
