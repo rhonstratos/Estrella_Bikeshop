@@ -33,7 +33,7 @@ public class Frame1 extends JFrame{
         JOptionPane.showMessageDialog(
             null, 
             y, 
-            "Alert", 
+            "Java Project", 
             JOptionPane.YES_NO_OPTION);
         xx.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         xx.setAlwaysOnTop(true);
