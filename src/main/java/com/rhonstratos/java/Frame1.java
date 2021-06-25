@@ -210,7 +210,10 @@ public class Frame1 extends javax.swing.JFrame {
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                             "user=root;"+
                             "password=eykha6068",
-                    selectSql = "SELECT * from LOGIN";
+                    selectSql = "SELECT * from LOGIN where \"user\"=("+
+                        "select \"user\" from LOGIN where \"user\"='"+this.userr.getText()+"'"
+                    +") and pass = ("+
+                        "select pass from LOGIN where pass='"+new String(this.passw.getPassword())+"')";
             boolean check=false;
                             
             try (Connection connection = DriverManager.getConnection(test);
@@ -219,14 +222,13 @@ public class Frame1 extends javax.swing.JFrame {
                     resultSet = stmt.executeQuery(selectSql);
                     // Print results from select statement
                     resultSet.next();
-                    if(!this.passw.getPassword().toString().equals(resultSet.getString(2)) &&
-                            !this.userr.getText().equals(resultSet.getString(1))){
+                    if(!new String(this.passw.getPassword()).equals(resultSet.getString(2)) &&
+                            !this.userr.getText().equals(resultSet.getString(1)))
                         warning("Username or Password is Incorrect!!!\n"+
                                 "Please try again...");  
-                    }
-                    else{
+                    else
                         check=true;
-                    }
+                    
                     connection.close();
                     if (check){
                         this.setVisible(false);
@@ -235,8 +237,11 @@ public class Frame1 extends javax.swing.JFrame {
                     }
             }
             catch (SQLException e) {
-                //e.printStackTrace();
-                warning(e.toString());
+                e.printStackTrace();
+                if(e.toString().equals("com.microsoft.sqlserver.jdbc.SQLServerException: The result set has no current row.")){
+                    String asd="Invalid Username or Password!\nPlease try again!!!";
+                    warning(asd);
+                }
             }
             finally{
                 resultSet=null;
