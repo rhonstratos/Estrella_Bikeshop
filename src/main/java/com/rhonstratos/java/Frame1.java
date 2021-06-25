@@ -165,7 +165,7 @@ public class Frame1 extends javax.swing.JFrame {
             ResultSet resultSet = null;
             String  test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
-                            "databaseName=JavaProject;"+
+                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                             "user=root;"+
                             "password=eykha6068",
                     selectSql = "SELECT * from LOGIN";
