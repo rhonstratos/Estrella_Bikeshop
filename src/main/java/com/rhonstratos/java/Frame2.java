@@ -55,6 +55,11 @@ public class Frame2 extends javax.swing.JFrame {
         setTitle("Inventory Management System: Main Menu");
         setName("frame2"); // NOI18N
         setSize(new java.awt.Dimension(1280, 720));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -210,9 +215,19 @@ public class Frame2 extends javax.swing.JFrame {
         jMenu2.add(jMenuItem2);
 
         jMenuItem4.setText("New Item");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("New Supplier");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -245,8 +260,7 @@ public class Frame2 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void Logout(){
         try{
             Object[] y = {"Yes","No","Cancel"};
             int x = JOptionPane.showOptionDialog(
@@ -263,6 +277,9 @@ public class Frame2 extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Logout();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -274,6 +291,20 @@ public class Frame2 extends javax.swing.JFrame {
         new NewEmp(getTitle()+": New Employee");
         NewEmp.main(null);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        new NewItem(getTitle()+": New Item");
+        NewItem.main(null);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Logout();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        new NewSupplier(getTitle()+": New Supplier");
+        NewSupplier.main(null);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     public static void main(String args[]) {
         try {

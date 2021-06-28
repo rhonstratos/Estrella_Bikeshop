@@ -73,3 +73,9 @@ SELECT
 FROM
   INVENTORY_MANAGEMENT_SYS.INFORMATION_SCHEMA.TABLES;
 GO
+
+
+insert into SUPPLIER
+values('UNILAD','09456874561','awygd iaugwdl awuuidgi')
+select * from SUPPLIER
+delete SUPPLIER

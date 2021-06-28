@@ -77,15 +77,13 @@ public class Frame1 extends javax.swing.JFrame {
         }
     }
     private void warning(String y){
-        JOptionPane.showOptionDialog(
-            null,
-            y,
-            this.getTitle(),
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.PLAIN_MESSAGE,
-            null,
-            null,
-            null);
+        Object[] yy = {"OK"};
+            JOptionPane.showOptionDialog(
+                this, 
+                y, 
+                this.getTitle(), 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
