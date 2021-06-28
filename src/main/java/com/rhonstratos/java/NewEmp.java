@@ -56,7 +56,8 @@ public class NewEmp extends javax.swing.JDialog {
 
         jButton1.setText("Register Customer");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setModal(true);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NEW EMPLOYEE");
@@ -209,9 +210,13 @@ public class NewEmp extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    NewEmp(String title) {
+    private static String t;
+    NewEmp(String title){
+        NewEmp.t=title;
+    }
+    public static void main(String[] args){
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -227,10 +232,10 @@ public class NewEmp extends javax.swing.JDialog {
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
-                    System.exit(0);
+                    dialog.dispose();
                 }
             });
-            dialog.setTitle(title);
+            dialog.setTitle(t);
             dialog.setVisible(true);
         });
     }

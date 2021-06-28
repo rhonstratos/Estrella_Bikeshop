@@ -45,7 +45,8 @@ public class NewCust extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Inventory Management System: New Customer");
         setAlwaysOnTop(true);
         setModal(true);
         setResizable(false);
@@ -153,8 +154,11 @@ public class NewCust extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    NewCust(String title) {
+    private static String t;
+    NewCust(String title){
+        NewCust.t = title;
+    }
+    public static void main(String[] args) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -170,10 +174,10 @@ public class NewCust extends javax.swing.JDialog {
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
-                    System.exit(0);
+                    dialog.dispose();
                 }
             });
-            dialog.setTitle(title);
+            dialog.setTitle(t);
             dialog.setVisible(true);
         });
     }
