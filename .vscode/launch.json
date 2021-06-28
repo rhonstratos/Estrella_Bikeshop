@@ -3,6 +3,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch NewItem",
+            "request": "launch",
+            "mainClass": "com.rhonstratos.java.NewItem",
+            "projectName": "project"
+        },
+        {
+            "type": "java",
+            "name": "Launch NewSupplier",
+            "request": "launch",
+            "mainClass": "com.rhonstratos.java.NewSupplier",
+            "projectName": "project"
+        },
+        {
+            "type": "java",
+            "name": "Launch Frame2",
+            "request": "launch",
+            "mainClass": "com.rhonstratos.java.Frame2",
+            "projectName": "project"
+        },
+        {
+            "type": "java",
             "name": "Launch Frame1",
             "request": "launch",
             "mainClass": "com.rhonstratos.java.Frame1",

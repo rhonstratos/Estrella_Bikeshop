@@ -68,7 +68,6 @@ create table "ORDER"(
     OrdPrice float not null,
     OrdSubtotal float not null
 )--select * from "ORDER"
-
 SELECT
   *
 FROM
