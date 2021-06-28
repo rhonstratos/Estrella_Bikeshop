@@ -157,17 +157,21 @@ public class Frame2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Object[] y = {"Yes","No","Cancel"};
-        int x = JOptionPane.showOptionDialog(
-            this, 
-            "Are you sure that you want to Logout?\n"+
-            "Any UNSAVED progress will be unrecorded...", 
-            this.getTitle(), 
-            JOptionPane.YES_NO_CANCEL_OPTION, 
-            JOptionPane.WARNING_MESSAGE,null,y,y[2]);
-        if (x == JOptionPane.YES_OPTION){
-            new Frame1().setVisible(true);
-            this.dispose();
+        try{
+            Object[] y = {"Yes","No","Cancel"};
+            int x = JOptionPane.showOptionDialog(
+                this, 
+                "Are you sure that you want to Logout?\n"+
+                "Any UNSAVED progress will be unrecorded...", 
+                this.getTitle(), 
+                JOptionPane.YES_NO_CANCEL_OPTION, 
+                JOptionPane.WARNING_MESSAGE,null,y,y[2]);
+            if (x == JOptionPane.YES_OPTION){
+                new Frame1().setVisible(true);
+                this.dispose();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
