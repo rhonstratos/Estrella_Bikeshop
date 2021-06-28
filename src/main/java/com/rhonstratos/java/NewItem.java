@@ -240,7 +240,7 @@ public class NewItem extends javax.swing.JDialog {
                     "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                     "user=root;"+
                     "password=eykha6068",
-            sqlcommand = "insert into SUPPLIER "+
+            sqlcommand = "insert into ITEM "+
                         "values ('"+ItmNamebx.getText().toUpperCase()+
                         "','"+ItmCategorybx.getText().toUpperCase()+
                         "','"+ItmDescbx.getText().toUpperCase()+
@@ -310,7 +310,6 @@ public class NewItem extends javax.swing.JDialog {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 NewItem dialog = new NewItem(new javax.swing.JFrame(), true);
