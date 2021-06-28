@@ -22,29 +22,36 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.sql.Statement;
+    import java.util.ArrayList;
 public class NewItem extends javax.swing.JDialog {
     public NewItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+    private static ArrayList<String> xxx = new ArrayList<>(); 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        ItmNamebx = new javax.swing.JTextField();
+        ItmCategorybx = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        ItmSRPbx = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ItmDescbx = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        supplierComboBx = new javax.swing.JComboBox<>();
+        supplierComboBx = new javax.swing.JComboBox<String>(xxx.toArray(new String[0]));
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        ItmUnitPricebx = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -67,22 +74,27 @@ public class NewItem extends javax.swing.JDialog {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Description");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
+        ItmDescbx.setColumns(20);
+        ItmDescbx.setLineWrap(true);
+        ItmDescbx.setRows(5);
+        ItmDescbx.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(ItmDescbx);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Supplier");
 
-        supplierComboBx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        supplierComboBx.setEditable(true);
         supplierComboBx.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Unit Price");
 
         jButton1.setText("Register New Item");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -114,14 +126,14 @@ public class NewItem extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ItmCategorybx, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ItmNamebx, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                    .addComponent(ItmSRPbx, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ItmUnitPricebx, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addContainerGap())
         );
@@ -133,16 +145,16 @@ public class NewItem extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ItmNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ItmCategorybx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ItmSRPbx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ItmUnitPricebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -179,12 +191,112 @@ public class NewItem extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    private void warning(String y){
+        Object[] yy = {"OK"};
+        javax.swing.JOptionPane.showOptionDialog(
+            this, 
+            y, 
+            this.getTitle(), 
+            javax.swing.JOptionPane.OK_OPTION, 
+            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+    }
+    private float checkPeso(String x,String title){
+        float re=0;
+        try {
+            re=Float.parseFloat(x.replaceAll(" ",""));
+        } catch (Exception e) {
+            warning("Please Enter a valid "+title);
+        }
+        return re;
+    }
+    private void loadCbx(){
+        String  test =  "jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+            sqlCombo="select SupName from SUPPLIER";
 
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+            
+            ResultSet x = stmt.executeQuery(sqlCombo);
+            //int y=0;
+            while(x.next()){
+                //System.out.println(x.getString("SupName"));
+                xxx.add(x.getString("SupName"));
+                //supplierComboBx.addItem(new String(x.getString("SupName")));
+            }
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            warning(e.toString());
+        }
+    }
+    private void Save(){
+        String  test =  "jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+            sqlcommand = "insert into SUPPLIER "+
+                        "values ('"+ItmNamebx.getText().toUpperCase()+
+                        "','"+ItmCategorybx.getText().toUpperCase()+
+                        "','"+ItmDescbx.getText().toUpperCase()+
+                        "','"+checkPeso(ItmSRPbx.getText(),"SRP")+
+                        "','"+checkPeso(ItmUnitPricebx.getText(),"Unit Price")+
+                        "','"+supplierComboBx.getSelectedItem()
+                        +"')",
+            sqlcheck=   "select ItmName from ITEM";
+        boolean check=false;   
+                    
+        try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                
+                ResultSet x = stmt.executeQuery(sqlcheck);
+                while(x.next()){
+                    if(ItmNamebx.getText().equalsIgnoreCase(x.getString("ItmName"))){
+                        warning(ItmNamebx.getText()+", already exist!\n"+
+                        "Please enter a different Supplier!!!");
+                        check=true;
+                        ItmNamebx.setText(null);
+                        ItmCategorybx.setText(null);
+                        ItmDescbx.setText(null);
+                        ItmSRPbx.setText(null);
+                        ItmUnitPricebx.setText(null);
+                        check=true;
+                    }
+                }
+                if(!check){
+                    stmt.executeUpdate(sqlcommand);
+                    Object[] yy = {"OK"};
+                        javax.swing.JOptionPane.showOptionDialog(
+                        this, 
+                        "New Supplier Saved!", 
+                        this.getTitle(), 
+                        javax.swing.JOptionPane.OK_OPTION, 
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE,null,yy,yy[0]);
+                        this.dispose();
+                }
+                connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally{
+            check=false;
+        }
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Save();
+    }//GEN-LAST:event_jButton1ActionPerformed
     private static String t;
     NewItem(String t){
+        loadCbx();
         NewItem.t=t;
     }
     public static void main(String args[]) {
@@ -198,6 +310,7 @@ public class NewItem extends javax.swing.JDialog {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 NewItem dialog = new NewItem(new javax.swing.JFrame(), true);
@@ -214,6 +327,11 @@ public class NewItem extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ItmCategorybx;
+    private javax.swing.JTextArea ItmDescbx;
+    private javax.swing.JTextField ItmNamebx;
+    private javax.swing.JTextField ItmSRPbx;
+    private javax.swing.JTextField ItmUnitPricebx;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -225,11 +343,6 @@ public class NewItem extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JComboBox<String> supplierComboBx;
+    private static javax.swing.JComboBox<String> supplierComboBx;
     // End of variables declaration//GEN-END:variables
 }
