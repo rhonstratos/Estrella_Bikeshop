@@ -49,7 +49,7 @@ public class NewItem extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         ItmDescbx = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        supplierComboBx = new javax.swing.JComboBox<String>(xxx.toArray(new String[0]));
+        supplierComboBx = new javax.swing.JComboBox<>(xxx.toArray(new String[0]));
         jLabel7 = new javax.swing.JLabel();
         ItmUnitPricebx = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -210,7 +210,7 @@ public class NewItem extends javax.swing.JDialog {
         return re;
     }
     private void loadCbx(){
-        String  test =  "jdbc:sqlserver://"+
+        String  test ="jdbc:sqlserver://"+
                     "localhost:1433;"+
                     "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                     "user=root;"+

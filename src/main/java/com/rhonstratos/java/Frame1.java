@@ -99,9 +99,7 @@ public class Frame1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inventory Management System");
-        setName(""); // NOI18N
-
-        jPanel1.setName(""); // NOI18N
+        
         jPanel1.setOpaque(false);
 
         label1.setAlignment(java.awt.Label.CENTER);

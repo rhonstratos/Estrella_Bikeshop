@@ -16,13 +16,24 @@ create table EMPLOYEE(
     EmpMName varchar(50) not null,
     EmpLName varchar(50) not null,
     EmpBDate date not null,
-    EmpAge date not null,
+    EmpAge varchar(3) not null,
     EmpSex varchar(1) not null 
         check(EmpSex = 'M'or EmpSex = 'F'),
-    EmpContactNo int not null,
+    EmpContactNo varchar(11) not null,
     EmpAddress varchar(255) not null,
     RatePHour float not null,
-)--select * from EMPLOYEE
+)delete employee
+select * from EMPLOYEE
+insert into EMPLOYEE(EmpFName,EmpMName,EmpLName,EmpBDate,EmpAge,EmpSex,EmpContactNo,EmpAddress,RatePHour)
+values('rhon',
+'d',
+'stratos',
+'12/20/2000',
+'20',
+'M',
+'09876543212',
+'malolos',
+1000.0)
 create table SUPPLIER(
     SupName varchar(100) not null primary key,
     SupContactNo int not null,
@@ -73,3 +84,4 @@ SELECT
 FROM
   INVENTORY_MANAGEMENT_SYS.INFORMATION_SCHEMA.TABLES;
 GO
+select * from employee

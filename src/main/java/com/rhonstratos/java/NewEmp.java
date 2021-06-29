@@ -22,7 +22,16 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.sql.Statement;
+    import org.joda.time.*;
+    import java.util.stream.*;
 public class NewEmp extends javax.swing.JDialog {
+    private static String t;
+    private static String[] xxx ={"M","F"};
     public NewEmp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -35,29 +44,29 @@ public class NewEmp extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        EmpFname = new javax.swing.JTextField();
+        EmpMname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        EmpLname = new javax.swing.JTextField();
+        EmpCnum = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        EmpBDate = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        EmpAge = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        EmpRPH = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        EmpAddress = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        EmpSex = new javax.swing.JComboBox<>(xxx);
 
         jButton1.setText("Register Customer");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false);
 
@@ -65,6 +74,11 @@ public class NewEmp extends javax.swing.JDialog {
         jLabel1.setText("NEW EMPLOYEE");
 
         jButton2.setText("Register Customer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("First Name");
@@ -79,32 +93,35 @@ public class NewEmp extends javax.swing.JDialog {
         jLabel5.setText("Contact Number");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Birthdate");
+        jLabel6.setText("Birthdate MM/DD/YYYY");
 
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.setText("11/11/1111");
+        EmpBDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        EmpBDate.setText("11/11/1111");
+        EmpBDate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                EmpBDateKeyReleased(evt);
+            }
+        });
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Age");
 
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("11");
+        EmpAge.setEditable(false);
+        EmpAge.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        EmpAge.setText("0");
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Sex");
 
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("M/F");
-
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Rate Per Hour");
 
-        jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField9.setText("10000.00");
+        EmpRPH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        EmpRPH.setText("10000.00");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        EmpAddress.setColumns(20);
+        EmpAddress.setRows(5);
+        jScrollPane2.setViewportView(EmpAddress);
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Address");
@@ -139,23 +156,26 @@ public class NewEmp extends javax.swing.JDialog {
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField9)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2))))
+                            .addComponent(EmpFname)
+                            .addComponent(EmpMname)
+                            .addComponent(EmpLname)
+                            .addComponent(EmpCnum)
+                            .addComponent(jScrollPane2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(EmpBDate, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(EmpRPH)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(EmpAge, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                    .addComponent(EmpSex, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -166,42 +186,41 @@ public class NewEmp extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmpFname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmpMname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmpLname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EmpCnum, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EmpBDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmpAge, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EmpRPH, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmpSex))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,13 +243,113 @@ public class NewEmp extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-    private static String t;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Save();
+    }//GEN-LAST:event_jButton2ActionPerformed
+    private void EmpBDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmpBDateKeyReleased
+        if(EmpBDate.getText().length()==10) EmpAge.setText(age(EmpBDate.getText(), "Birth Date!!!"));
+    }//GEN-LAST:event_EmpBDateKeyReleased
     NewEmp(String title){
         NewEmp.t=title;
+    }
+    private float checkrph(String x,String title){
+        float re=0;
+        try {
+            re=Float.parseFloat(x.replaceAll(" ",""));
+        } catch (Exception e) {
+            warning("Please Enter a valid "+title);
+        }
+        return re;
+    }
+    private String age(String x,String title){
+        String a=""; 
+        try {
+            int[] diff = Stream.of(x.split("/")).mapToInt(Integer::parseInt).toArray();
+            LocalDate birthdate = new LocalDate (diff[2], diff[0], diff[1]);
+            LocalDate now = new LocalDate();
+            Years age = Years.yearsBetween(birthdate, now);
+            a = age.toString();
+        } catch (Exception e) {
+            warning("Please Enter a valid "+title);
+        }
+        return a.substring(1, 3);
+    }
+    private void warning(String y){
+        Object[] yy = {"OK"};
+        javax.swing.JOptionPane.showOptionDialog(
+            this, 
+            y, 
+            this.getTitle(), 
+            javax.swing.JOptionPane.OK_OPTION, 
+            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+    }
+    private void Save(){
+        String  fname=EmpFname.getText().toUpperCase(),
+                mname=EmpMname.getText().toUpperCase(),
+                lname=EmpLname.getText().toUpperCase(),
+                address=EmpAddress.getText().toUpperCase();
+        String  test =  "jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+            sqlcommand = "insert into EMPLOYEE(EmpFName,EmpMName,EmpLName,EmpBDate,EmpAge,EmpSex,EmpContactNo,EmpAddress,RatePHour) "+
+                        "values ('"+fname+
+                        "','"+mname+
+                        "','"+lname+
+                        "','"+EmpBDate.getText()+
+                        "','"+EmpAge.getText()+
+                        "','"+EmpSex.getSelectedItem()+
+                        "','"+EmpCnum.getText()+
+                        "','"+address+
+                        "',"+checkrph(EmpRPH.getText(),"Rate per Hour!!!")+")",
+            sqlcheck=   "select EmpFName,EmpMName,EmpLName from EMPLOYEE";
+        boolean check=false;   
+                    
+        try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                
+                ResultSet x = stmt.executeQuery(sqlcheck);
+                while(x.next()){
+                    if( fname.equalsIgnoreCase(x.getString("EmpFName"))&&
+                        mname.equalsIgnoreCase(x.getString("EmpMName"))&&
+                        lname.equalsIgnoreCase(x.getString("EmpLName"))){
+                        warning(fname+" "+mname+" "+fname+", already exist!\n"+
+                                "Please enter a different Employee!!!");
+                        check=true;
+                        EmpFname.setText(null);
+                        EmpMname.setText(null);
+                        EmpLname.setText(null);
+                        EmpBDate.setText(null);
+                        EmpAge.setText(null);
+                        EmpCnum.setText(null);
+                        EmpAddress.setText(null);
+                        EmpRPH.setText(null);
+                        check=true;
+                    }
+                }
+                if(!check){
+                    stmt.executeUpdate(sqlcommand);
+                    Object[] yy = {"OK"};
+                        javax.swing.JOptionPane.showOptionDialog(
+                        this, 
+                        "New Employee Saved!", 
+                        this.getTitle(), 
+                        javax.swing.JOptionPane.OK_OPTION, 
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE,null,yy,yy[0]);
+                        this.dispose();
+                }
+                connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally{
+            check=false;
+        }
     }
     public static void main(String[] args){
         try {
@@ -255,8 +374,16 @@ public class NewEmp extends javax.swing.JDialog {
             dialog.setVisible(true);
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea EmpAddress;
+    private javax.swing.JTextField EmpAge;
+    private javax.swing.JTextField EmpBDate;
+    private javax.swing.JTextField EmpCnum;
+    private javax.swing.JTextField EmpFname;
+    private javax.swing.JTextField EmpLname;
+    private javax.swing.JTextField EmpMname;
+    private javax.swing.JTextField EmpRPH;
+    private javax.swing.JComboBox<String> EmpSex;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -272,14 +399,5 @@ public class NewEmp extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
