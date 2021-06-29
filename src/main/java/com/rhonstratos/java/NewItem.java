@@ -28,7 +28,7 @@ package com.rhonstratos.java;
     import java.sql.SQLException;
     import java.sql.Statement;
     import java.util.ArrayList;
-public class NewItem extends javax.swing.JDialog {
+public class NewItem extends javax.swing.JDialog implements warn{
     public NewItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -191,7 +191,7 @@ public class NewItem extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void warning(String y){
+    public void warning(String y){
         Object[] yy = {"OK"};
         javax.swing.JOptionPane.showOptionDialog(
             this, 

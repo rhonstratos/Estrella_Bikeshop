@@ -29,7 +29,7 @@ package com.rhonstratos.java;
     import java.sql.Statement;
     import org.joda.time.*;
     import java.util.stream.*;
-public class NewEmp extends javax.swing.JDialog {
+public class NewEmp extends javax.swing.JDialog implements warn{
     private static String t;
     private static String[] xxx ={"M","F"};
     public NewEmp(java.awt.Frame parent, boolean modal) {
@@ -277,7 +277,7 @@ public class NewEmp extends javax.swing.JDialog {
         }
         return a.substring(1, 3);
     }
-    private void warning(String y){
+    public void warning(String y){
         Object[] yy = {"OK"};
         javax.swing.JOptionPane.showOptionDialog(
             this, 

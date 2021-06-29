@@ -27,7 +27,10 @@ package com.rhonstratos.java;
     import java.sql.ResultSet;
     import java.sql.SQLException;
     import java.sql.Statement;
-public class NewCust extends javax.swing.JDialog {
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+public class NewCust extends javax.swing.JDialog implements warn {
     private static String t;
     public NewCust(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -183,7 +186,7 @@ public class NewCust extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Save();
     }//GEN-LAST:event_jButton1ActionPerformed   
-    private void warning(String y){
+    public void warning(String y){
         Object[] yy = {"OK"};
         javax.swing.JOptionPane.showOptionDialog(
             this, 
@@ -241,7 +244,6 @@ public class NewCust extends javax.swing.JDialog {
                         this.getTitle(), 
                         javax.swing.JOptionPane.OK_OPTION, 
                         javax.swing.JOptionPane.INFORMATION_MESSAGE,null,yy,yy[0]);
-                        this.dispose();
                 }
                 connection.close();
         }
@@ -250,6 +252,13 @@ public class NewCust extends javax.swing.JDialog {
         }
         finally{
             check=false;
+            try {
+                Frame2 x = new Frame2();
+                x.ReloadTable();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            this.dispose();
         }
     }
     public static void main(String[] args) {

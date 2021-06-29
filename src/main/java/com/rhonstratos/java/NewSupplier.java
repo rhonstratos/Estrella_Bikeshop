@@ -29,7 +29,7 @@ package com.rhonstratos.java;
     import java.sql.Statement;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
-public class NewSupplier extends javax.swing.JDialog {
+public class NewSupplier extends javax.swing.JDialog implements warn{
     public NewSupplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -167,7 +167,7 @@ public class NewSupplier extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void warning(String y){
+    public void warning(String y){
         Object[] yy = {"OK"};
             javax.swing.JOptionPane.showOptionDialog(
                 this, 
