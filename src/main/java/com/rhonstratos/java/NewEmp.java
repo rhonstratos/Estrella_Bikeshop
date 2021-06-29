@@ -315,9 +315,8 @@ public class NewEmp extends javax.swing.JDialog {
                 ResultSet x = stmt.executeQuery(sqlcheck);
                 while(x.next()){
                     if( fname.equalsIgnoreCase(x.getString("EmpFName"))&&
-                        mname.equalsIgnoreCase(x.getString("EmpMName"))&&
                         lname.equalsIgnoreCase(x.getString("EmpLName"))){
-                        warning(fname+" "+mname+" "+fname+", already exist!\n"+
+                        warning(fname+" "+lname+", already exist!\n"+
                                 "Please enter a different Employee!!!");
                         check=true;
                         EmpFname.setText(null);

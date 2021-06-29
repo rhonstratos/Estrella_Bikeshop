@@ -22,7 +22,13 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.sql.Statement;
 public class NewCust extends javax.swing.JDialog {
+    private static String t;
     public NewCust(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -171,17 +177,80 @@ public class NewCust extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-    private static String t;
+        Save();
+    }//GEN-LAST:event_jButton1ActionPerformed   
+    private void warning(String y){
+        Object[] yy = {"OK"};
+        javax.swing.JOptionPane.showOptionDialog(
+            this, 
+            y, 
+            this.getTitle(), 
+            javax.swing.JOptionPane.OK_OPTION, 
+            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+    }
     NewCust(String title){
         NewCust.t = title;
+    }
+    private void Save(){
+        String  fname=CFName.getText().toUpperCase(),
+                mname=CMName.getText().toUpperCase(),
+                lname=CLName.getText().toUpperCase(),
+                address=CAddress.getText().toUpperCase();
+        String  test =  "jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+            sqlcommand = "insert into CUSTOMER(CFName,CMName,CLName,Address,ContactNo) "+
+                        "values ('"+fname+
+                        "','"+mname+
+                        "','"+lname+
+                        "','"+address+
+                        "','"+CConNum.getText()+"')",
+            sqlcheck=   "select CFName,CLName from CUSTOMER";
+        boolean check=false;   
+                    
+        try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                
+                ResultSet x = stmt.executeQuery(sqlcheck);
+                while(x.next()){
+                    if( fname.equalsIgnoreCase(x.getString("CFName"))&&
+                        lname.equalsIgnoreCase(x.getString("CLName"))){
+                        warning(fname+" "+lname+", already exist!\n"+
+                                "Please enter a different Customer!!!");
+                        check=true;
+                        CFName.setText(null);
+                        CMName.setText(null);
+                        CLName.setText(null);
+                        CAddress.setText(null);
+                        CConNum.setText(null);
+                        check=true;
+                    }
+                }
+                if(!check){
+                    stmt.executeUpdate(sqlcommand);
+                    Object[] yy = {"OK"};
+                        javax.swing.JOptionPane.showOptionDialog(
+                        this, 
+                        "New Customer Saved!", 
+                        this.getTitle(), 
+                        javax.swing.JOptionPane.OK_OPTION, 
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE,null,yy,yy[0]);
+                        this.dispose();
+                }
+                connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally{
+            check=false;
+        }
     }
     public static void main(String[] args) {
         try {

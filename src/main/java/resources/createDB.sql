@@ -6,14 +6,15 @@ create table LOGIN(
 create table CUSTOMER(
     CustID int not null identity(0,1) primary key,
     CFName varchar(50) not null,
-    CMName varchar(50) not null,
+    CMName varchar(50),
     CLName varchar(50) not null,
-    Address varchar(255) not null
+    Address varchar(255) not null,
+    ContactNo varchar(11) not null
 )--select * from CUSTOMER
 create table EMPLOYEE(
     EmpID int not null identity(0,1) primary key,
     EmpFName varchar(50) not null,
-    EmpMName varchar(50) not null,
+    EmpMName varchar(50),
     EmpLName varchar(50) not null,
     EmpBDate date not null,
     EmpAge varchar(3) not null,
@@ -22,18 +23,7 @@ create table EMPLOYEE(
     EmpContactNo varchar(11) not null,
     EmpAddress varchar(255) not null,
     RatePHour float not null,
-)delete employee
-select * from EMPLOYEE
-insert into EMPLOYEE(EmpFName,EmpMName,EmpLName,EmpBDate,EmpAge,EmpSex,EmpContactNo,EmpAddress,RatePHour)
-values('rhon',
-'d',
-'stratos',
-'12/20/2000',
-'20',
-'M',
-'09876543212',
-'malolos',
-1000.0)
+)--select * from EMPLOYEE
 create table SUPPLIER(
     SupName varchar(100) not null primary key,
     SupContactNo int not null,
