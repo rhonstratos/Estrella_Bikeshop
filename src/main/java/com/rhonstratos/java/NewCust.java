@@ -27,9 +27,6 @@ package com.rhonstratos.java;
     import java.sql.ResultSet;
     import java.sql.SQLException;
     import java.sql.Statement;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 public class NewCust extends javax.swing.JDialog implements warn {
     private static String t;
     public NewCust(java.awt.Frame parent, boolean modal) {
@@ -252,13 +249,6 @@ public class NewCust extends javax.swing.JDialog implements warn {
         }
         finally{
             check=false;
-            try {
-                Frame2 x = new Frame2();
-                x.ReloadTable();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            this.dispose();
         }
     }
     public static void main(String[] args) {

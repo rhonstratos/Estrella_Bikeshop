@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-    import javax.swing.table.*;
     import javax.swing.*;
+    import javax.swing.table.*;
     import java.sql.*;
     import java.util.*;
 public class Frame2 extends javax.swing.JFrame implements warn {
@@ -37,8 +37,8 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
     }
     public Frame2() {
-        LoadTable();
         initComponents();
+        LoadTable();
     }
     private ArrayList<String>   custcol1 = new ArrayList<>(),
                                 custcol2 = new ArrayList<>(),
@@ -58,6 +58,7 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         ItemNamebx = new javax.swing.JComboBox<>(custcol1.toArray(new String[0]));
         jScrollPane2 = new javax.swing.JScrollPane();
         CustTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -87,15 +88,8 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Search Item");
 
-        CustTable.setModel(new javax.swing.table.DefaultTableModel(custData,custHead) {
-            boolean[] canEdit = new boolean [] {
-                false,false,false,false,false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        CustTable.setAutoCreateRowSorter(true);
+        CustTable.setToolTipText("");
         CustTable.setRowHeight(35);
         CustTable.setRowSelectionAllowed(false);
         CustTable.setShowGrid(true);
@@ -106,6 +100,13 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         });
         jScrollPane2.setViewportView(CustTable);
 
+        jButton1.setText("refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -114,7 +115,9 @@ public class Frame2 extends javax.swing.JFrame implements warn {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ItemNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ItemNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
                 .addContainerGap())
@@ -124,9 +127,12 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ItemNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItemNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(198, 198, 198)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(195, Short.MAX_VALUE))
         );
@@ -350,44 +356,38 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             e.printStackTrace();
         }
     }
-    public void ReloadTable() throws SQLException{
-        String[] localHead = custHead;
-        String  test ="jdbc:sqlserver://"+
-                    "localhost:1433;"+
-                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                    "user=root;"+
-                    "password=eykha6068",
-            sqlCombo="select * from CUSTOMER";
-        try (Connection connection = DriverManager.getConnection(test);
-            Statement stmt = connection.createStatement();) {
-            
-            ResultSet x = stmt.executeQuery(sqlCombo);
-            while(x.next()){
-                custcol1.add(x.getString("CFName"));
-                custcol2.add(x.getString("CMName"));
-                custcol3.add(x.getString("CLName"));
-                custcol4.add(x.getString("Address"));
-                custcol5.add(x.getString("ContactNo"));
-            }
-            connection.close();
-            Object[][] tableData = new Object[custcol1.size()][5];
-            for(int y=0; y<custcol1.size();y++){
-                tableData[y][0] = custcol1.get(y);
-                tableData[y][1] = custcol2.get(y);
-                tableData[y][2] = custcol3.get(y);
-                tableData[y][3] = custcol4.get(y);
-                tableData[y][4] = custcol5.get(y);
-            }
-            custcol1.clear();
-            custcol2.clear();
-            custcol3.clear();
-            custcol4.clear();
-            custcol5.clear();
-            CustTable.setModel(new DefaultTableModel(tableData, localHead));
-        }catch (Exception e) {
-            e.printStackTrace();
-            warning(e.toString());
+
+    public static DefaultTableModel buildTableModel(ResultSet rs)throws SQLException {
+
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
         }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames){
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
+
     }
     private void LoadTable(){
         String  test ="jdbc:sqlserver://"+
@@ -399,33 +399,12 @@ public class Frame2 extends javax.swing.JFrame implements warn {
 
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
-            
             ResultSet x = stmt.executeQuery(sqlCombo);
-            while(x.next()){
-                custcol1.add(x.getString("CFName"));
-                custcol2.add(x.getString("CMName"));
-                custcol3.add(x.getString("CLName"));
-                custcol4.add(x.getString("Address"));
-                custcol5.add(x.getString("ContactNo"));
-            }
+            CustTable.setModel(buildTableModel(x));
             connection.close();
         }catch (Exception e) {
             e.printStackTrace();
             warning(e.toString());
-        }finally{
-            custData = new Object[custcol1.size()][5];
-            for(int x=0; x<custcol1.size();x++){
-                custData[x][0] = custcol1.get(x);
-                custData[x][1] = custcol2.get(x);
-                custData[x][2] = custcol3.get(x);
-                custData[x][3] = custcol4.get(x);
-                custData[x][4] = custcol5.get(x);
-            }
-            custcol1.clear();
-            custcol2.clear();
-            custcol3.clear();
-            custcol4.clear();
-            custcol5.clear();
         }
     }
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -463,6 +442,10 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             warning(e.toString());
         }
     }//GEN-LAST:event_CustTableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LoadTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -482,6 +465,7 @@ public class Frame2 extends javax.swing.JFrame implements warn {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable CustTable;
     private javax.swing.JComboBox<String> ItemNamebx;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
