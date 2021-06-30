@@ -22,11 +22,7 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 public class NewSupplier extends javax.swing.JDialog implements warn{

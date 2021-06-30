@@ -22,11 +22,7 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
     import org.joda.time.*;
     import java.util.stream.*;
 public class NewEmp extends javax.swing.JDialog implements warn{

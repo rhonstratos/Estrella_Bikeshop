@@ -22,11 +22,7 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
     import java.util.ArrayList;
 public class NewItem extends javax.swing.JDialog implements warn{
     public NewItem(java.awt.Frame parent, boolean modal) {

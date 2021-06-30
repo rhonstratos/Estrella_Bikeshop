@@ -25,13 +25,10 @@ package com.rhonstratos.java;
 
     import javax.swing.*;
     import java.io.*;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
 
 public class Frame1 extends javax.swing.JFrame implements warn {
+    
     private void printlcs(){
         try {
             File myObj = new File(System.getProperty("user.dir")+"\\LICENSE");

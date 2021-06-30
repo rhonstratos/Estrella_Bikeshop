@@ -22,11 +22,7 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
 public class NewCust extends javax.swing.JDialog implements warn {
     private static String t;
     public NewCust(java.awt.Frame parent, boolean modal) {
