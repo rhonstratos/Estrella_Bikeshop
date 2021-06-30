@@ -44,6 +44,8 @@ public class Frame2 extends javax.swing.JFrame implements warn {
     private void initComponents() {
 
         MainFrame = new javax.swing.JTabbedPane();
+        CashierPanel = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         CustomerPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -51,7 +53,7 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         CustFNamebx = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         CustTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        custRefresh = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         CustMNamebx = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -61,8 +63,8 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         CustConNumbx = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         CustAddressbx = new javax.swing.JTextArea();
-        CashierPanel = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        custUpdate = new javax.swing.JButton();
+        custDelete = new javax.swing.JButton();
         InventoryPanel = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         ItemSuppliersPanel = new javax.swing.JPanel();
@@ -79,6 +81,7 @@ public class Frame2 extends javax.swing.JFrame implements warn {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inventory Management System: Main Menu");
+        setBackground(new java.awt.Color(153, 153, 153));
         setName("frame2"); // NOI18N
         setSize(new java.awt.Dimension(1280, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -86,6 +89,38 @@ public class Frame2 extends javax.swing.JFrame implements warn {
                 formWindowClosing(evt);
             }
         });
+
+        MainFrame.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1235, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout CashierPanelLayout = new javax.swing.GroupLayout(CashierPanel);
+        CashierPanel.setLayout(CashierPanelLayout);
+        CashierPanelLayout.setHorizontalGroup(
+            CashierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CashierPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        CashierPanelLayout.setVerticalGroup(
+            CashierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CashierPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        MainFrame.addTab("Cashier", CashierPanel);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Search First Name");
@@ -104,10 +139,10 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         });
         jScrollPane2.setViewportView(CustTable);
 
-        jButton1.setText("Refresh");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        custRefresh.setText("Refresh");
+        custRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                custRefreshActionPerformed(evt);
             }
         });
 
@@ -131,6 +166,20 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         CustAddressbx.setRows(5);
         jScrollPane1.setViewportView(CustAddressbx);
 
+        custUpdate.setText("Update");
+        custUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custUpdateActionPerformed(evt);
+            }
+        });
+
+        custDelete.setText("Delete");
+        custDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -145,12 +194,17 @@ public class Frame2 extends javax.swing.JFrame implements warn {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CustFNamebx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CustMNamebx, 0, 300, Short.MAX_VALUE)
-                    .addComponent(CustLNamebx, 0, 300, Short.MAX_VALUE)
+                    .addComponent(CustMNamebx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CustLNamebx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CustConNumbx)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(custDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(custUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(custRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
                 .addContainerGap())
@@ -159,32 +213,35 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CustFNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CustMNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CustLNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CustConNumbx, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))
-                        .addGap(190, 190, 190)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 98, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                .addComponent(jScrollPane2)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustFNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustMNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustLNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustConNumbx, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(custRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(custUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(custDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(122, 122, 122))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -218,36 +275,6 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         );
 
         MainFrame.addTab("Customer", CustomerPanel);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1235, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout CashierPanelLayout = new javax.swing.GroupLayout(CashierPanel);
-        CashierPanel.setLayout(CashierPanelLayout);
-        CashierPanelLayout.setHorizontalGroup(
-            CashierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CashierPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        CashierPanelLayout.setVerticalGroup(
-            CashierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CashierPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        MainFrame.addTab("Cashier", CashierPanel);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -465,7 +492,14 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             connection.close();
         }catch (Exception e) {
             e.printStackTrace();
-            warning(e.toString());
+            warning("An error sa occured!");
+        }
+        finally{
+            CustFNamebx.setSelectedItem("");
+            CustMNamebx.setSelectedItem("");
+            CustLNamebx.setSelectedItem("");
+            CustConNumbx.setText("");
+            CustAddressbx.setText("");
         }
     }
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -492,20 +526,127 @@ public class Frame2 extends javax.swing.JFrame implements warn {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     private void CustTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustTableMouseClicked
         try {
-            int row = CustTable.getSelectedRow(),
-                col = CustTable.getSelectedColumn();
-            switch(col){
-                case 0:
-                    CustFNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, col).toString()); 
-                break;
-            }
+            int row = CustTable.getSelectedRow();
+                CustFNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 0).toString()); 
+                CustMNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 1).toString()); 
+                CustLNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 2).toString()); 
+                CustConNumbx.setText(CustTable.getModel().getValueAt(row, 4).toString()); 
+                CustAddressbx.setText(CustTable.getModel().getValueAt(row, 3).toString()); 
+            
         } catch (Exception e) {
             warning(e.toString());
         }
     }//GEN-LAST:event_CustTableMouseClicked
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void custRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRefreshActionPerformed
         LoadTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_custRefreshActionPerformed
+    private void custUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custUpdateActionPerformed
+        if( CustFNamebx.getSelectedItem().toString().trim().isBlank() ||
+            CustLNamebx.getSelectedItem().toString().trim().isBlank() ||
+            CustConNumbx.getText().trim().isBlank() ||
+            CustAddressbx.getText().trim().isBlank())
+            warning("Please fill all of the FIELDS first then try again!");
+        else updateCust();
+            
+    }//GEN-LAST:event_custUpdateActionPerformed
+    private void custDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custDeleteActionPerformed
+        deleteCust();
+    }//GEN-LAST:event_custDeleteActionPerformed
+    public void updateCust(){
+        String f=CustFNamebx.getSelectedItem().toString(),
+        m=CustMNamebx.getSelectedItem().toString(),
+        l=CustLNamebx.getSelectedItem().toString(),
+        a=CustAddressbx.getText(),
+        c=CustConNumbx.getText();
+        JTextField fname = new JTextField(f);
+        JTextField mname = new JTextField(m);
+        JTextField lname = new JTextField(l);
+        JTextField contact = new JTextField(c);
+        JTextArea address = new JTextArea(a,5,0);
+        address.setLineWrap(true);
+        Object[] message={
+            "First Name:", fname,
+            "Middle Name(Optional):", mname,
+            "Last Name:", lname,
+            "Contact #:", contact,
+            "Address:", address
+        };
+
+        int result = JOptionPane.showConfirmDialog(null, message,
+            "Update Customer", JOptionPane.OK_CANCEL_OPTION);
+        if(contact.getText().length()!=11){
+            Object[] yy = {"OK"};
+            int x=javax.swing.JOptionPane.showOptionDialog(
+                null, 
+                "Please enter a valid Contact Number [11 digit] and try again!", 
+                "Inventory Management System: Update Customer", 
+                javax.swing.JOptionPane.OK_OPTION, 
+                javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+            if(x==JOptionPane.OK_OPTION)updateCust();
+        }
+        else if (result == JOptionPane.OK_OPTION) {
+            String  test ="jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+            sqlUpdate="update CUSTOMER set "+
+                    "CFName='"+fname.getText()+"',"+
+                    "CMName='"+mname.getText()+"',"+
+                    "CLName='"+lname.getText()+"',"+
+                    "Address='"+address.getText()+"',"+
+                    "ContactNo='"+contact.getText()+"' "+
+                    "where "+
+                    "CFName='"+f+"' and "+
+                    "CMName='"+m+"' and "+
+                    "CLName='"+l+"' and "+
+                    "Address='"+a+"' and "+
+                    "ContactNo='"+c+"'";
+
+            try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                stmt.executeUpdate(sqlUpdate);
+                connection.close();
+            }catch (Exception e) {
+                e.printStackTrace();
+                warning("An error has occured!");
+            }
+            finally{
+                LoadTable();
+            }
+        }
+    }
+    private void deleteCust(){
+        String  test ="jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+                    fname=CustFNamebx.getSelectedItem().toString(),
+                    mname=CustMNamebx.getSelectedItem().toString(),
+                    lname=CustLNamebx.getSelectedItem().toString(),
+                    contact=CustAddressbx.getText(),
+                    address=CustConNumbx.getText(),
+            sqlDelete="delete from CUSTOMER "+
+                     "where "+
+                     "CFName='"+fname+"' and "+
+                     "CMName='"+mname+"' and "+
+                     "CLName='"+lname+"' and "+
+                     "Address='"+contact+"' and "+
+                     "ContactNo='"+address+"'";
+
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+            stmt.executeUpdate(sqlDelete);
+            connection.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
+        finally{
+            LoadTable();
+        }
+    }
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -521,7 +662,6 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             new Frame2().setVisible(true);
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CashierPanel;
     private javax.swing.JTextArea CustAddressbx;
@@ -534,7 +674,9 @@ public class Frame2 extends javax.swing.JFrame implements warn {
     private javax.swing.JPanel InventoryPanel;
     private javax.swing.JPanel ItemSuppliersPanel;
     private javax.swing.JTabbedPane MainFrame;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton custDelete;
+    private javax.swing.JButton custRefresh;
+    private javax.swing.JButton custUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

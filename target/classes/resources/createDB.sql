@@ -10,7 +10,20 @@ create table CUSTOMER(
     CLName varchar(50) not null,
     Address varchar(255) not null,
     ContactNo varchar(11) not null
-)--select * from CUSTOMER
+)--
+update CUSTOMER set 
+CFName = 'TITE KA ryan',
+CMName = 'boset',
+CLName = 'BAYAG',
+Address = 'ADWAWDAWD',
+ContactNo = '0987654132'
+where 
+CFName = 'TITE KA ryan' and
+CMName = '' and
+CLName = 'BAYAG' and
+Address = 'ADWAWDAWD' and
+ContactNo = '0987654132'
+select * from CUSTOMER
 create table EMPLOYEE(
     EmpID int not null identity(0,1) primary key,
     EmpFName varchar(50) not null,
