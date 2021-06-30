@@ -183,9 +183,9 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
                         "user=root;"+
                         "password=eykha6068",
                 sqlcommand = "insert into SUPPLIER "+
-                            "values ('"+SupName.getText().toUpperCase()+
-                            "','"+SupConNum.getText().replaceAll(" ", "")+
-                            "','"+SupAddress.getText().toUpperCase()+"')",
+                            "values ('"+SupName.getText().toUpperCase().trim()+
+                            "','"+SupConNum.getText().replaceAll("[^0-9]", "").trim()+
+                            "','"+SupAddress.getText().toUpperCase().trim()+"')",
                 sqlcheck=   "select * from supplier";
             boolean check=false;   
                         

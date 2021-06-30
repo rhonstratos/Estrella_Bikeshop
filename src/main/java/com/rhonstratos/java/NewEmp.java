@@ -283,10 +283,10 @@ public class NewEmp extends javax.swing.JDialog implements warn{
             javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
     }
     private void Save(){
-        String  fname=EmpFname.getText().toUpperCase(),
-                mname=EmpMname.getText().toUpperCase(),
-                lname=EmpLname.getText().toUpperCase(),
-                address=EmpAddress.getText().toUpperCase();
+        String  fname=EmpFname.getText().trim().toUpperCase(),
+                mname=EmpMname.getText().trim().toUpperCase(),
+                lname=EmpLname.getText().trim().toUpperCase(),
+                address=EmpAddress.getText().trim().toUpperCase();
         String  test =  "jdbc:sqlserver://"+
                     "localhost:1433;"+
                     "databaseName=INVENTORY_MANAGEMENT_SYS;"+
@@ -296,10 +296,10 @@ public class NewEmp extends javax.swing.JDialog implements warn{
                         "values ('"+fname+
                         "','"+mname+
                         "','"+lname+
-                        "','"+EmpBDate.getText()+
-                        "','"+EmpAge.getText()+
-                        "','"+EmpSex.getSelectedItem()+
-                        "','"+EmpCnum.getText()+
+                        "','"+EmpBDate.getText().trim()+
+                        "','"+EmpAge.getText().trim()+
+                        "','"+EmpSex.getSelectedItem().toString().trim()+
+                        "','"+EmpCnum.getText().trim()+
                         "','"+address+
                         "',"+checkrph(EmpRPH.getText(),"Rate per Hour!!!")+")",
             sqlcheck=   "select EmpFName,EmpMName,EmpLName from EMPLOYEE";

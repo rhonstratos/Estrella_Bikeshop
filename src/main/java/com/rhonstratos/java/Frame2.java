@@ -506,22 +506,22 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         Logout();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new NewCust(getTitle()+": New Customer");
+        new NewCust(this.getTitle().substring(0,27)+": New Customer");
         NewCust.main(null);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new NewEmp(getTitle()+": New Employee");
+        new NewEmp(getTitle().substring(0,27)+": New Employee");
         NewEmp.main(null);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        new NewItem(getTitle()+": New Item");
+        new NewItem(getTitle().substring(0,27)+": New Item");
         NewItem.main(null);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Logout();
     }//GEN-LAST:event_formWindowClosing
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        new NewSupplier(getTitle()+": New Supplier");
+        new NewSupplier(getTitle().substring(0,27)+": New Supplier");
         NewSupplier.main(null);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     private void CustTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustTableMouseClicked

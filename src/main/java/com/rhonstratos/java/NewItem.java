@@ -237,12 +237,12 @@ public class NewItem extends javax.swing.JDialog implements warn{
                     "user=root;"+
                     "password=eykha6068",
             sqlcommand = "insert into ITEM "+
-                        "values ('"+ItmNamebx.getText().toUpperCase()+
-                        "','"+ItmCategorybx.getText().toUpperCase()+
-                        "','"+ItmDescbx.getText().toUpperCase()+
-                        "','"+checkPeso(ItmSRPbx.getText(),"SRP")+
-                        "','"+checkPeso(ItmUnitPricebx.getText(),"Unit Price")+
-                        "','"+supplierComboBx.getSelectedItem()
+                        "values ('"+ItmNamebx.getText().trim().toUpperCase()+
+                        "','"+ItmCategorybx.getText().trim().toUpperCase()+
+                        "','"+ItmDescbx.getText().trim().toUpperCase()+
+                        "','"+checkPeso(ItmSRPbx.getText().trim(),"SRP")+
+                        "','"+checkPeso(ItmUnitPricebx.getText().trim(),"Unit Price")+
+                        "','"+supplierComboBx.getSelectedItem().toString().trim()
                         +"')",
             sqlcheck=   "select ItmName from ITEM";
         boolean check=false;   

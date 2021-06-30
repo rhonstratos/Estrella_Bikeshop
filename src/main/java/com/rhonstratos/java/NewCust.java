@@ -191,6 +191,15 @@ public class NewCust extends javax.swing.JDialog implements warn {
     NewCust(String title){
         NewCust.t = title;
     }
+    private boolean checkInt(String x,String title){
+        try {
+            Integer.parseInt(x.replaceAll("[^0-9]",""));
+            return true;
+        } catch (Exception e) {
+            warning("Please Enter a valid "+title);
+            return false;
+        }
+    }
     private void Save(){
         String  fname=CFName.getText().toUpperCase(),
                 mname=CMName.getText().toUpperCase(),
@@ -202,15 +211,17 @@ public class NewCust extends javax.swing.JDialog implements warn {
                     "user=root;"+
                     "password=eykha6068",
             sqlcommand = "insert into CUSTOMER(CFName,CMName,CLName,Address,ContactNo) "+
-                        "values ('"+fname+
-                        "','"+mname+
-                        "','"+lname+
-                        "','"+address+
-                        "','"+CConNum.getText()+"')",
+                        "values ('"+fname.trim()+
+                        "','"+mname.trim()+
+                        "','"+lname.trim()+
+                        "','"+address.trim()+
+                        "','"+CConNum.getText().trim()+"')",
             sqlcheck=   "select CFName,CLName from CUSTOMER";
         boolean check=false;   
-                    
-        try (Connection connection = DriverManager.getConnection(test);
+        if( checkInt(CConNum.getText(),"Contact Nulber [11 digits] and try again!")&&
+            CConNum.getText().replaceAll("[^0-9]", "").length()!=11)CConNum.setText("");
+        else{
+            try (Connection connection = DriverManager.getConnection(test);
                 Statement stmt = connection.createStatement();) {
                 
                 ResultSet x = stmt.executeQuery(sqlcheck);
@@ -239,13 +250,14 @@ public class NewCust extends javax.swing.JDialog implements warn {
                         javax.swing.JOptionPane.INFORMATION_MESSAGE,null,yy,yy[0]);
                 }
                 connection.close();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally{
-            check=false;
-            this.dispose();
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally{
+                check=false;
+                this.dispose();
+            }
         }
     }
     public static void main(String[] args) {
