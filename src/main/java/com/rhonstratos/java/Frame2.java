@@ -429,11 +429,12 @@ public class Frame2 extends javax.swing.JFrame implements warn {
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
+            if(!String.valueOf((Object)vector.get(0)).isBlank())
             CustFNamebx.addItem(String.valueOf((Object)vector.get(0)));
+            if(!String.valueOf((Object)vector.get(1)).isBlank())
             CustMNamebx.addItem(String.valueOf((Object)vector.get(1)));
+            if(!String.valueOf((Object)vector.get(2)).isBlank())
             CustLNamebx.addItem(String.valueOf((Object)vector.get(2)));
-            
-            System.out.println("/////////");
             data.add(vector);
         }
 
@@ -461,10 +462,11 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
             ResultSet x = stmt.executeQuery(sqlCombo);
-            CustTable.setModel(buildTableModel(x));
             CustFNamebx.removeAllItems();
             CustMNamebx.removeAllItems();
-            CustMNamebx.removeAllItems();
+            CustLNamebx.removeAllItems();
+            CustTable.setModel(buildTableModel(x));
+            
             connection.close();
         }catch (Exception e) {
             e.printStackTrace();

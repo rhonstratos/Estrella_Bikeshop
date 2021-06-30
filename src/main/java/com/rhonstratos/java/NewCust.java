@@ -249,6 +249,7 @@ public class NewCust extends javax.swing.JDialog implements warn {
         }
         finally{
             check=false;
+            this.dispose();
         }
     }
     public static void main(String[] args) {
