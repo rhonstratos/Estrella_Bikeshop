@@ -40,11 +40,6 @@ public class Frame2 extends javax.swing.JFrame implements warn {
         initComponents();
         LoadTable();
     }
-    private ArrayList<String>   custcol1 = new ArrayList<>(),
-                                custcol2 = new ArrayList<>(),
-                                custcol3 = new ArrayList<>(),
-                                custcol4 = new ArrayList<>(),
-                                custcol5 = new ArrayList<>();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
