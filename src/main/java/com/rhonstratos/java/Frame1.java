@@ -25,13 +25,10 @@ package com.rhonstratos.java;
 
     import javax.swing.*;
     import java.io.*;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
 
-public class Frame1 extends javax.swing.JFrame {
+public class Frame1 extends javax.swing.JFrame implements warn {
+    
     private void printlcs(){
         try {
             File myObj = new File(System.getProperty("user.dir")+"\\LICENSE");
@@ -76,7 +73,7 @@ public class Frame1 extends javax.swing.JFrame {
             warning(e.toString());
         }
     }
-    private void warning(String y){
+    public void warning(String y){
         Object[] yy = {"OK"};
             JOptionPane.showOptionDialog(
                 this, 
@@ -99,9 +96,7 @@ public class Frame1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inventory Management System");
-        setName(""); // NOI18N
-
-        jPanel1.setName(""); // NOI18N
+        
         jPanel1.setOpaque(false);
 
         label1.setAlignment(java.awt.Label.CENTER);

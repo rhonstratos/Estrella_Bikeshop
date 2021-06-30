@@ -6,20 +6,34 @@ create table LOGIN(
 create table CUSTOMER(
     CustID int not null identity(0,1) primary key,
     CFName varchar(50) not null,
-    CMName varchar(50) not null,
+    CMName varchar(50),
     CLName varchar(50) not null,
-    Address varchar(255) not null
-)--select * from CUSTOMER
+    Address varchar(255) not null,
+    ContactNo varchar(11) not null
+)--
+update CUSTOMER set 
+CFName = 'TITE KA ryan',
+CMName = 'boset',
+CLName = 'BAYAG',
+Address = 'ADWAWDAWD',
+ContactNo = '0987654132'
+where 
+CFName = 'TITE KA ryan' and
+CMName = '' and
+CLName = 'BAYAG' and
+Address = 'ADWAWDAWD' and
+ContactNo = '0987654132'
+select * from CUSTOMER
 create table EMPLOYEE(
     EmpID int not null identity(0,1) primary key,
     EmpFName varchar(50) not null,
-    EmpMName varchar(50) not null,
+    EmpMName varchar(50),
     EmpLName varchar(50) not null,
     EmpBDate date not null,
-    EmpAge date not null,
+    EmpAge varchar(3) not null,
     EmpSex varchar(1) not null 
         check(EmpSex = 'M'or EmpSex = 'F'),
-    EmpContactNo int not null,
+    EmpContactNo varchar(11) not null,
     EmpAddress varchar(255) not null,
     RatePHour float not null,
 )--select * from EMPLOYEE
@@ -73,3 +87,4 @@ SELECT
 FROM
   INVENTORY_MANAGEMENT_SYS.INFORMATION_SCHEMA.TABLES;
 GO
+select * from employee

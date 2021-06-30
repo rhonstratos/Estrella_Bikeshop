@@ -22,14 +22,10 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
-public class NewSupplier extends javax.swing.JDialog {
+public class NewSupplier extends javax.swing.JDialog implements warn{
     public NewSupplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -167,7 +163,7 @@ public class NewSupplier extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void warning(String y){
+    public void warning(String y){
         Object[] yy = {"OK"};
             javax.swing.JOptionPane.showOptionDialog(
                 this, 
@@ -187,9 +183,9 @@ public class NewSupplier extends javax.swing.JDialog {
                         "user=root;"+
                         "password=eykha6068",
                 sqlcommand = "insert into SUPPLIER "+
-                            "values ('"+SupName.getText().toUpperCase()+
-                            "','"+SupConNum.getText().replaceAll(" ", "")+
-                            "','"+SupAddress.getText().toUpperCase()+"')",
+                            "values ('"+SupName.getText().toUpperCase().trim()+
+                            "','"+SupConNum.getText().replaceAll("[^0-9]", "").trim()+
+                            "','"+SupAddress.getText().toUpperCase().trim()+"')",
                 sqlcheck=   "select * from supplier";
             boolean check=false;   
                         

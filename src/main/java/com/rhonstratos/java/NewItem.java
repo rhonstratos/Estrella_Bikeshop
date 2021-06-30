@@ -22,13 +22,9 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+    import java.sql.*;
     import java.util.ArrayList;
-public class NewItem extends javax.swing.JDialog {
+public class NewItem extends javax.swing.JDialog implements warn{
     public NewItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -49,7 +45,7 @@ public class NewItem extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         ItmDescbx = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        supplierComboBx = new javax.swing.JComboBox<String>(xxx.toArray(new String[0]));
+        supplierComboBx = new javax.swing.JComboBox<>(xxx.toArray(new String[0]));
         jLabel7 = new javax.swing.JLabel();
         ItmUnitPricebx = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -191,7 +187,7 @@ public class NewItem extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void warning(String y){
+    public void warning(String y){
         Object[] yy = {"OK"};
         javax.swing.JOptionPane.showOptionDialog(
             this, 
@@ -210,7 +206,7 @@ public class NewItem extends javax.swing.JDialog {
         return re;
     }
     private void loadCbx(){
-        String  test =  "jdbc:sqlserver://"+
+        String  test ="jdbc:sqlserver://"+
                     "localhost:1433;"+
                     "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                     "user=root;"+
@@ -241,12 +237,12 @@ public class NewItem extends javax.swing.JDialog {
                     "user=root;"+
                     "password=eykha6068",
             sqlcommand = "insert into ITEM "+
-                        "values ('"+ItmNamebx.getText().toUpperCase()+
-                        "','"+ItmCategorybx.getText().toUpperCase()+
-                        "','"+ItmDescbx.getText().toUpperCase()+
-                        "','"+checkPeso(ItmSRPbx.getText(),"SRP")+
-                        "','"+checkPeso(ItmUnitPricebx.getText(),"Unit Price")+
-                        "','"+supplierComboBx.getSelectedItem()
+                        "values ('"+ItmNamebx.getText().trim().toUpperCase()+
+                        "','"+ItmCategorybx.getText().trim().toUpperCase()+
+                        "','"+ItmDescbx.getText().trim().toUpperCase()+
+                        "','"+checkPeso(ItmSRPbx.getText().trim(),"SRP")+
+                        "','"+checkPeso(ItmUnitPricebx.getText().trim(),"Unit Price")+
+                        "','"+supplierComboBx.getSelectedItem().toString().trim()
                         +"')",
             sqlcheck=   "select ItmName from ITEM";
         boolean check=false;   

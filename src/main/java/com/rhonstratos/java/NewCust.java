@@ -22,7 +22,9 @@
  * THE SOFTWARE.
  */
 package com.rhonstratos.java;
-public class NewCust extends javax.swing.JDialog {
+    import java.sql.*;
+public class NewCust extends javax.swing.JDialog implements warn {
+    private static String t;
     public NewCust(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -33,15 +35,15 @@ public class NewCust extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        CFName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        CMName = new javax.swing.JTextField();
+        CLName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        CConNum = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        CAddress = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -67,16 +69,21 @@ public class NewCust extends javax.swing.JDialog {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Contact Number");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
+        CAddress.setColumns(20);
+        CAddress.setLineWrap(true);
+        CAddress.setRows(5);
+        CAddress.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(CAddress);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Address");
 
         jButton1.setText("Register Customer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,10 +115,10 @@ public class NewCust extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))))
+                            .addComponent(CFName)
+                            .addComponent(CMName, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                            .addComponent(CLName, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                            .addComponent(CConNum, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,18 +129,18 @@ public class NewCust extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CFName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CMName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CLName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CConNum, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,13 +173,92 @@ public class NewCust extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-    private static String t;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Save();
+    }//GEN-LAST:event_jButton1ActionPerformed   
+    public void warning(String y){
+        Object[] yy = {"OK"};
+        javax.swing.JOptionPane.showOptionDialog(
+            this, 
+            y, 
+            this.getTitle(), 
+            javax.swing.JOptionPane.OK_OPTION, 
+            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+    }
     NewCust(String title){
         NewCust.t = title;
+    }
+    private boolean checkInt(String x,String title){
+        try {
+            Integer.parseInt(x.replaceAll("[^0-9]",""));
+            return true;
+        } catch (Exception e) {
+            warning("Please Enter a valid "+title);
+            return false;
+        }
+    }
+    private void Save(){
+        String  fname=CFName.getText().toUpperCase(),
+                mname=CMName.getText().toUpperCase(),
+                lname=CLName.getText().toUpperCase(),
+                address=CAddress.getText().toUpperCase();
+        String  test =  "jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+            sqlcommand = "insert into CUSTOMER(CFName,CMName,CLName,Address,ContactNo) "+
+                        "values ('"+fname.trim()+
+                        "','"+mname.trim()+
+                        "','"+lname.trim()+
+                        "','"+address.trim()+
+                        "','"+CConNum.getText().trim()+"')",
+            sqlcheck=   "select CFName,CLName from CUSTOMER";
+        boolean check=false;   
+        if( checkInt(CConNum.getText(),"Contact Nulber [11 digits] and try again!")&&
+            CConNum.getText().replaceAll("[^0-9]", "").length()!=11)CConNum.setText("");
+        else{
+            try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                
+                ResultSet x = stmt.executeQuery(sqlcheck);
+                while(x.next()){
+                    if( fname.equalsIgnoreCase(x.getString("CFName"))&&
+                        lname.equalsIgnoreCase(x.getString("CLName"))){
+                        warning(fname+" "+lname+", already exist!\n"+
+                                "Please enter a different Customer!!!");
+                        check=true;
+                        CFName.setText(null);
+                        CMName.setText(null);
+                        CLName.setText(null);
+                        CAddress.setText(null);
+                        CConNum.setText(null);
+                        check=true;
+                    }
+                }
+                if(!check){
+                    stmt.executeUpdate(sqlcommand);
+                    Object[] yy = {"OK"};
+                        javax.swing.JOptionPane.showOptionDialog(
+                        this, 
+                        "New Customer Saved!", 
+                        this.getTitle(), 
+                        javax.swing.JOptionPane.OK_OPTION, 
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE,null,yy,yy[0]);
+                }
+                connection.close();
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally{
+                check=false;
+                this.dispose();
+            }
+        }
     }
     public static void main(String[] args) {
         try {
@@ -199,6 +285,11 @@ public class NewCust extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea CAddress;
+    private javax.swing.JTextField CConNum;
+    private javax.swing.JTextField CFName;
+    private javax.swing.JTextField CLName;
+    private javax.swing.JTextField CMName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -209,10 +300,5 @@ public class NewCust extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
