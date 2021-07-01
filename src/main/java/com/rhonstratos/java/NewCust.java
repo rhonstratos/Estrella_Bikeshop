@@ -27,7 +27,12 @@ public class NewCust extends javax.swing.JDialog implements warn {
     private static String t;
     public NewCust(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        try {
+            initComponents();
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -253,6 +258,7 @@ public class NewCust extends javax.swing.JDialog implements warn {
             }
             catch (SQLException e) {
                 e.printStackTrace();
+                warning("An error has occured!");
             }
             finally{
                 check=false;

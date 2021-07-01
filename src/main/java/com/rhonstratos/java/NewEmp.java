@@ -30,7 +30,12 @@ public class NewEmp extends javax.swing.JDialog implements warn{
     private static String[] xxx ={"M","F"};
     public NewEmp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        try {
+            initComponents();
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -254,7 +259,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
     private float checkrph(String x,String title){
         float re=0;
         try {
-            re=Float.parseFloat(x.replaceAll(" ",""));
+            re=Float.parseFloat(x.replaceAll("[^0-9]",""));
         } catch (Exception e) {
             warning("Please Enter a valid "+title);
         }
@@ -341,6 +346,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
         }
         catch (SQLException e) {
             e.printStackTrace();
+            warning("An error has occured!");
         }
         finally{
             check=false;

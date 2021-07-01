@@ -62,7 +62,8 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 myWriter.close();
             } 
         } catch (Exception e) {
-            warning(e.toString());
+            e.printStackTrace();
+            warning("An error has occured!");
         }
     }
     public Frame1() {
@@ -70,7 +71,8 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             //printlcs();
             initComponents();
         }catch(Exception e) {
-            warning(e.toString());
+            e.printStackTrace();
+            warning("An error has occured!");
         }
     }
     public void warning(String y){
@@ -230,11 +232,12 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                     }
             }
             catch (SQLException e) {
+                String asd;
                 e.printStackTrace();
-                if(e.toString().equals("com.microsoft.sqlserver.jdbc.SQLServerException: The result set has no current row.")){
-                    String asd="Invalid Username or Password!\nPlease try again!!!";
-                    warning(asd);
-                }
+                if(e.toString().equals("com.microsoft.sqlserver.jdbc.SQLServerException: The result set has no current row."))
+                    asd="Invalid Username or Password!\nPlease try again!!!";
+                else asd="An error has occured!";
+                warning(asd);
             }
             finally{
                 resultSet=null;

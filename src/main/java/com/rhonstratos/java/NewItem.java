@@ -27,7 +27,12 @@ package com.rhonstratos.java;
 public class NewItem extends javax.swing.JDialog implements warn{
     public NewItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        try {
+            initComponents();
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
     }
     private static ArrayList<String> xxx = new ArrayList<>(); 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -199,7 +204,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
     private float checkPeso(String x,String title){
         float re=0;
         try {
-            re=Float.parseFloat(x.replaceAll(" ",""));
+            re=Float.parseFloat(x.replaceAll("[^0-9]",""));
         } catch (Exception e) {
             warning("Please Enter a valid "+title);
         }
@@ -227,7 +232,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
         }
         catch (SQLException e) {
             e.printStackTrace();
-            warning(e.toString());
+            warning("An error has occured!");
         }
     }
     private void Save(){
@@ -279,6 +284,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
         }
         catch (SQLException e) {
             e.printStackTrace();
+            warning("An error has occured!");
         }
         finally{
             check=false;
