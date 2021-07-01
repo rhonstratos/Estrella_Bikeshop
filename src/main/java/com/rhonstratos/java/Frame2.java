@@ -23,9 +23,13 @@
  */
 package com.rhonstratos.java;
     import javax.swing.*;
+    import javax.swing.Timer;
     import javax.swing.table.*;
+    import java.awt.event.*;
     import java.sql.*;
     import java.util.*;
+    import java.time.format.*;  
+    import java.time.*;  
 public class Frame2 extends javax.swing.JFrame implements warn{
     public void warning(String y){
         Object[] yy = {"OK"};
@@ -39,6 +43,16 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     public Frame2() {
         initComponents();
         LoadTable();
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("MMMM dd, yyyy (mm/dd/yyyy)"); 
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");  
+        final Timer t = new Timer(1000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Frame2Clock.setText("Date: "+date.format(LocalDateTime.now())+
+                                    " Time: "+time.format(LocalDateTime.now()));
+            }
+        });
+        t.start();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,7 +85,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jPanel7 = new javax.swing.JPanel();
         ItemSuppliersPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        Frame2Clock = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -357,8 +371,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Items & Suppliers", ItemSuppliersPanel);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Time: ");
+        Frame2Clock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Frame2Clock.setText("Time: 00/00/00 00:00:00");
 
         jMenu1.setText("Menu");
 
@@ -420,14 +434,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     .addComponent(MainFrame)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Frame2Clock, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(Frame2Clock)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MainFrame)
                 .addContainerGap())
@@ -606,7 +620,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     CustMNamebx.getSelectedItem().toString().trim(),
                     CustLNamebx.getSelectedItem().toString().trim());
     }//GEN-LAST:event_jButton1ActionPerformed
-    public void updateCust(){
+    private void updateCust(){
         String f=CustFNamebx.getSelectedItem().toString(),
         m=CustMNamebx.getSelectedItem().toString(),
         l=CustLNamebx.getSelectedItem().toString(),
@@ -725,6 +739,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JComboBox<String> CustMNamebx;
     public javax.swing.JTable CustTable;
     private javax.swing.JPanel CustomerPanel;
+    private javax.swing.JLabel Frame2Clock;
     private javax.swing.JPanel InventoryPanel;
     private javax.swing.JPanel ItemSuppliersPanel;
     private javax.swing.JTabbedPane MainFrame;
@@ -732,7 +747,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JButton custRefresh;
     private javax.swing.JButton custUpdate;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
