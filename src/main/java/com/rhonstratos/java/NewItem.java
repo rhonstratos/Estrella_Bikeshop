@@ -248,7 +248,9 @@ public class NewItem extends javax.swing.JDialog implements warn{
                         "','"+checkPeso(ItmSRPbx.getText().trim(),"SRP")+
                         "','"+checkPeso(ItmUnitPricebx.getText().trim(),"Unit Price")+
                         "','"+supplierComboBx.getSelectedItem().toString().trim()
-                        +"')",
+                        +"'); insert into INVENTORY(InvItemName,InvQuantity,InvCondition)values "+
+                        "('"+ItmNamebx.getText().trim().toUpperCase()+"',0,'"+
+                        ItmDescbx.getText().trim().toUpperCase()+"')",
             sqlcheck=   "select ItmName from ITEM";
         boolean check=false;   
                     
