@@ -114,11 +114,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jScrollPane5 = new javax.swing.JScrollPane();
         InvDesc1 = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
-        InvUpdate1 = new javax.swing.JButton();
-        InvSeasrch1 = new javax.swing.JButton();
-        InvRefresh1 = new javax.swing.JButton();
+        ItmUpdate = new javax.swing.JButton();
+        ItmSearch = new javax.swing.JButton();
+        ItmRefresh = new javax.swing.JButton();
         InvItmID1 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        ItmDelete = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         InvTable1 = new javax.swing.JTable();
         SupplierPanel = new javax.swing.JPanel();
@@ -131,11 +132,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jScrollPane6 = new javax.swing.JScrollPane();
         InvDesc2 = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
-        InvUpdate2 = new javax.swing.JButton();
-        InvSeasrch2 = new javax.swing.JButton();
-        InvRefresh2 = new javax.swing.JButton();
+        SupplierUpdate = new javax.swing.JButton();
+        SupplierSearch = new javax.swing.JButton();
+        SupplierRefresh = new javax.swing.JButton();
         InvItmID2 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
+        SupplierDelete = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         InvTable2 = new javax.swing.JTable();
         Frame2Clock = new javax.swing.JLabel();
@@ -567,24 +569,24 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel15.setText("Quantiy and");
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        InvUpdate1.setText("Update");
-        InvUpdate1.addActionListener(new java.awt.event.ActionListener() {
+        ItmUpdate.setText("Update");
+        ItmUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvUpdate1ActionPerformed(evt);
+                ItmUpdateActionPerformed(evt);
             }
         });
 
-        InvSeasrch1.setText("Search");
-        InvSeasrch1.addActionListener(new java.awt.event.ActionListener() {
+        ItmSearch.setText("Search");
+        ItmSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvSeasrch1ActionPerformed(evt);
+                ItmSearchActionPerformed(evt);
             }
         });
 
-        InvRefresh1.setText("Refresh");
-        InvRefresh1.addActionListener(new java.awt.event.ActionListener() {
+        ItmRefresh.setText("Refresh");
+        ItmRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvRefresh1ActionPerformed(evt);
+                ItmRefreshActionPerformed(evt);
             }
         });
 
@@ -594,6 +596,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Description");
         jLabel16.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
+        ItmDelete.setText("Delete");
+        ItmDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItmDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -614,17 +623,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             .addComponent(InvQuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(InvUpdate1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InvSeasrch1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InvRefresh1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(InvItmName1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(InvItmName1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ItmDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(ItmUpdate)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ItmSearch)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ItmRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -645,10 +657,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             .addComponent(InvQuan1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(InvRefresh1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(InvSeasrch1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(InvUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(157, 157, 157))
+                            .addComponent(ItmRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ItmSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItmUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ItmDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -728,24 +742,24 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel18.setText("Quantiy and");
         jLabel18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        InvUpdate2.setText("Update");
-        InvUpdate2.addActionListener(new java.awt.event.ActionListener() {
+        SupplierUpdate.setText("Update");
+        SupplierUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvUpdate2ActionPerformed(evt);
+                SupplierUpdateActionPerformed(evt);
             }
         });
 
-        InvSeasrch2.setText("Search");
-        InvSeasrch2.addActionListener(new java.awt.event.ActionListener() {
+        SupplierSearch.setText("Search");
+        SupplierSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvSeasrch2ActionPerformed(evt);
+                SupplierSearchActionPerformed(evt);
             }
         });
 
-        InvRefresh2.setText("Refresh");
-        InvRefresh2.addActionListener(new java.awt.event.ActionListener() {
+        SupplierRefresh.setText("Refresh");
+        SupplierRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvRefresh2ActionPerformed(evt);
+                SupplierRefreshActionPerformed(evt);
             }
         });
 
@@ -755,6 +769,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Description");
         jLabel19.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
+        SupplierDelete.setText("Delete");
+        SupplierDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupplierDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -773,20 +794,19 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(InvItmID2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(InvQuan2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(InvItmName2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(InvUpdate2)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(SupplierDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SupplierUpdate))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InvSeasrch2)
+                                .addComponent(SupplierSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(InvRefresh2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(InvItmName2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                                .addComponent(SupplierRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -806,10 +826,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             .addComponent(InvQuan2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(InvRefresh2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(InvSeasrch2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(InvUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(157, 157, 157))
+                            .addComponent(SupplierRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SupplierSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SupplierUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SupplierDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1234,29 +1256,29 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }//GEN-LAST:event_InvTableMouseClicked
 
-    private void InvUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvUpdate1ActionPerformed
+    private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvUpdate1ActionPerformed
+    }//GEN-LAST:event_ItmUpdateActionPerformed
 
-    private void InvSeasrch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvSeasrch1ActionPerformed
+    private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvSeasrch1ActionPerformed
+    }//GEN-LAST:event_ItmSearchActionPerformed
 
-    private void InvRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvRefresh1ActionPerformed
+    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvRefresh1ActionPerformed
+    }//GEN-LAST:event_ItmRefreshActionPerformed
 
-    private void InvUpdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvUpdate2ActionPerformed
+    private void SupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvUpdate2ActionPerformed
+    }//GEN-LAST:event_SupplierUpdateActionPerformed
 
-    private void InvSeasrch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvSeasrch2ActionPerformed
+    private void SupplierSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvSeasrch2ActionPerformed
+    }//GEN-LAST:event_SupplierSearchActionPerformed
 
-    private void InvRefresh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvRefresh2ActionPerformed
+    private void SupplierRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierRefreshActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvRefresh2ActionPerformed
+    }//GEN-LAST:event_SupplierRefreshActionPerformed
 
     private void InvTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvTable1MouseClicked
         // TODO add your handling code here:
@@ -1265,6 +1287,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void InvTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvTable2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_InvTable2MouseClicked
+
+    private void ItmDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItmDeleteActionPerformed
+
+    private void SupplierDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SupplierDeleteActionPerformed
     private void updateCust(){
         String f=CustFNamebx.getSelectedItem().toString(),
         m=CustMNamebx.getSelectedItem().toString(),
@@ -1454,21 +1484,23 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JTextField InvQuan1;
     private javax.swing.JTextField InvQuan2;
     private javax.swing.JButton InvRefresh;
-    private javax.swing.JButton InvRefresh1;
-    private javax.swing.JButton InvRefresh2;
     private javax.swing.JButton InvSeasrch;
-    private javax.swing.JButton InvSeasrch1;
-    private javax.swing.JButton InvSeasrch2;
     private javax.swing.JTable InvTable;
     private javax.swing.JTable InvTable1;
     private javax.swing.JTable InvTable2;
     private javax.swing.JButton InvUpdate;
-    private javax.swing.JButton InvUpdate1;
-    private javax.swing.JButton InvUpdate2;
     private javax.swing.JPanel InventoryPanel;
     private javax.swing.JPanel ItemPanel;
+    private javax.swing.JButton ItmDelete;
+    private javax.swing.JButton ItmRefresh;
+    private javax.swing.JButton ItmSearch;
+    private javax.swing.JButton ItmUpdate;
     private javax.swing.JTabbedPane MainFrame;
+    private javax.swing.JButton SupplierDelete;
     private javax.swing.JPanel SupplierPanel;
+    private javax.swing.JButton SupplierRefresh;
+    private javax.swing.JButton SupplierSearch;
+    private javax.swing.JButton SupplierUpdate;
     private javax.swing.JButton custDelete;
     private javax.swing.JButton custRefresh;
     private javax.swing.JButton custUpdate;

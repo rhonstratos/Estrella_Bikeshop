@@ -839,18 +839,23 @@
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                              <Component id="InvUpdate1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InvSeasrch1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InvRefresh1" min="-2" pref="83" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jScrollPane5" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
                                                   <Component id="InvItmName1" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="ItmDelete" min="-2" pref="67" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="ItmUpdate" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="ItmSearch" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="ItmRefresh" min="-2" pref="83" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -880,11 +885,13 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="InvRefresh1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="InvSeasrch1" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Component id="InvUpdate1" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="ItmRefresh" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="ItmSearch" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="ItmUpdate" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="ItmDelete" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
@@ -949,28 +956,28 @@
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="InvUpdate1">
+                    <Component class="javax.swing.JButton" name="ItmUpdate">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Update"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvUpdate1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItmUpdateActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="InvSeasrch1">
+                    <Component class="javax.swing.JButton" name="ItmSearch">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Search"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvSeasrch1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItmSearchActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="InvRefresh1">
+                    <Component class="javax.swing.JButton" name="ItmRefresh">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvRefresh1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItmRefreshActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="InvItmID1">
@@ -985,6 +992,14 @@
                         <Property name="text" type="java.lang.String" value="Description"/>
                         <Property name="verticalTextPosition" type="int" value="1"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="ItmDelete">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Delete"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItmDeleteActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1097,26 +1112,24 @@
                                           <Component id="InvItmID2" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
                                           <Component id="InvQuan2" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane6" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
+                                          <Component id="InvItmName2" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                              <Component id="InvUpdate2" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InvSeasrch2" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="InvRefresh2" min="-2" pref="83" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jScrollPane6" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
-                                                  <Component id="InvItmName2" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="SupplierDelete" min="-2" pref="67" max="-2" attributes="0"/>
+                                                  <Component id="SupplierUpdate" min="-2" max="-2" attributes="0"/>
                                               </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="SupplierSearch" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="SupplierRefresh" min="-2" pref="83" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="56" max="32767" attributes="0"/>
+                              <EmptySpace pref="51" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1140,11 +1153,13 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="InvRefresh2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="InvSeasrch2" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Component id="InvUpdate2" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="SupplierRefresh" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="SupplierSearch" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="SupplierUpdate" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="SupplierDelete" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
@@ -1209,28 +1224,28 @@
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="InvUpdate2">
+                    <Component class="javax.swing.JButton" name="SupplierUpdate">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Update"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvUpdate2ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SupplierUpdateActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="InvSeasrch2">
+                    <Component class="javax.swing.JButton" name="SupplierSearch">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Search"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvSeasrch2ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SupplierSearchActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="InvRefresh2">
+                    <Component class="javax.swing.JButton" name="SupplierRefresh">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvRefresh2ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SupplierRefreshActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="InvItmID2">
@@ -1245,6 +1260,14 @@
                         <Property name="text" type="java.lang.String" value="Description"/>
                         <Property name="verticalTextPosition" type="int" value="1"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="SupplierDelete">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Delete"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SupplierDeleteActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
