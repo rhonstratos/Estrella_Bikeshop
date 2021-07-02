@@ -44,7 +44,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         try {
             initComponents();
             LoadTable();
-            DateTimeFormatter date = DateTimeFormatter.ofPattern("MMMM dd, yyyy (mm/dd/yyyy)"); 
+            DateTimeFormatter date = DateTimeFormatter.ofPattern("MMMM dd, yyyy (M/dd/yyyy)"); 
             DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");  
             final Timer t = new Timer(1000, new ActionListener(){
                 @Override
