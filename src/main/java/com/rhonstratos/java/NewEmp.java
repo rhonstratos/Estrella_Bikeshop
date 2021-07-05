@@ -256,10 +256,10 @@ public class NewEmp extends javax.swing.JDialog implements warn{
     NewEmp(String title){
         NewEmp.t=title;
     }
-    private float checkrph(String x,String title){
-        float re=0;
+    private double checkrph(String x,String title){
+        double re=0;
         try {
-            re=Float.parseFloat(x.replaceAll("[^0-9]",""));
+            re=Double.parseDouble(x.replaceAll("[^0-9]",""));
         } catch (Exception e) {
             warning("Please Enter a valid "+title);
         }

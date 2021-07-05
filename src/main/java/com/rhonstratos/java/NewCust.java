@@ -198,9 +198,9 @@ public class NewCust extends javax.swing.JDialog implements warn {
     }
     private boolean checkInt(String x,String title){
         try {
-            Integer.parseInt(x.replaceAll("[^0-9]",""));
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             warning("Please Enter a valid "+title);
             return false;
         }

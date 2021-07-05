@@ -1362,7 +1362,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     
     private boolean checkInt(String x,String title){
         try {
-            Integer.parseInt(x.replaceAll("[^0-9]",""));
+            Double.parseDouble(x.replaceAll("[^0-9]",""));
             return true;
         } catch (Exception e) {
             warning("Please Enter a valid "+title);

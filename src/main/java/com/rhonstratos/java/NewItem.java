@@ -201,10 +201,10 @@ public class NewItem extends javax.swing.JDialog implements warn{
             javax.swing.JOptionPane.OK_OPTION, 
             javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
     }
-    private float checkPeso(String x,String title){
-        float re=0;
+    private double checkPeso(String x,String title){
+        double re =0;
         try {
-            re=Float.parseFloat(x.replaceAll("[^0-9]",""));
+            re=Double.parseDouble(x.replaceAll("[^0-9]",""));
         } catch (Exception e) {
             warning("Please Enter a valid "+title);
         }
