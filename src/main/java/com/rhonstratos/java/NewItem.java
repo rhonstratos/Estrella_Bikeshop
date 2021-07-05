@@ -224,9 +224,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
             ResultSet x = stmt.executeQuery(sqlCombo);
             //int y=0;
             while(x.next()){
-                //System.out.println(x.getString("SupName"));
                 xxx.add(x.getString("SupName"));
-                //supplierComboBx.addItem(new String(x.getString("SupName")));
             }
             connection.close();
         }

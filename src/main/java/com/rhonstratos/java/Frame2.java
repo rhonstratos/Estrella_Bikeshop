@@ -1326,15 +1326,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
-            if(!String.valueOf((Object)vector.get(0)).isBlank()&&
-                !vector.contains(String.valueOf((Object)vector.get(0))))
-                    CustFNamebx.addItem(String.valueOf((Object)vector.get(0)));
-            if(!String.valueOf((Object)vector.get(1)).isBlank()&&
-                !vector.contains(String.valueOf((Object)vector.get(1))))
-                    CustMNamebx.addItem(String.valueOf((Object)vector.get(1)));
-            if(!String.valueOf((Object)vector.get(2)).isBlank()&&
-                !vector.contains(String.valueOf((Object)vector.get(2))))
-                    CustLNamebx.addItem(String.valueOf((Object)vector.get(2)));
+            if(!((String)vector.get(0)).isBlank()&&
+                ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).getIndexOf((String)vector.get(0))<0)
+                    ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).addElement((String)vector.get(0));
+            if(!((String)vector.get(1)).isBlank()&&
+                ((DefaultComboBoxModel<String>)CustMNamebx.getModel()).getIndexOf((String)vector.get(1))<0)
+                    ((DefaultComboBoxModel<String>)CustMNamebx.getModel()).addElement((String)vector.get(1));
+            if(!((String)vector.get(2)).isBlank()&&
+                ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).getIndexOf((String)vector.get(2))<0)
+                    ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).addElement((String)vector.get(2));
             data.add(vector);
         }
 
@@ -1366,9 +1366,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
-            if(!String.valueOf((Object)vector.get(1)).isBlank())
-            InvItmName.addItem(String.valueOf((Object)vector.get(1)));
-
+            if(!((String)vector.get(1)).isBlank()&&
+                ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(1))<0)
+                    ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(1));
             data.add(vector);
         }
 
@@ -1400,15 +1400,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
-            for(int re=0;re<data.getlen)
-            if(!String.valueOf(vector.get(0)).isBlank()&&
-                vector.get(0) != data.get(re).get(0))
-                    ItmName.addItem(String.valueOf(vector.get(0)));
+            if(!((String)vector.get(0)).isBlank()&&
+                ((DefaultComboBoxModel<String>)ItmName.getModel()).getIndexOf((String)vector.get(0))<0)
+                    ((DefaultComboBoxModel<String>)ItmName.getModel()).addElement((String)vector.get(0));
 
-            if(!String.valueOf(vector.get(5)).isBlank()&&
-                vector.get(5)!=data.get(re).get(5))
-                    ItmSupplier.addItem(String.valueOf(vector.get(5)));
-            data.add(vector);re++;
+            if(!((String)vector.get(5)).isBlank()&&
+                ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).getIndexOf((String)vector.get(5))<0)
+                    ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).addElement((String)vector.get(5));
+            data.add(vector);
+
         }
 
         return new DefaultTableModel(data, columnNames){
