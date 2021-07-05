@@ -226,7 +226,6 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                     
                     connection.close();
                     if (check){
-                        this.setVisible(false);
                         new Frame2().setVisible(true);
                         this.dispose();
                     }

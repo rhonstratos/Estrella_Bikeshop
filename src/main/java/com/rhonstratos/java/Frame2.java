@@ -85,7 +85,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel6 = new javax.swing.JLabel();
         custDelete = new javax.swing.JButton();
         custUpdate = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        CustSearch = new javax.swing.JButton();
         custRefresh = new javax.swing.JButton();
         InventoryPanel = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -143,7 +143,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel19 = new javax.swing.JLabel();
         SupplierDelete = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
-        InvTable2 = new javax.swing.JTable();
+        SupplierTable = new javax.swing.JTable();
         Frame2Clock = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -256,10 +256,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        CustSearch.setText("Search");
+        CustSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CustSearchActionPerformed(evt);
             }
         });
 
@@ -296,7 +296,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(custUpdate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(CustSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(custRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -331,7 +331,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(custRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(custDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(custUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -866,13 +866,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        InvTable2.setToolTipText("");
-        InvTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        SupplierTable.setToolTipText("");
+        SupplierTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InvTable2MouseClicked(evt);
+                SupplierTableMouseClicked(evt);
             }
         });
-        jScrollPane8.setViewportView(InvTable2);
+        jScrollPane8.setViewportView(SupplierTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1015,6 +1015,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         new NewSupplier(getTitle().substring(0,27)+": New Supplier");
         NewSupplier.main(null);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     private void CustTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustTableMouseClicked
         try {
             int row = CustTable.getSelectedRow();
@@ -1044,11 +1045,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void custDeleteActionPerformed(java.awt.event.ActionEvent evt) {                                           
         deleteCust();
     }                                                                                    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CustSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustSearchActionPerformed
         LoadTableCust(  CustFNamebx.getSelectedItem().toString().trim(),
                     CustMNamebx.getSelectedItem().toString().trim(),
                     CustLNamebx.getSelectedItem().toString().trim());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CustSearchActionPerformed
+
     private void InvRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvRefreshActionPerformed
         InvItmID.setText("");
         InvItmName.removeAllItems();
@@ -1079,15 +1081,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }//GEN-LAST:event_InvTableMouseClicked
-    private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItmUpdateActionPerformed
-    private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItmSearchActionPerformed
-    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItmRefreshActionPerformed
+    
     private void SupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierUpdateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SupplierUpdateActionPerformed
@@ -1097,21 +1091,63 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void SupplierRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierRefreshActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SupplierRefreshActionPerformed
-    private void ItmTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItmTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItmTableMouseClicked
-    private void InvTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvTable2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InvTable2MouseClicked
-    private void ItmDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItmDeleteActionPerformed
     private void SupplierDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SupplierDeleteActionPerformed
- 
+    private void SupplierTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupplierTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SupplierTableMouseClicked
 
+    private void ItmTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItmTableMouseClicked
+        try {
+            int row = ItmTable.getSelectedRow();
+                ItmName.setSelectedItem(ItmTable.getModel().getValueAt(row, 0).toString());
+                ItmCategory.setText(ItmTable.getModel().getValueAt(row, 1).toString());
+                ItmDesc.setText(ItmTable.getModel().getValueAt(row, 2).toString());
+                ItmSRP.setText(ItmTable.getModel().getValueAt(row, 3).toString());
+                ItmUPrice.setText(ItmTable.getModel().getValueAt(row, 4).toString());
+                ItmSupplier.setSelectedItem(ItmTable.getModel().getValueAt(row, 5).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
+    }//GEN-LAST:event_ItmTableMouseClicked
+    private void ItmDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItmDeleteActionPerformed
+    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
+        ItmName.removeAllItems();
+        ItmName.setSelectedItem("");
+        ItmCategory.setText("");
+        ItmDesc.setText("");
+        ItmSRP.setText("");
+        ItmUPrice.setText("");
+        ItmSupplier.removeAllItems();
+        ItmSupplier.setSelectedItem("");
+        LoadTableItm("", "", "", "", "", "");
+    }//GEN-LAST:event_ItmRefreshActionPerformed
+    private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItmUpdateActionPerformed
+    private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmSearchActionPerformed
+        LoadTableItm(
+            ItmName.getSelectedItem().toString().trim(),
+            ItmCategory.getText().trim(),
+            ItmDesc.getText().trim(), 
+            ItmSRP.getText().trim(), 
+            ItmUPrice.getText().trim(), 
+            ItmSupplier.getSelectedItem().toString().trim());
+    }//GEN-LAST:event_ItmSearchActionPerformed
 
+    private boolean checkInt(String x,String title){
+        try {
+            Double.parseDouble(x.replaceAll("[^0-9]",""));
+            return true;
+        } catch (Exception e) {
+            warning("Please Enter a valid "+title);
+            return false;
+        }
+    }
     private void Logout(){
         try{
             Object[] y = {"Yes","No","Cancel"};
@@ -1129,15 +1165,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }catch(Exception e){
             e.printStackTrace();
             warning("An error has occured!");
-        }
-    }
-    private boolean checkInt(String x,String title){
-        try {
-            Double.parseDouble(x.replaceAll("[^0-9]",""));
-            return true;
-        } catch (Exception e) {
-            warning("Please Enter a valid "+title);
-            return false;
         }
     }
     private void updateCust(){
@@ -1299,12 +1326,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
-            if(!String.valueOf((Object)vector.get(0)).isBlank())
-            CustFNamebx.addItem(String.valueOf((Object)vector.get(0)));
-            if(!String.valueOf((Object)vector.get(1)).isBlank())
-            CustMNamebx.addItem(String.valueOf((Object)vector.get(1)));
-            if(!String.valueOf((Object)vector.get(2)).isBlank())
-            CustLNamebx.addItem(String.valueOf((Object)vector.get(2)));
+            if(!String.valueOf((Object)vector.get(0)).isBlank()&&
+                !vector.contains(String.valueOf((Object)vector.get(0))))
+                    CustFNamebx.addItem(String.valueOf((Object)vector.get(0)));
+            if(!String.valueOf((Object)vector.get(1)).isBlank()&&
+                !vector.contains(String.valueOf((Object)vector.get(1))))
+                    CustMNamebx.addItem(String.valueOf((Object)vector.get(1)));
+            if(!String.valueOf((Object)vector.get(2)).isBlank()&&
+                !vector.contains(String.valueOf((Object)vector.get(2))))
+                    CustLNamebx.addItem(String.valueOf((Object)vector.get(2)));
             data.add(vector);
         }
 
@@ -1352,54 +1382,51 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         };
     }
-    private void RefreshTable(){
-        String  test ="jdbc:sqlserver://"+
-                    "localhost:1433;"+
-                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                    "user=root;"+
-                    "password=eykha6068;",
-            SQLCust="select CFName as 'First Name',"+
-                    "CMName as 'Middle Name',"+
-                    "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER",
-            SQLInvent="select InvID as 'ID',"+
-                    "InvItemName as 'Item Name',"+
-                    "InvQuantity as 'Item Quantity', InvCondition as 'Item Description' from INVENTORY ",
-            SQLItem="select ItmName as 'Item Name',"+
-                    "ItmCategory as 'Item Category', ItmDescription as 'Item Description',ItmSRP as 'Suggested Retail Price',"+
-                    "ItmUnitPrice as 'Unit Price',ItmSupplier as 'Supplier' from ITEM ";       ;  
+    private DefaultTableModel buildTableModelItm(ResultSet rs)throws SQLException {
 
-        try (Connection connection = DriverManager.getConnection(test);
-            Statement stmt = connection.createStatement();) {
-            ResultSet set = stmt.executeQuery(SQLCust);
-            CustFNamebx.removeAllItems();
-            CustMNamebx.removeAllItems();
-            CustLNamebx.removeAllItems();
-            CustTable.setModel(buildTableModelCust(set));
-            
-            connection.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
         }
-        try (Connection connection = DriverManager.getConnection(test);
-            Statement stmt = connection.createStatement();) {
-            ResultSet set = stmt.executeQuery(SQLInvent);
-            InvItmName.removeAllItems();
-            InvTable.setModel(buildTableModelInv(set));
-            
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            for(int re=0;re<data.getlen)
+            if(!String.valueOf(vector.get(0)).isBlank()&&
+                vector.get(0) != data.get(re).get(0))
+                    ItmName.addItem(String.valueOf(vector.get(0)));
+
+            if(!String.valueOf(vector.get(5)).isBlank()&&
+                vector.get(5)!=data.get(re).get(5))
+                    ItmSupplier.addItem(String.valueOf(vector.get(5)));
+            data.add(vector);re++;
         }
-        try (Connection connection = DriverManager.getConnection(test);
-            Statement stmt = connection.createStatement();) {
-            ResultSet set = stmt.executeQuery(SQLItem);
-            ItmName.removeAllItems();
-            ItmSupplier.removeAllItems();
-            ItmTable.setModel(buildTableModelInv(set));
-            
-            connection.close();
+
+        return new DefaultTableModel(data, columnNames){
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false ,false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
+    }
+    
+    private void RefreshTable(){
+        try {
+            LoadTableCust("", "", "");
+            LoadTableInv("", "", "");
+            LoadTableItm("", "", "", "", "", "");
         } catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
@@ -1432,21 +1459,23 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     "password=eykha6068",
                 SQLCommand="select CFName as 'First Name',"+
                 "CMName as 'Middle Name',"+
-                "CLName as 'Last Name', Address, ContactNo as 'Contact #'"+" from CUSTOMER where ";
-        if(!cfname.isBlank()) SQLCommand = SQLCommand+"CFName like '%"+cfname+"%' ";
+                "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER ";
+        if(!cfname.isBlank()||!cmname.isBlank()||!clname.isBlank()){
+            SQLCommand=SQLCommand+" where ";
+            if(!cfname.isBlank()) SQLCommand = SQLCommand+" CFName like '%"+cfname+"%' ";
         
-        if(!cmname.isBlank()&&!cfname.isBlank()) SQLCommand = SQLCommand+" and CMName like '%"+cmname+"%' ";
-        else if(!cmname.isBlank()) SQLCommand = SQLCommand+" CMName like '%"+cmname+"%' ";
+            if(!cmname.isBlank()&&!cfname.isBlank()) SQLCommand = SQLCommand+" and CMName like '%"+cmname+"%' ";
+            else if(!cmname.isBlank()) SQLCommand = SQLCommand+" CMName like '%"+cmname+"%' ";
 
-        if(!clname.isBlank()&&!cmname.isBlank()||!cfname.isBlank()) SQLCommand = SQLCommand+" and CLName like '%"+clname+"%' ";
-        else if(!clname.isBlank()) SQLCommand = SQLCommand+" CLName like '%"+clname+"% '";
-
+            if(!clname.isBlank()&&!cmname.isBlank()||!cfname.isBlank()) SQLCommand = SQLCommand+" and CLName like '%"+clname+"%' ";
+            else if(!clname.isBlank()) SQLCommand = SQLCommand+" CLName like '%"+clname+"% '";
+        }
         try (Connection connection = DriverManager.getConnection(test);
-            Statement stmt = connection.createStatement();) {
-            ResultSet x = stmt.executeQuery(SQLCommand);
-            CustTable.setModel(buildTableModelCust(x));
-            
-            connection.close();
+                Statement stmt = connection.createStatement();) {
+                ResultSet x = stmt.executeQuery(SQLCommand);
+                CustTable.setModel(buildTableModelCust(x));
+                
+                connection.close();
         }catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
@@ -1499,7 +1528,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 !ItmSRP.isBlank()||!ItmUPrice.isBlank()||!ItmSupplier.isBlank()){
                 SQLCommand= SQLCommand+" where ";
 
-                if(!ItmName.isBlank()) SQLCommand = SQLCommand+"ItmName like '%"+ItmName+"%' ";
+                if(!ItmName.isBlank()) SQLCommand = SQLCommand+" ItmName like '%"+ItmName+"%' ";
                 
                 if(!ItmName.isBlank()&&!ItmSupplier.isBlank()) SQLCommand = SQLCommand+" and ItmSupplier like '%"+ItmSupplier+"%' ";
                 else if(!ItmSupplier.isBlank()) SQLCommand = SQLCommand+" ItmSupplier like '%"+ItmSupplier+"%' ";
@@ -1518,8 +1547,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
             }
             ResultSet x = stmt.executeQuery(SQLCommand);
-            ItmTable.setModel(buildTableModelInv(x));
-            
+            ItmTable.setModel(buildTableModelItm(x));
             connection.close();
         }catch (Exception e) {
             e.printStackTrace();
@@ -1549,6 +1577,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JComboBox<String> CustFNamebx;
     private javax.swing.JComboBox<String> CustLNamebx;
     private javax.swing.JComboBox<String> CustMNamebx;
+    private javax.swing.JButton CustSearch;
     public javax.swing.JTable CustTable;
     private javax.swing.JPanel CustomerPanel;
     private javax.swing.JLabel Frame2Clock;
@@ -1563,31 +1592,30 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JButton InvRefresh;
     private javax.swing.JButton InvSeasrch;
     private javax.swing.JTable InvTable;
-    private javax.swing.JTable InvTable2;
     private javax.swing.JButton InvUpdate;
     private javax.swing.JPanel InventoryPanel;
-    private javax.swing.JTextField ItmCategory;
-    private javax.swing.JTextArea ItmDesc;
     private javax.swing.JPanel ItemPanel;
-    private javax.swing.JTextField ItmSRP;
-    private javax.swing.JTextField ItmUPrice;
+    private javax.swing.JTextField ItmCategory;
     private javax.swing.JButton ItmDelete;
+    private javax.swing.JTextArea ItmDesc;
     private javax.swing.JComboBox<String> ItmName;
     private javax.swing.JButton ItmRefresh;
+    private javax.swing.JTextField ItmSRP;
     private javax.swing.JButton ItmSearch;
     private javax.swing.JComboBox<String> ItmSupplier;
     private javax.swing.JTable ItmTable;
+    private javax.swing.JTextField ItmUPrice;
     private javax.swing.JButton ItmUpdate;
     private javax.swing.JTabbedPane MainFrame;
     private javax.swing.JButton SupplierDelete;
     private javax.swing.JPanel SupplierPanel;
     private javax.swing.JButton SupplierRefresh;
     private javax.swing.JButton SupplierSearch;
+    private javax.swing.JTable SupplierTable;
     private javax.swing.JButton SupplierUpdate;
     private javax.swing.JButton custDelete;
     private javax.swing.JButton custRefresh;
     private javax.swing.JButton custUpdate;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
