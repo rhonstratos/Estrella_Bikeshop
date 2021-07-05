@@ -10,20 +10,7 @@ create table CUSTOMER(
     CLName varchar(50) not null,
     Address varchar(255) not null,
     ContactNo varchar(11) not null
-)--
-update CUSTOMER set 
-CFName = 'TITE KA ryan',
-CMName = 'boset',
-CLName = 'BAYAG',
-Address = 'ADWAWDAWD',
-ContactNo = '0987654132'
-where 
-CFName = 'TITE KA ryan' and
-CMName = '' and
-CLName = 'BAYAG' and
-Address = 'ADWAWDAWD' and
-ContactNo = '0987654132'
-select * from CUSTOMER
+)--select * from CUSTOMER
 create table EMPLOYEE(
     EmpID int not null identity(0,1) primary key,
     EmpFName varchar(50) not null,
@@ -51,12 +38,14 @@ create table ITEM(
     ItmSupplier varchar(100) not null
         foreign key references SUPPLIER(SupName)
 )--select * from ITEM
+drop table INVENTORY
 create table INVENTORY(
-    InvID int not null identity(0,1) primary key,
+    InvID int not null identity(0,1),
     InvItemName varchar(125) not null
         foreign key references ITEM(ItmName),
     InvQuantity int not null,
-    InvCondition varchar(255) not null
+    InvCondition varchar(255) not null,
+    primary key(InvID,InvItemName)
 )--select * from INVENTORY
 create table INVOICE(
     InvcID int not null identity(0,1) primary key,
@@ -87,4 +76,3 @@ SELECT
 FROM
   INVENTORY_MANAGEMENT_SYS.INFORMATION_SCHEMA.TABLES;
 GO
-select * from employee

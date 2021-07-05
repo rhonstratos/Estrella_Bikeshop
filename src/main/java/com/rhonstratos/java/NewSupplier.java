@@ -28,7 +28,12 @@ import com.microsoft.sqlserver.jdbc.StringUtils;
 public class NewSupplier extends javax.swing.JDialog implements warn{
     public NewSupplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        try {
+            initComponents();
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -173,7 +178,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
                 javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
     }
     private boolean checkConNum(String x){
-        return StringUtils.isNumeric(x.replaceAll(" ", ""));
+        return StringUtils.isNumeric(x.replaceAll("[^0-9]", ""));
     }
     private void Save(){
         if(checkConNum(SupConNum.getText())&&SupConNum.getText().replaceAll(" ", "").length()==11){

@@ -3,27 +3,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch NewCust",
-            "request": "launch",
-            "mainClass": "com.rhonstratos.java.NewCust",
-            "projectName": "project"
-        },
-        {
-            "type": "java",
-            "name": "Launch test",
-            "request": "launch",
-            "mainClass": "com.rhonstratos.java.test",
-            "projectName": "project"
-        },
-        {
-            "type": "java",
-            "name": "Launch NewEmp",
-            "request": "launch",
-            "mainClass": "com.rhonstratos.java.NewEmp",
-            "projectName": "project"
-        },
-        {
-            "type": "java",
             "name": "Launch NewItem",
             "request": "launch",
             "mainClass": "com.rhonstratos.java.NewItem",
@@ -31,9 +10,9 @@
         },
         {
             "type": "java",
-            "name": "Launch NewSupplier",
+            "name": "Launch test",
             "request": "launch",
-            "mainClass": "com.rhonstratos.java.NewSupplier",
+            "mainClass": "com.rhonstratos.java.test",
             "projectName": "project"
         },
         {
@@ -48,7 +27,8 @@
             "name": "Launch Frame1",
             "request": "launch",
             "mainClass": "com.rhonstratos.java.Frame1",
-            "projectName": "project"
+            "projectName": "project",
+            "console": "externalTerminal"
         }
     ]
 }

@@ -27,7 +27,12 @@ package com.rhonstratos.java;
 public class NewItem extends javax.swing.JDialog implements warn{
     public NewItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        try {
+            initComponents();
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
     }
     private static ArrayList<String> xxx = new ArrayList<>(); 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -196,10 +201,10 @@ public class NewItem extends javax.swing.JDialog implements warn{
             javax.swing.JOptionPane.OK_OPTION, 
             javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
     }
-    private float checkPeso(String x,String title){
-        float re=0;
+    private double checkPeso(String x,String title){
+        double re =0;
         try {
-            re=Float.parseFloat(x.replaceAll(" ",""));
+            re=Double.parseDouble(x.replaceAll("[^0-9]",""));
         } catch (Exception e) {
             warning("Please Enter a valid "+title);
         }
@@ -219,15 +224,13 @@ public class NewItem extends javax.swing.JDialog implements warn{
             ResultSet x = stmt.executeQuery(sqlCombo);
             //int y=0;
             while(x.next()){
-                //System.out.println(x.getString("SupName"));
                 xxx.add(x.getString("SupName"));
-                //supplierComboBx.addItem(new String(x.getString("SupName")));
             }
             connection.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
-            warning(e.toString());
+            warning("An error has occured!");
         }
     }
     private void Save(){
@@ -243,7 +246,9 @@ public class NewItem extends javax.swing.JDialog implements warn{
                         "','"+checkPeso(ItmSRPbx.getText().trim(),"SRP")+
                         "','"+checkPeso(ItmUnitPricebx.getText().trim(),"Unit Price")+
                         "','"+supplierComboBx.getSelectedItem().toString().trim()
-                        +"')",
+                        +"'); insert into INVENTORY(InvItemName,InvQuantity,InvCondition)values "+
+                        "('"+ItmNamebx.getText().trim().toUpperCase()+"',0,'"+
+                        ItmDescbx.getText().trim().toUpperCase()+"')",
             sqlcheck=   "select ItmName from ITEM";
         boolean check=false;   
                     
@@ -279,6 +284,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
         }
         catch (SQLException e) {
             e.printStackTrace();
+            warning("An error has occured!");
         }
         finally{
             check=false;

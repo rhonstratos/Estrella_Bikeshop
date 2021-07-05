@@ -1,25 +1,21 @@
 package com.rhonstratos.java;
-
-import javax.swing.*;
-
+import java.util.*;
 public class test {
-    public static void main(String[] args) {
-        JTextArea xxx = new JTextArea(null,5,0);
-        JScrollPane jScrollPane1 = new JScrollPane();
-        xxx.setLineWrap(true);
-        jScrollPane1.setViewportView(xxx);
-        Object[] message={
-            "Input value 1:", new JTextField(),
-            "Input value 2:", new JTextField(),
-            "Input value 3:", new JTextField(),
-            "Input value 4:", new JTextField(),
-            "Input value 5:", xxx
-        };
-
-        int result = JOptionPane.showConfirmDialog(null, message,
-            "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
-        if (result == JOptionPane.OK_OPTION) {
-        }
-    }
-    
+    public static void main(String arg[]) {  
+        //Create an empty Vector  
+        Vector<String> vc = new Vector<String>();  
+        //Add values in the vector  
+            vc.add("Facebook");  
+            vc.add("Whatsapp");  
+            vc.add("Twitter");  
+            vc.add("Instagram");  
+            //Create an empty list  
+            List<String> list = new ArrayList<String>();  
+            //Add values in the List  
+            list.add("Facebook");  
+            list.add("Whatsapp");  
+            System.out.println("Does vector contains all list elements?: "+vc.containsAll(list));  
+            list.add("Hindi100");  
+            System.out.println("Does vector contains all list elements?: "+vc.containsAll(list));  
+          }     
 }
