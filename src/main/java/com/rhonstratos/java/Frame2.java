@@ -1083,19 +1083,19 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }//GEN-LAST:event_InvTableMouseClicked
     
     private void SupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierUpdateActionPerformed
-        // TODO add your handling code here:
+        // TODO supplier update button:
     }//GEN-LAST:event_SupplierUpdateActionPerformed
     private void SupplierSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierSearchActionPerformed
-        // TODO add your handling code here:
+        // TODO supplier search button:
     }//GEN-LAST:event_SupplierSearchActionPerformed
     private void SupplierRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierRefreshActionPerformed
-        // TODO add your handling code here:
+        // TODO supplier refresh button:
     }//GEN-LAST:event_SupplierRefreshActionPerformed
     private void SupplierDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierDeleteActionPerformed
-        // TODO add your handling code here:
+        // TODO supplier delete button:
     }//GEN-LAST:event_SupplierDeleteActionPerformed
     private void SupplierTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupplierTableMouseClicked
-        // TODO add your handling code here:
+        // TODO supplier table click:
     }//GEN-LAST:event_SupplierTableMouseClicked
 
     private void ItmTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItmTableMouseClicked
@@ -1113,7 +1113,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }//GEN-LAST:event_ItmTableMouseClicked
     private void ItmDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmDeleteActionPerformed
-        // TODO add your handling code here:
+        // TODO item delete button:
     }//GEN-LAST:event_ItmDeleteActionPerformed
     private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
         ItmName.removeAllItems();
@@ -1127,7 +1127,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         LoadTableItm("", "", "", "", "", "");
     }//GEN-LAST:event_ItmRefreshActionPerformed
     private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
-        // TODO add your handling code here:
+        updateItem();
     }//GEN-LAST:event_ItmUpdateActionPerformed
     private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmSearchActionPerformed
         LoadTableItm(
@@ -1187,7 +1187,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             "Address:", address
         };
 
-        int result = JOptionPane.showConfirmDialog(null, message,
+        int result = JOptionPane.showConfirmDialog(this, message,
             "Update Customer", JOptionPane.OK_CANCEL_OPTION);
         if(contact.getText().length()!=11){
             Object[] yy = {"OK"};
@@ -1244,7 +1244,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             "Description:", itmdesc
         };
 
-        int result = JOptionPane.showConfirmDialog(null, message,
+        int result = JOptionPane.showConfirmDialog(this, message,
             "Update Inventory", JOptionPane.OK_CANCEL_OPTION);
         if(!checkInt(itmquan.getText(), "Quantity!")){
             RefreshTable();
@@ -1263,6 +1263,62 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     "InvItemName='"+ItmName+"' and "+
                     "InvQuantity='"+ItmQuan+"' and "+
                     "InvCondition='"+ItemDesc+"'";
+
+            try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                stmt.executeUpdate(sqlUpdate);
+                connection.close();
+            }catch (Exception e) {
+                e.printStackTrace();
+                warning("An error has occured!");
+            }
+            finally{
+                RefreshTable();
+            }
+        }
+    }
+    private void updateItem(){
+        String 
+        ItmName=this.ItmName.getSelectedItem().toString().trim(),
+        ItmCateg=this.ItmCategory.getText().trim(),
+        ItmDesc=this.ItmDesc.getText().trim(),
+        ItmSRP=this.ItmSRP.getText().trim(),
+        ItmUPrice=this.ItmUPrice.getText().trim(),
+        ItmSupplier=this.ItmSupplier.getSelectedItem().toString().trim();
+        
+        JTextField ITMCatg = new JTextField(ItmCateg);
+        JTextArea ITMDesc = new JTextArea(ItmDesc,5,0);
+        JTextField SRP = new JTextField(ItmSRP);
+        JTextField UPrice = new JTextField(ItmUPrice);
+            ITMDesc.setLineWrap(true);
+        Object[] message={
+            "Item Name: "+ this.ItmName.getSelectedItem(),
+            "SRP:", SRP,
+            "Unit Price",UPrice,
+            "Item Category: ",ITMCatg,
+            "Item Description: ",ITMDesc
+        };
+
+        int result = JOptionPane.showConfirmDialog(this, message,
+            "Update Item", JOptionPane.OK_CANCEL_OPTION);
+        if(result == JOptionPane.OK_OPTION&&!checkInt(SRP.getText(), "SRP!")&&
+            !checkInt(UPrice.getText(), "Unit Price!")){
+            RefreshTable();
+        }
+        else if (result == JOptionPane.OK_OPTION) {
+            String  test ="jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+
+            sqlUpdate="update ITEM set "+
+                    "ItmCategory='"+ITMCatg.getText().trim()+"', "+
+                    "ItmDescription='"+ITMDesc.getText().trim()+"', "+
+                    "ItmSRP="+SRP.getText().trim()+", "+
+                    "ItmUnitPrice="+UPrice.getText().trim()+" "+
+                    "where "+
+                    "ItmName='"+ItmName+"' ";
 
             try (Connection connection = DriverManager.getConnection(test);
                 Statement stmt = connection.createStatement();) {
@@ -1308,6 +1364,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             RefreshTable();
         }
     }
+    
     private DefaultTableModel buildTableModelCust(ResultSet rs)throws SQLException {
 
         ResultSetMetaData metaData = rs.getMetaData();
