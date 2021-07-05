@@ -1113,7 +1113,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }//GEN-LAST:event_ItmTableMouseClicked
     private void ItmDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmDeleteActionPerformed
-        // TODO item delete button:
+        deleteItem();
     }//GEN-LAST:event_ItmDeleteActionPerformed
     private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
         ItmName.removeAllItems();
@@ -1124,7 +1124,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmUPrice.setText("");
         ItmSupplier.removeAllItems();
         ItmSupplier.setSelectedItem("");
-        LoadTableItm("", "", "", "", "", "");
+        LoadTableItm("", "", "", "");
     }//GEN-LAST:event_ItmRefreshActionPerformed
     private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
         updateItem();
@@ -1133,9 +1133,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         LoadTableItm(
             ItmName.getSelectedItem().toString().trim(),
             ItmCategory.getText().trim(),
-            ItmDesc.getText().trim(), 
-            ItmSRP.getText().trim(), 
-            ItmUPrice.getText().trim(), 
+            ItmDesc.getText().trim(),
             ItmSupplier.getSelectedItem().toString().trim());
     }//GEN-LAST:event_ItmSearchActionPerformed
 
@@ -1283,8 +1281,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmCateg=this.ItmCategory.getText().trim(),
         ItmDesc=this.ItmDesc.getText().trim(),
         ItmSRP=this.ItmSRP.getText().trim(),
-        ItmUPrice=this.ItmUPrice.getText().trim(),
-        ItmSupplier=this.ItmSupplier.getSelectedItem().toString().trim();
+        ItmUPrice=this.ItmUPrice.getText().trim();
         
         JTextField ITMCatg = new JTextField(ItmCateg);
         JTextArea ITMDesc = new JTextArea(ItmDesc,5,0);
@@ -1359,6 +1356,31 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
+        }
+        finally{
+            RefreshTable();
+        }
+    }
+    private void deleteItem(){
+        String  test ="jdbc:sqlserver://"+
+                    "localhost:1433;"+
+                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                    "user=root;"+
+                    "password=eykha6068",
+                    itmname=ItmName.getSelectedItem().toString().trim(),
+            sqlDelete="delete from ITEM "+
+                     "where "+
+                     "ItmName='"+itmname+"'";
+
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+            stmt.executeUpdate(sqlDelete);
+            connection.close();
+        }catch (SQLException e) {
+            if(e.toString().equalsIgnoreCase("com.microsoft.sqlserver.jdbc.SQLServerException: The DELETE statement conflicted with the REFERENCE constraint \"FK__INVENTORY__InvIt__5CD6CB2B\". The conflict occurred in database \"INVENTORY_MANAGEMENT_SYS\", table \"dbo.INVENTORY\", column 'InvItemName'."))
+            warning("Item cannot be deleted because it is referencing an intance in the INVENTORY\n"+
+                    "Delete the Item in INVENTORY first!");
+            else {e.printStackTrace();warning("An error has occured!");}
         }
         finally{
             RefreshTable();
@@ -1483,7 +1505,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         try {
             LoadTableCust("", "", "");
             LoadTableInv("", "", "");
-            LoadTableItm("", "", "", "", "", "");
+            LoadTableItm("", "", "", "");
         } catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
@@ -1569,7 +1591,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }
-    private void LoadTableItm(String ItmName, String ItmCategory, String ItmDesc,String ItmSRP, String ItmUPrice, String ItmSupplier){
+    private void LoadTableItm(String ItmName, String ItmCategory, String ItmDesc, String ItmSupplier){
         String  test ="jdbc:sqlserver://"+
                     "localhost:1433;"+
                     "databaseName=INVENTORY_MANAGEMENT_SYS;"+
@@ -1581,8 +1603,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
 
-            if(!ItmName.isBlank()||!ItmCategory.isBlank()||!ItmDesc.isBlank()||
-                !ItmSRP.isBlank()||!ItmUPrice.isBlank()||!ItmSupplier.isBlank()){
+            if(!ItmName.isBlank()||!ItmCategory.isBlank()||
+                !ItmDesc.isBlank()||!ItmSupplier.isBlank()){
                 SQLCommand= SQLCommand+" where ";
 
                 if(!ItmName.isBlank()) SQLCommand = SQLCommand+" ItmName like '%"+ItmName+"%' ";
@@ -1595,12 +1617,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
                 if(!ItmDesc.isBlank()&&!ItmName.isBlank()||!ItmSupplier.isBlank()||!ItmCategory.isBlank())SQLCommand = SQLCommand+" and ItmDescription like '%"+ItmDesc+"%' ";
                 else if(!ItmDesc.isBlank())SQLCommand = SQLCommand+" ItmDescription like '%"+ItmDesc+"%' ";
-
-                if(!ItmSRP.isBlank()&&!ItmName.isBlank()||!ItmSupplier.isBlank()||!ItmCategory.isBlank()||!ItmDesc.isBlank())SQLCommand = SQLCommand+" and ItmSRP like %"+ItmSRP+"% ";
-                else if(!ItmSRP.isBlank())SQLCommand = SQLCommand+" ItmSRP like '%"+ItmSRP+"%' ";
-
-                if(!ItmUPrice.isBlank()&&!ItmName.isBlank()||!ItmSupplier.isBlank()||!ItmCategory.isBlank()||!ItmDesc.isBlank()||!ItmSRP.isBlank())SQLCommand = SQLCommand+" and ItmUnitPrice like %"+ItmUPrice+"% ";
-                else if(!ItmUPrice.isBlank())SQLCommand = SQLCommand+" ItmUnitPrice like %"+ItmUPrice+"% ";
 
             }
             ResultSet x = stmt.executeQuery(SQLCommand);
