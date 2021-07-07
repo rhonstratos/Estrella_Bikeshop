@@ -65,6 +65,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         MainFrame = new javax.swing.JTabbedPane();
         CashierPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        CashierPane = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        CashierTable = new javax.swing.JTable();
+        CashierTablePane = new javax.swing.JPanel();
         CustomerPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -165,15 +170,88 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.setBackground(new java.awt.Color(153, 153, 153));
 
+        CashierPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("CASHIER");
+
+        javax.swing.GroupLayout CashierPaneLayout = new javax.swing.GroupLayout(CashierPane);
+        CashierPane.setLayout(CashierPaneLayout);
+        CashierPaneLayout.setHorizontalGroup(
+            CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CashierPaneLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+        CashierPaneLayout.setVerticalGroup(
+            CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CashierPaneLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        CashierTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Item Name", "Quantity", "Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        CashierTable.setRowHeight(35);
+        CashierTable.setShowGrid(true);
+        jScrollPane9.setViewportView(CashierTable);
+
+        CashierTablePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout CashierTablePaneLayout = new javax.swing.GroupLayout(CashierTablePane);
+        CashierTablePane.setLayout(CashierTablePaneLayout);
+        CashierTablePaneLayout.setHorizontalGroup(
+            CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        CashierTablePaneLayout.setVerticalGroup(
+            CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 274, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1235, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CashierPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                    .addComponent(CashierTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CashierPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CashierTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout CashierPanelLayout = new javax.swing.GroupLayout(CashierPanel);
@@ -902,7 +980,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         MainFrame.addTab("Suppliers", SupplierPanel);
 
         Frame2Clock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Frame2Clock.setText("Time: 00/00/00 00:00:00");
+        Frame2Clock.setText("Time:");
 
         jMenu1.setText("Menu");
 
@@ -1864,7 +1942,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             "password=eykha6068";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CashierPane;
     private javax.swing.JPanel CashierPanel;
+    private javax.swing.JTable CashierTable;
+    private javax.swing.JPanel CashierTablePane;
     private javax.swing.JTextArea CustAddressbx;
     private javax.swing.JTextField CustConNumbx;
     private javax.swing.JComboBox<String> CustFNamebx;
@@ -1916,6 +1997,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1954,5 +2036,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     // End of variables declaration//GEN-END:variables
 }
