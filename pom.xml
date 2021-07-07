@@ -17,7 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <license.dir>${basedir}</license.dir>
+    <license.dir>${project.basedir}</license.dir>
   </properties>
 
   <dependencies>
@@ -38,7 +38,10 @@
     <version>2.10.10</version>
   </dependency>
   </dependencies>
-
+  <!-- build commands
+  mvn clean
+  mvn clean compile license:format assembly:single clean
+  -->
   <build>
     <resources>
       <resource>
@@ -67,11 +70,9 @@
           <artifactId>maven-license-plugin</artifactId>
           <version>1.10.b1</version>
           <configuration>
-          <header>${license.dir}/license.txt</header>
+          <header>${project.basedir}/src/main/java/com/rhonstratos/java/LICENSE.txt</header>
           <properties>
-            <project>
-            ${project.name}
-            </project>
+            <project>${project.name}</project>
             <founder>${project.organization.name}</founder>
             <year>${project.inceptionYear}</year>
             <website>${founder-website}</website>
