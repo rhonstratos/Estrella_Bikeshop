@@ -1038,7 +1038,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     CustMNamebx.getSelectedItem().toString().trim(),
                     CustLNamebx.getSelectedItem().toString().trim());
     }//GEN-LAST:event_CustSearchActionPerformed
-
     
     private void SupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierUpdateActionPerformed
         // TODO supplier update button:
