@@ -17,6 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <license.dir>${basedir}</license.dir>
   </properties>
 
   <dependencies>
@@ -39,6 +40,14 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+    </resources>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -50,6 +59,71 @@
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
+        </plugin>
+        <!-- License information -->
+        <plugin>
+          <!-- mvn license:format-->
+          <groupId>com.mycila.maven-license-plugin</groupId>
+          <artifactId>maven-license-plugin</artifactId>
+          <version>1.10.b1</version>
+          <configuration>
+          <header>${license.dir}/license.txt</header>
+          <properties>
+            <project>
+            ${project.name}
+            </project>
+            <founder>${project.organization.name}</founder>
+            <year>${project.inceptionYear}</year>
+            <website>${founder-website}</website>
+          </properties>
+          <includes>
+            <include>src/main/java/**</include>
+            <include>src/test/java/**</include>
+          </includes>
+          </configuration>
+          <executions>
+          <execution>
+            <goals>
+            <goal>format</goal>
+            </goals>
+            <phase>process-sources</phase>
+          </execution>
+          </executions>
+          <dependencies>
+          <dependency>
+            <groupId>com.mycila</groupId>
+            <artifactId>licenses</artifactId>
+            <version>1</version>
+          </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <!-- mvn clean compile assembly:single -->
+          <artifactId>maven-assembly-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>com.rhonstratos.java.Frame1</mainClass>
+              </manifest>
+              <manifestEntries>
+                <Project-Version>${project.version}</Project-Version>
+                <Build-Date>${maven.build.timestamp}</Build-Date>
+                <Project-Name>${project.artifactId}_${project.version}</Project-Name>
+              </manifestEntries>
+            </archive>
+            <descriptors>
+              <descriptor>src/assembly/assembly.xml</descriptor>
+            </descriptors>
+          </configuration>
+          <executions>
+            <execution>
+              <id>make-assembly</id> <!-- this is used for inheritance merges -->
+              <phase>package</phase> <!-- bind to the packaging phase -->
+              <goals>
+                <goal>single</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
