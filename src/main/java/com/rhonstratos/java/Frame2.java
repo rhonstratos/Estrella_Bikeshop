@@ -1039,19 +1039,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     CustLNamebx.getSelectedItem().toString().trim());
     }//GEN-LAST:event_CustSearchActionPerformed
 
-    private void InvTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvTableMouseClicked
-        try {
-            int row = InvTable.getSelectedRow();
-                InvItmID.setText(InvTable.getModel().getValueAt(row, 0).toString()); 
-                InvItmName.setSelectedItem(InvTable.getModel().getValueAt(row, 1).toString()); 
-                InvQuan.setText(InvTable.getModel().getValueAt(row, 2).toString()); 
-                InvDesc.setText(InvTable.getModel().getValueAt(row, 3).toString()); 
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
-        }
-    }//GEN-LAST:event_InvTableMouseClicked
     
     private void SupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierUpdateActionPerformed
         // TODO supplier update button:
@@ -1107,7 +1094,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             ItmDesc.getText().trim(),
             ItmSupplier.getSelectedItem().toString().trim());
     }//GEN-LAST:event_ItmSearchActionPerformed
-
+    
+    private void InvTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvTableMouseClicked
+        try {
+            int row = InvTable.getSelectedRow();
+                InvItmID.setText(InvTable.getModel().getValueAt(row, 0).toString()); 
+                InvItmName.setSelectedItem(InvTable.getModel().getValueAt(row, 1).toString()); 
+                InvQuan.setText(InvTable.getModel().getValueAt(row, 2).toString()); 
+                InvDesc.setText(InvTable.getModel().getValueAt(row, 3).toString()); 
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
+    }//GEN-LAST:event_InvTableMouseClicked  
     private void InvRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvRefreshActionPerformed
         InvItmID.setText("");
         InvItmName.removeAllItems();
@@ -1117,13 +1117,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         LoadTableInv("", "", "");
 
     }//GEN-LAST:event_InvRefreshActionPerformed
-
     private void InvSeasrchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvSeasrchActionPerformed
         LoadTableInv(InvItmName.getSelectedItem().toString().trim(),
             InvQuan.getText().trim(),
             InvDesc.getText().trim());
     }//GEN-LAST:event_InvSeasrchActionPerformed
-
     private void InvUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvUpdateActionPerformed
         updateInven();
     }//GEN-LAST:event_InvUpdateActionPerformed
