@@ -25,6 +25,7 @@ package com.rhonstratos.java;
     import java.sql.*;
     import org.joda.time.*;
     import java.util.stream.*;
+    import javax.swing.*;
 public class NewEmp extends javax.swing.JDialog implements warn{
     private static String t;
     private static String[] xxx ={"M","F"};
@@ -280,12 +281,14 @@ public class NewEmp extends javax.swing.JDialog implements warn{
     }
     public void warning(String y){
         Object[] yy = {"OK"};
-        javax.swing.JOptionPane.showOptionDialog(
-            this, 
-            y, 
-            this.getTitle(), 
-            javax.swing.JOptionPane.OK_OPTION, 
-            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+        JOptionPane.showOptionDialog(
+                this, 
+                y, 
+                this.getTitle(), 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/warnico.png")),
+                yy,yy[0]);
     }
     private void Save(){
         String  fname=EmpFname.getText().trim().toUpperCase(),

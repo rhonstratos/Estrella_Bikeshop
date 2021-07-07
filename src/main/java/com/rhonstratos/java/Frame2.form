@@ -210,11 +210,6 @@
                               <EmptySpace pref="50" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel28" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="CashierEmployee1" min="-2" pref="330" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
                                       <Component id="jLabel25" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="CashierEmployee" min="-2" pref="330" max="-2" attributes="0"/>
@@ -224,6 +219,17 @@
                                       <Component id="jLabel26" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="CashierCustomer" min="-2" pref="330" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel28" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="CashierEmployee1" min="-2" pref="330" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                                          <Component id="CashierSavePrint" min="-2" pref="101" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace pref="46" max="32767" attributes="0"/>
@@ -250,6 +256,8 @@
                                   <Component id="jLabel28" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="CashierEmployee1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="CashierSavePrint" min="-2" pref="35" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -259,7 +267,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel24">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="CASHIER"/>
+                        <Property name="text" type="java.lang.String" value="INVOICE"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
@@ -299,6 +307,14 @@
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="CashierSavePrint">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Save &amp; Print"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CashierSavePrintActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

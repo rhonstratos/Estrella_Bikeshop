@@ -23,6 +23,7 @@
  */
 package com.rhonstratos.java;
     import java.sql.*;
+    import javax.swing.*;
 public class NewCust extends javax.swing.JDialog implements warn {
     private static String t;
     public NewCust(java.awt.Frame parent, boolean modal) {
@@ -186,12 +187,14 @@ public class NewCust extends javax.swing.JDialog implements warn {
     }//GEN-LAST:event_jButton1ActionPerformed   
     public void warning(String y){
         Object[] yy = {"OK"};
-        javax.swing.JOptionPane.showOptionDialog(
-            this, 
-            y, 
-            this.getTitle(), 
-            javax.swing.JOptionPane.OK_OPTION, 
-            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+        JOptionPane.showOptionDialog(
+                this, 
+                y, 
+                this.getTitle(), 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/warnico.png")),
+                yy,yy[0]);
     }
     NewCust(String title){
         NewCust.t = title;

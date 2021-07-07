@@ -27,8 +27,7 @@
             "name": "Launch Frame1",
             "request": "launch",
             "mainClass": "com.rhonstratos.java.Frame1",
-            "projectName": "project",
-            "console": "externalTerminal"
+            "projectName": "project"
         }
     ]
 }

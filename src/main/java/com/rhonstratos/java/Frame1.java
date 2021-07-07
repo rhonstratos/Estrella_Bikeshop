@@ -82,7 +82,9 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 y, 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
-                JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/warnico.png")),
+                yy,yy[0]);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

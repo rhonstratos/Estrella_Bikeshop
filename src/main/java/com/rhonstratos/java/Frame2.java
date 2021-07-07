@@ -33,12 +33,14 @@ package com.rhonstratos.java;
 public class Frame2 extends javax.swing.JFrame implements warn{
     public void warning(String y){
         Object[] yy = {"OK"};
-        javax.swing.JOptionPane.showOptionDialog(
-            this, 
-            y, 
-            this.getTitle(), 
-            javax.swing.JOptionPane.OK_OPTION, 
-            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+        JOptionPane.showOptionDialog(
+                this, 
+                y, 
+                this.getTitle(), 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/warnico.png")),
+                yy,yy[0]);
     }
     public Frame2() {
         try {
@@ -73,6 +75,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierCustomer = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
         CashierEmployee1 = new javax.swing.JTextField();
+        CashierSavePrint = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         CashierTable = new javax.swing.JTable();
         CashierTablePane = new javax.swing.JPanel();
@@ -187,7 +190,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("CASHIER");
+        jLabel24.setText("INVOICE");
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Employee");
@@ -202,6 +205,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         CashierEmployee1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        CashierSavePrint.setText("Save & Print");
+        CashierSavePrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CashierSavePrintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CashierPaneLayout = new javax.swing.GroupLayout(CashierPane);
         CashierPane.setLayout(CashierPaneLayout);
         CashierPaneLayout.setHorizontalGroup(
@@ -210,10 +220,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CashierPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CashierEmployee1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(CashierPaneLayout.createSequentialGroup()
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CashierEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,7 +227,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     .addGroup(CashierPaneLayout.createSequentialGroup()
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(CashierPaneLayout.createSequentialGroup()
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(CashierEmployee1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CashierPaneLayout.createSequentialGroup()
+                            .addGap(106, 106, 106)
+                            .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         CashierPaneLayout.setVerticalGroup(
@@ -241,6 +255,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CashierEmployee1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1329,6 +1345,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         // TODO add your handling code here:
     }//GEN-LAST:event_PunchOrderActionPerformed
 
+    private void CashierSavePrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierSavePrintActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CashierSavePrintActionPerformed
+
     private boolean checkInt(String x,String title){
         try {
             Double.parseDouble(x.replaceAll("[^0-9]",""));
@@ -2060,6 +2080,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JPanel CashierPanel;
     private javax.swing.JTextField CashierPrice;
     private javax.swing.JTextField CashierQuantity;
+    private javax.swing.JButton CashierSavePrint;
     private javax.swing.JTable CashierTable;
     private javax.swing.JPanel CashierTablePane;
     private javax.swing.JTextArea CustAddressbx;
