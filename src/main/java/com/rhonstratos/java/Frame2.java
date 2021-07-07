@@ -1508,7 +1508,45 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         };
     }
-    
+    private DefaultTableModel buildTableModelSup(ResultSet rs)throws SQLException {
+
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
+        }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            if(!((String)vector.get(0)).isBlank()&&
+                ((DefaultComboBoxModel<String>)ItmName.getModel()).getIndexOf((String)vector.get(0))<0)
+                    ((DefaultComboBoxModel<String>)ItmName.getModel()).addElement((String)vector.get(0));
+
+            if(!((String)vector.get(5)).isBlank()&&
+                ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).getIndexOf((String)vector.get(5))<0)
+                    ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).addElement((String)vector.get(5));
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames){
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false ,false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
+    }
+
     private void RefreshTable(){
         try {
             LoadTableCust("", "", "");
