@@ -24,6 +24,7 @@
 package com.rhonstratos.java;
     import java.sql.*;
     import java.util.ArrayList;
+    import javax.swing.*;
 public class NewItem extends javax.swing.JDialog implements warn{
     public NewItem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -194,12 +195,14 @@ public class NewItem extends javax.swing.JDialog implements warn{
     }// </editor-fold>//GEN-END:initComponents
     public void warning(String y){
         Object[] yy = {"OK"};
-        javax.swing.JOptionPane.showOptionDialog(
-            this, 
-            y, 
-            this.getTitle(), 
-            javax.swing.JOptionPane.OK_OPTION, 
-            javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+        JOptionPane.showOptionDialog(
+                this, 
+                y, 
+                this.getTitle(), 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/warnico.png")),
+                yy,yy[0]);
     }
     private double checkPeso(String x,String title){
         double re =0;

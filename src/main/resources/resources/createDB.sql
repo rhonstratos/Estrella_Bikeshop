@@ -4,7 +4,7 @@ create table LOGIN(
     pass varchar(30) not null
 )--select * from LOGIN
 create table CUSTOMER(
-    CustID int not null identity(0,1) primary key,
+    CustID int not null identity(1,1) primary key,
     CFName varchar(50) not null,
     CMName varchar(50),
     CLName varchar(50) not null,
@@ -12,7 +12,7 @@ create table CUSTOMER(
     ContactNo varchar(11) not null
 )--select * from CUSTOMER
 create table EMPLOYEE(
-    EmpID int not null identity(0,1) primary key,
+    EmpID int not null identity(1,1) primary key,
     EmpFName varchar(50) not null,
     EmpMName varchar(50),
     EmpLName varchar(50) not null,
@@ -26,7 +26,7 @@ create table EMPLOYEE(
 )--select * from EMPLOYEE
 create table SUPPLIER(
     SupName varchar(100) not null primary key,
-    SupContactNo int not null,
+    SupContactNo varchar(11) not null,
     SupAddress varchar(255) not null
 )--select * from SUPPLIER
 create table ITEM(
@@ -39,22 +39,23 @@ create table ITEM(
         foreign key references SUPPLIER(SupName)
 )--select * from ITEM
 create table INVENTORY(
-    InvID int not null identity(0,1) primary key,
+    InvID int not null identity(1,1) primary key,
     InvItemName varchar(125) not null
         foreign key references ITEM(ItmName),
-    InvQuantity int not null,
+    InvQuantity int not null
+        check(InvQuantity > 0),
     InvCondition varchar(255) not null
 )--select * from INVENTORY
 create table INVOICE(
-    InvcID int not null identity(0,1) primary key,
+    InvcID int not null identity(1,1) primary key,
     CustomerID int not null 
     foreign key references CUSTOMER(CustID),
     EmployeeID int not null 
     foreign key references EMPLOYEE(EmpID),
-    InvcTotal float not null default 0.0,
+    InvcTotal float not null,
     InvcOrderDate varchar(100) not null default
-        datename(month,getdate())+' '+
-        datename(day,getdate())+', '+
+        datename(month,getdate())+'-'+
+        datename(day,getdate())+'-'+
         datename(year,getdate()),
     InvcPaymentOption varchar(50) not null
 )--select * from INVOICE

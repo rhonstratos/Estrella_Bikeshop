@@ -23,6 +23,7 @@
  */
 package com.rhonstratos.java;
     import java.sql.*;
+    import javax.swing.*;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 public class NewSupplier extends javax.swing.JDialog implements warn{
@@ -170,12 +171,14 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
     }//GEN-LAST:event_jButton2ActionPerformed
     public void warning(String y){
         Object[] yy = {"OK"};
-            javax.swing.JOptionPane.showOptionDialog(
-                this, 
-                y, 
-                this.getTitle(), 
-                javax.swing.JOptionPane.OK_OPTION, 
-                javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
+        JOptionPane.showOptionDialog(
+            this, 
+            y, 
+            this.getTitle(), 
+            JOptionPane.OK_OPTION, 
+            JOptionPane.WARNING_MESSAGE,
+            new ImageIcon(getClass().getResource("/resources/warnico.png")),
+            yy,yy[0]);
     }
     private boolean checkConNum(String x){
         return StringUtils.isNumeric(x.replaceAll("[^0-9]", ""));
