@@ -1,0 +1,1 @@
+mvn clean compile license:format assembly:single clean
