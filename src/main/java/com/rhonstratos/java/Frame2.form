@@ -67,9 +67,6 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="99" green="99" red="99" type="rgb"/>
     </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1280, 720]"/>
-    </Property>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1280, 720]"/>
     </Property>
@@ -116,7 +113,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Frame2Clock" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="MainFrame" pref="656" max="32767" attributes="0"/>
+              <Component id="MainFrame" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -1149,9 +1146,9 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="SupplierRefresh" min="-2" pref="87" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="SupplierName" max="32767" attributes="0"/>
-                                          <Component id="InvQuan2" alignment="1" max="32767" attributes="0"/>
                                           <Component id="jScrollPane6" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="SupplierName" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="SupplierConNum" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1171,7 +1168,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="InvQuan2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="SupplierConNum" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="jLabel22" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1219,7 +1216,7 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="InvQuan2">
+                    <Component class="javax.swing.JTextField" name="SupplierConNum">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="horizontalAlignment" type="int" value="0"/>

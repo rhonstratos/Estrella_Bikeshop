@@ -132,7 +132,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel12 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         SupplierName = new javax.swing.JComboBox<>();
-        InvQuan2 = new javax.swing.JTextField();
+        SupplierConNum = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         SupplierAddress = new javax.swing.JTextArea();
         SupplierUpdate = new javax.swing.JButton();
@@ -156,7 +156,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inventory Management System: Main Menu");
         setBackground(new java.awt.Color(153, 153, 153));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -749,8 +748,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         SupplierName.setEditable(true);
 
-        InvQuan2.setEditable(false);
-        InvQuan2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SupplierConNum.setEditable(false);
+        SupplierConNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         SupplierAddress.setEditable(false);
         SupplierAddress.setColumns(20);
@@ -817,9 +816,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 .addComponent(SupplierSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SupplierRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane6)
                             .addComponent(SupplierName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(InvQuan2)
-                            .addComponent(jScrollPane6))))
+                            .addComponent(SupplierConNum))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -833,7 +832,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     .addComponent(SupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InvQuan2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SupplierConNum, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
@@ -974,7 +973,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(Frame2Clock)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MainFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                .addComponent(MainFrame)
                 .addContainerGap())
         );
 
@@ -1019,7 +1018,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }//GEN-LAST:event_CustTableMouseClicked
     private void custRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRefreshActionPerformed
-        RefreshTable();
+        CustFNamebx.setSelectedItem("");
+        CustMNamebx.setSelectedItem("");
+        CustLNamebx.setSelectedItem("");
+        CustConNumbx.setText("");
+        CustAddressbx.setText("");
+        LoadTableCust("", "", "");
     }//GEN-LAST:event_custRefreshActionPerformed
     private void custUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custUpdateActionPerformed
         if( CustFNamebx.getSelectedItem().toString().trim().isBlank() ||
@@ -1040,19 +1044,32 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }//GEN-LAST:event_CustSearchActionPerformed
     
     private void SupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierUpdateActionPerformed
-        // TODO supplier update button:
+        updateSupplier();
     }//GEN-LAST:event_SupplierUpdateActionPerformed
     private void SupplierSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierSearchActionPerformed
-        // TODO supplier search button:
+        LoadTableSup(SupplierName.getSelectedItem().toString(),
+                    SupplierConNum.getText(),
+                    SupplierAddress.getText());
     }//GEN-LAST:event_SupplierSearchActionPerformed
     private void SupplierRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierRefreshActionPerformed
-        // TODO supplier refresh button:
+        SupplierName.setSelectedItem("");
+        SupplierAddress.setText("");
+        SupplierConNum.setText("");
+        LoadTableSup("", "", "");
     }//GEN-LAST:event_SupplierRefreshActionPerformed
     private void SupplierDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierDeleteActionPerformed
-        // TODO supplier delete button:
+        deleteSupplier();
     }//GEN-LAST:event_SupplierDeleteActionPerformed
     private void SupplierTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupplierTableMouseClicked
-        // TODO supplier table click:
+        try {
+            int row = SupplierTable.getSelectedRow();
+                SupplierName.setSelectedItem(SupplierTable.getModel().getValueAt(row, 0).toString()); 
+                SupplierConNum.setText(SupplierTable.getModel().getValueAt(row, 1).toString());
+                SupplierAddress.setText(SupplierTable.getModel().getValueAt(row, 2).toString()); 
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
     }//GEN-LAST:event_SupplierTableMouseClicked
 
     private void ItmTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItmTableMouseClicked
@@ -1094,7 +1111,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             ItmSupplier.getSelectedItem().toString().trim());
     }//GEN-LAST:event_ItmSearchActionPerformed
     
-    private void InvTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvTableMouseClicked
+    private void InvTableMouseClicked(java.awt.event.MouseEvent evt) {                                      
         try {
             int row = InvTable.getSelectedRow();
                 InvItmID.setText(InvTable.getModel().getValueAt(row, 0).toString()); 
@@ -1106,7 +1123,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             e.printStackTrace();
             warning("An error has occured!");
         }
-    }//GEN-LAST:event_InvTableMouseClicked  
+    }                                       
     private void InvRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvRefreshActionPerformed
         InvItmID.setText("");
         InvItmName.removeAllItems();
@@ -1114,7 +1131,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         InvQuan.setText("");
         InvDesc.setText("");
         LoadTableInv("", "", "");
-
     }//GEN-LAST:event_InvRefreshActionPerformed
     private void InvSeasrchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvSeasrchActionPerformed
         LoadTableInv(InvItmName.getSelectedItem().toString().trim(),
@@ -1153,6 +1169,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }
+    
     private void updateCust(){
         String f=CustFNamebx.getSelectedItem().toString(),
         m=CustMNamebx.getSelectedItem().toString(),
@@ -1187,7 +1204,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
         else if(Double.parseDouble(contact.getText())<0){
             warning("Invalid Contact Number! \nPlease enter a valid Contact Number and try again!");
-            RefreshTable();
+            CustFNamebx.setSelectedItem("");
+            CustMNamebx.setSelectedItem("");
+            CustLNamebx.setSelectedItem("");
+            CustConNumbx.setText("");
+            CustAddressbx.setText("");
+            LoadTableCust("", "", "");
         }
         else if (result == JOptionPane.OK_OPTION) {
             String  
@@ -1213,7 +1235,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 warning("An error has occured!");
             }
             finally{
-                RefreshTable();
+                CustFNamebx.setSelectedItem("");
+                CustMNamebx.setSelectedItem("");
+                CustLNamebx.setSelectedItem("");
+                CustConNumbx.setText("");
+                CustAddressbx.setText("");
+                LoadTableCust("", "", "");
             }
         }
     }
@@ -1223,6 +1250,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmQuan=InvQuan.getText(),
         ItemDesc=InvDesc.getText(),
         sqlUpdate="";
+        JTextField itmName = new JTextField(ItmName);
+            itmName.setHorizontalAlignment(JTextField.CENTER);
+            itmName.setEditable(false);
         JTextField itmquan = new JTextField(ItmQuan);
         JTextArea itmdesc = new JTextArea(ItemDesc,5,0);
         itmdesc.setLineWrap(true);
@@ -1254,7 +1284,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
         else if(Integer.parseInt(itmquan.getText())<0){
             warning("Invalid Quantity! \nPlease enter a valid Quantity and try again!");
-            RefreshTable();
+            InvItmID.setText("");
+            InvItmName.removeAllItems();
+            InvItmName.setSelectedItem("");
+            InvQuan.setText("");
+            InvDesc.setText("");
+            LoadTableInv("", "", "");
         }
         else if (result == JOptionPane.OK_OPTION) {
               
@@ -1278,7 +1313,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             finally{
                 run=false;
-                RefreshTable();
+                InvItmID.setText("");
+                InvItmName.removeAllItems();
+                InvItmName.setSelectedItem("");
+                InvQuan.setText("");
+                InvDesc.setText("");
+                LoadTableInv("", "", "");
             }
         }
         run=false;
@@ -1291,13 +1331,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmSRP=this.ItmSRP.getText().trim(),
         ItmUPrice=this.ItmUPrice.getText().trim();
         
+        JTextField ITMName =new JTextField(ItmName);
+            ITMName.setEditable(false);
+            ITMName.setHorizontalAlignment(JTextField.CENTER);
         JTextField ITMCatg = new JTextField(ItmCateg);
+            ITMCatg.setHorizontalAlignment(JTextField.CENTER);
         JTextArea ITMDesc = new JTextArea(ItmDesc,5,0);
-        JTextField SRP = new JTextField(ItmSRP);
-        JTextField UPrice = new JTextField(ItmUPrice);
             ITMDesc.setLineWrap(true);
+        JTextField SRP = new JTextField(ItmSRP);
+            SRP.setHorizontalAlignment(JTextField.CENTER);
+        JTextField UPrice = new JTextField(ItmUPrice);
+            UPrice.setHorizontalAlignment(JTextField.CENTER);
+            
         Object[] message={
-            "Item Name: "+ this.ItmName.getSelectedItem(),
+            "Item Name: ",ITMName,
             "SRP:", SRP,
             "Unit Price",UPrice,
             "Item Category: ",ITMCatg,
@@ -1308,7 +1355,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             "Update Item", JOptionPane.OK_CANCEL_OPTION);
         if(result == JOptionPane.OK_OPTION&&!checkInt(SRP.getText(), "SRP!")&&
             !checkInt(UPrice.getText(), "Unit Price!")){
-            RefreshTable();
+            CustFNamebx.setSelectedItem("");
+            CustMNamebx.setSelectedItem("");
+            CustLNamebx.setSelectedItem("");
+            CustConNumbx.setText("");
+            CustAddressbx.setText("");
+            LoadTableCust("", "", "");
         }
         else if (result == JOptionPane.OK_OPTION) {
             String  
@@ -1329,10 +1381,68 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 warning("An error has occured!");
             }
             finally{
-                RefreshTable();
+                CustFNamebx.setSelectedItem("");
+                CustMNamebx.setSelectedItem("");
+                CustLNamebx.setSelectedItem("");
+                CustConNumbx.setText("");
+                CustAddressbx.setText("");
+                LoadTableCust("", "", "");
             }
         }
     }
+    private void updateSupplier(){
+        String 
+        SupName=this.SupplierName.getSelectedItem().toString().trim(),
+        SupConNum=this.SupplierConNum.getText().trim(),
+        SuppAddress=this.SupplierAddress.getText().trim();
+        
+        JTextField supName = new JTextField(SupName);
+            supName.setEditable(false);
+            supName.setHorizontalAlignment(JTextField.CENTER);
+        JTextField supConNum = new JTextField(SupConNum);
+        JTextArea supAdd = new JTextArea(SuppAddress,5,0);
+            supAdd.setLineWrap(true);
+        Object[] message={
+            "Supplier Name: ", supName,
+            "Contact Number:", supConNum,
+            "Address",supAdd
+        };
+
+        int result = JOptionPane.showConfirmDialog(this, message,
+            "Update Item", JOptionPane.OK_CANCEL_OPTION);
+
+        if(result == JOptionPane.OK_OPTION&&!checkInt(supConNum.getText(), "SRP!")){
+            SupplierName.setSelectedItem("");
+            SupplierAddress.setText("");
+            SupplierConNum.setText("");
+            LoadTableSup("", "", "");
+        }
+        else if (result == JOptionPane.OK_OPTION) {
+            String  
+            sqlUpdate="update SUPPLIER set "+
+                    "SupName='"+supName.getText().trim()+"', "+
+                    "SupContactNo='"+supConNum.getText().trim()+"', "+
+                    "SupAddress="+supAdd.getText().trim()+" "+
+                    "where "+
+                    "SupName='"+SupName+"' ";
+
+            try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                stmt.executeUpdate(sqlUpdate);
+                connection.close();
+            }catch (Exception e) {
+                e.printStackTrace();
+                warning("An error has occured!");
+            }
+            finally{
+                SupplierName.setSelectedItem("");
+                SupplierAddress.setText("");
+                SupplierConNum.setText("");
+                LoadTableSup("", "", "");
+            }
+        }
+    }
+
     private void deleteCust(){
         String  
         fname=CustFNamebx.getSelectedItem().toString(),
@@ -1384,8 +1494,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 connection.close();
             }catch (Exception e) {
                 if(e.toString().equalsIgnoreCase("com.microsoft.sqlserver.jdbc.SQLServerException: The DELETE statement conflicted with the REFERENCE constraint \"FK__INVENTORY__InvIt__5CD6CB2B\". The conflict occurred in database \"INVENTORY_MANAGEMENT_SYS\", table \"dbo.INVENTORY\", column 'InvItemName'."))
-                warning("Item cannot be deleted because it is referencing an intance in the INVENTORY\n"+
-                        "Delete the Item in INVENTORY first!");
+                warning("Item cannot be deleted because it is referencing an intance in the INVENTORY table\n"+
+                        "Delete the instances in INVENTORY table first!");
                 else {e.printStackTrace();warning("An error has occured!");}
             }
             finally{
@@ -1394,7 +1504,35 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
         else RefreshTable();
     }
-    
+    private void deleteSupplier(){
+        String
+        SupName=SupplierName.getSelectedItem().toString().trim(),
+        sqlDelete="delete from Supplier "+
+                    "where "+
+                    "SupName='"+SupName+"'";
+
+        int delete = JOptionPane.showConfirmDialog(this, 
+            "Are you sure you want to delete Supplier["+SupName+"]? \n"+
+            "",
+            "Delete Supplier", JOptionPane.OK_CANCEL_OPTION);
+        if(delete==JOptionPane.OK_OPTION){
+            try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();) {
+                stmt.executeUpdate(sqlDelete);
+                connection.close();
+            }catch (Exception e) {
+                if(e.toString().equalsIgnoreCase("com.microsoft.sqlserver.jdbc.SQLServerException: The DELETE statement conflicted with the REFERENCE constraint \"FK__ITEM__ItmSupplie__3E52440B\". The conflict occurred in database \"INVENTORY_MANAGEMENT_SYS\", table \"dbo.ITEM\", column 'ItmSupplier'."))
+                warning("Supplier cannot be deleted because it is referencing an intance in the ITEM table\n"+
+                        "Delete the instances in ITEM table first!");
+                else {e.printStackTrace();warning("An error has occured!");}
+            }
+            finally{
+                RefreshTable();
+            }
+        }
+        else RefreshTable();
+    }
+
     private DefaultTableModel buildTableModelCust(ResultSet rs)throws SQLException {
 
         ResultSetMetaData metaData = rs.getMetaData();
@@ -1527,18 +1665,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 vector.add(rs.getObject(columnIndex));
             }
             if(!((String)vector.get(0)).isBlank()&&
-                ((DefaultComboBoxModel<String>)ItmName.getModel()).getIndexOf((String)vector.get(0))<0)
-                    ((DefaultComboBoxModel<String>)ItmName.getModel()).addElement((String)vector.get(0));
-
-            if(!((String)vector.get(5)).isBlank()&&
-                ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).getIndexOf((String)vector.get(5))<0)
-                    ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).addElement((String)vector.get(5));
+                ((DefaultComboBoxModel<String>)SupplierName.getModel()).getIndexOf((String)vector.get(0))<0)
+                    ((DefaultComboBoxModel<String>)SupplierName.getModel()).addElement((String)vector.get(0));
             data.add(vector);
         }
 
         return new DefaultTableModel(data, columnNames){
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false ,false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1552,6 +1686,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             LoadTableCust("", "", "");
             LoadTableInv("", "", "");
             LoadTableItm("", "", "", "");
+            LoadTableSup("", "", "");
         } catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
@@ -1574,6 +1709,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             ItmSRP.setText("");
             ItmUPrice.setText("");
             ItmDesc.setText("");
+
+            SupplierName.setSelectedItem("");
+            SupplierConNum.setText("");
+            SupplierAddress.setText("");
         }
     }
     private void LoadTableCust(String cfname, String cmname, String clname){
@@ -1581,6 +1720,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         SQLCommand="select CFName as 'First Name',"+
         "CMName as 'Middle Name',"+
         "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER ";
+        cfname=cfname.trim();
+        cmname=cmname.trim();
+        clname=clname.trim();
         if(!cfname.isBlank()||!cmname.isBlank()||!clname.isBlank()){
             SQLCommand=SQLCommand+" where ";
             if(!cfname.isBlank()) SQLCommand = SQLCommand+" CFName like '%"+cfname+"%' ";
@@ -1595,7 +1737,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 Statement stmt = connection.createStatement();) {
                 ResultSet x = stmt.executeQuery(SQLCommand);
                 CustTable.setModel(buildTableModelCust(x));
-                
                 connection.close();
         }catch (Exception e) {
             e.printStackTrace();
@@ -1661,6 +1802,44 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }
+    private void LoadTableSup(String SupName, String ConNum, String Address){
+        String 
+        SQLCommand="select "+
+        "SupName as 'Supplier Name',"+
+        "SupContactNo as 'Contact Number', SupAddress as 'Supplier Address' from SUPPLIER ";
+        SupName=SupName.trim();  
+        ConNum=ConNum.trim();
+        Address=Address.trim(); 
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+
+            if(!SupName.isBlank()||
+                    !Address.isBlank()||
+                    !ConNum.isBlank()){
+
+                SQLCommand= SQLCommand+" where ";
+
+                if(!SupName.isBlank()) 
+                SQLCommand = SQLCommand+" SupName like '%"+SupName.trim()+"%' ";
+                
+                if(!Address.isBlank()&&!SupName.isBlank()) 
+                SQLCommand = SQLCommand+" and SupAddress like '%"+Address+"%' ";
+                else if(!SupplierAddress.getText().trim().isBlank()) 
+                SQLCommand = SQLCommand+" SupAddress like '%"+Address+"%' ";
+    
+                if(!ConNum.isBlank()&&!SupName.isBlank()||!Address.isBlank())
+                SQLCommand = SQLCommand+" and SupContactNo like '%"+ConNum+"%' ";
+                else if(!ConNum.isBlank())
+                SQLCommand = SQLCommand+" SupContactNo like '%"+ConNum+"% '";
+            }
+            ResultSet x = stmt.executeQuery(SQLCommand);
+            SupplierTable.setModel(buildTableModelSup(x));
+            connection.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
+    }
 
     public static void main(String args[]) {
         try {
@@ -1699,7 +1878,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JTextField InvItmID;
     private javax.swing.JComboBox<String> InvItmName;
     private javax.swing.JTextField InvQuan;
-    private javax.swing.JTextField InvQuan2;
     private javax.swing.JButton InvRefresh;
     private javax.swing.JButton InvSeasrch;
     private javax.swing.JTable InvTable;
@@ -1719,6 +1897,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JButton ItmUpdate;
     private javax.swing.JTabbedPane MainFrame;
     private javax.swing.JTextArea SupplierAddress;
+    private javax.swing.JTextField SupplierConNum;
     private javax.swing.JButton SupplierDelete;
     private javax.swing.JComboBox<String> SupplierName;
     private javax.swing.JPanel SupplierPanel;
