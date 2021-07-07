@@ -1,7 +1,7 @@
 create database INVENTORY_MANAGEMENT_SYS
 create table LOGIN(
-    "user" varchar(30) not null,
-    pass varchar(30) not null
+    "user" varchar(30) not null DEFAULT 'admin',
+    pass varchar(30) not null DEFAULT 'admin12345'
 )--select * from LOGIN
 create table CUSTOMER(
     CustID int not null identity(1,1) primary key,
