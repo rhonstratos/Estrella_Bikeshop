@@ -1,3 +1,4 @@
-target/*
-.settings/*
-.vscode/*
+target
+.settings
+.vscode
+clean-build-clean.bat
