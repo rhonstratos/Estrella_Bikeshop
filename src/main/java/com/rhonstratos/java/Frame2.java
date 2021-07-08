@@ -70,12 +70,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierPane = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        CashierEmployee = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         CashierCustomer = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
-        CashierEmployee1 = new javax.swing.JTextField();
+        CashierSubTotal = new javax.swing.JTextField();
         CashierSavePrint = new javax.swing.JButton();
+        CashierEmployee = new javax.swing.JComboBox<>();
         jScrollPane9 = new javax.swing.JScrollPane();
         CashierTable = new javax.swing.JTable();
         CashierTablePane = new javax.swing.JPanel();
@@ -195,15 +195,16 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Employee");
 
-        CashierEmployee.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Customer");
+
+        CashierCustomer.setEditable(true);
 
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("Subtotal");
 
-        CashierEmployee1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CashierSubTotal.setEditable(false);
+        CashierSubTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         CashierSavePrint.setText("Save & Print");
         CashierSavePrint.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +212,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 CashierSavePrintActionPerformed(evt);
             }
         });
+
+        CashierEmployee.setEditable(true);
 
         javax.swing.GroupLayout CashierPaneLayout = new javax.swing.GroupLayout(CashierPane);
         CashierPane.setLayout(CashierPaneLayout);
@@ -232,10 +235,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         .addGroup(CashierPaneLayout.createSequentialGroup()
                             .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CashierEmployee1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(CashierPaneLayout.createSequentialGroup()
-                            .addGap(106, 106, 106)
-                            .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(CashierSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         CashierPaneLayout.setVerticalGroup(
@@ -254,10 +255,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addGap(60, 60, 60)
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CashierEmployee1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CashierSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         CashierTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -287,6 +288,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Item Name");
+
+        CashierItemName.setEditable(true);
 
         CashierQuantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -1342,9 +1345,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }//GEN-LAST:event_InvUpdateActionPerformed
 
     private void PunchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PunchOrderActionPerformed
-        // TODO punch order button
+        Object[] asd ={"Item 1","Item 2","Item 3"};
+        punchOrderTable(asd);
     }//GEN-LAST:event_PunchOrderActionPerformed
-
     private void CashierSavePrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierSavePrintActionPerformed
         // TODO save n print button
     }//GEN-LAST:event_CashierSavePrintActionPerformed
@@ -1377,7 +1380,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }
-    
+
+    private void punchOrderTable(Object[] add){
+        ((DefaultTableModel)CashierTable.getModel()).addRow(add);
+    }
+
     private void updateCust(){
         String f=CustFNamebx.getSelectedItem().toString(),
         m=CustMNamebx.getSelectedItem().toString(),
@@ -1895,6 +1902,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             LoadTableInv("", "", "");
             LoadTableItm("", "", "", "");
             LoadTableSup("", "", "");
+            LoadEmployee();
         } catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
@@ -1921,6 +1929,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             SupplierName.setSelectedItem("");
             SupplierConNum.setText("");
             SupplierAddress.setText("");
+
+            CashierCustomer.setSelectedItem("");
+            CashierEmployee.setSelectedItem("");
+            CashierSubTotal.setText("");
+            CashierItemName.setSelectedItem("");
+            CashierQuantity.setText("");
+            CashierPrice.setText("");
         }
     }
     private void LoadTableCust(String cfname, String cmname, String clname){
@@ -2048,6 +2063,38 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }
+    public void LoadEmployee(){
+        CashierEmployee.removeAllItems();
+        String
+        SQLCommand="select EmpFName +' '+EmpLName from EMPLOYEE";
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+            ResultSet x = stmt.executeQuery(SQLCommand);
+            
+
+            // data of the table
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (x.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int columnIndex = 1; columnIndex <= 1; columnIndex++) {
+                    vector.add(x.getObject(columnIndex));
+                }
+                if(!((String)vector.get(0)).isBlank()&&
+                    ((DefaultComboBoxModel<String>)CashierEmployee.getModel()).getIndexOf((String)vector.get(0))<0)
+                        ((DefaultComboBoxModel<String>)CashierEmployee.getModel()).addElement((String)vector.get(0));
+                data.add(vector);
+            }
+            data.clear();
+            connection.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+            CashierEmployee.setSelectedItem("");
+        }
+    }
+    Frame2(String x){
+        LoadEmployee();
+    }
 
     public static void main(String args[]) {
         try {
@@ -2073,14 +2120,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CashierCustomer;
-    private javax.swing.JTextField CashierEmployee;
-    private javax.swing.JTextField CashierEmployee1;
+    private javax.swing.JComboBox<String> CashierEmployee;
     private javax.swing.JComboBox<String> CashierItemName;
     private javax.swing.JPanel CashierPane;
     private javax.swing.JPanel CashierPanel;
     private javax.swing.JTextField CashierPrice;
     private javax.swing.JTextField CashierQuantity;
     private javax.swing.JButton CashierSavePrint;
+    private javax.swing.JTextField CashierSubTotal;
     private javax.swing.JTable CashierTable;
     private javax.swing.JPanel CashierTablePane;
     private javax.swing.JTextArea CustAddressbx;
