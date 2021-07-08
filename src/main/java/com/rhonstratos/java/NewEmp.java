@@ -351,10 +351,6 @@ public class NewEmp extends javax.swing.JDialog implements warn{
             e.printStackTrace();
             warning("An error has occured!");
         }
-        finally{
-            new Frame2("asdawdasd");
-            check=false;
-        }
     }
     public static void main(String[] args){
         try {
