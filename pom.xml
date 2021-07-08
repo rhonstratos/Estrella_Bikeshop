@@ -7,41 +7,29 @@
   <groupId>com.rhonstratos.java</groupId>
   <artifactId>project</artifactId>
   <version>1.0</version>
-
-  <name>project</name>
-  <url>https://github.com/rhonstratos/javaProject</url>
-
-<packaging>jar</packaging>
-
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <version>8.2.1.jre11</version>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.10.10</version>
+    </dependency>
+  </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <license.dir>${project.basedir}</license.dir>
   </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.microsoft.sqlserver</groupId>
-      <artifactId>mssql-jdbc</artifactId>
-      <version>8.2.1.jre11</version>
-  </dependency>
-  <dependency>
-    <groupId>joda-time</groupId>
-    <artifactId>joda-time</artifactId>
-    <version>2.10.10</version>
-  </dependency>
-  </dependencies>
-  <!-- build commands
-  mvn clean
-  mvn clean compile license:format assembly:single clean
-  -->
+  <!--build commands-->
+  <!--mvn clean-->
+  <!--mvn clean compile license:format assembly:single clean-->
+  <!--Build Settings -->
   <build>
     <resources>
       <resource>
@@ -159,4 +147,51 @@
       </plugins>
     </pluginManagement>
   </build>
+  <!--Project Information-->
+  <name>project</name>
+  <description>Inventory Management System</description>
+  <url>https://github.com/rhonstratos/javaProject</url>
+  <inceptionYear>2021</inceptionYear>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>rhonstratos</id>
+      <name>Ronald Dy Tioco Jr</name>
+      <email>dytiocojr.ronald.a.7423@gmail.com</email>
+      <url>https://github.com/rhonstratos</url>
+      <organization>Bulacan State University</organization>
+      <roles>
+        <role>Lead Programmer</role>
+      </roles>
+      <timezone>Philippines/Manila</timezone>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor></contributor>
+  </contributors>
+  <!--Environment Settings-->
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <name>javaProject</name>
+      <id>github</id>
+      <url>https://github.com/rhonstratos/javaProject</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
 </project>
