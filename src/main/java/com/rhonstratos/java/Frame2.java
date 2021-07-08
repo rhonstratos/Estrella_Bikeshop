@@ -1342,11 +1342,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }//GEN-LAST:event_InvUpdateActionPerformed
 
     private void PunchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PunchOrderActionPerformed
-        // TODO add your handling code here:
+        // TODO punch order button
     }//GEN-LAST:event_PunchOrderActionPerformed
 
     private void CashierSavePrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierSavePrintActionPerformed
-        // TODO add your handling code here:
+        // TODO save n print button
     }//GEN-LAST:event_CashierSavePrintActionPerformed
 
     private boolean checkInt(String x,String title){
