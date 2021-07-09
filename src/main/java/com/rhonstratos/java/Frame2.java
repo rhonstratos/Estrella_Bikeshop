@@ -29,7 +29,8 @@ package com.rhonstratos.java;
     import java.sql.*;
     import java.util.*;
     import java.time.format.*;  
-    import java.time.*;  
+    import java.time.*;
+    import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;  
 public class Frame2 extends javax.swing.JFrame implements warn{
     public void warning(String y){
         Object[] yy = {"OK"};
@@ -1411,8 +1412,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }//GEN-LAST:event_InvSeasrchActionPerformed
     private void InvUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvUpdateActionPerformed
         updateInven();
-    }//GEN-LAST:event_InvUpdateActionPerformed
-
+    }//GEN-LAST:event_InvUpdateActionPerformed   
     private void PunchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PunchOrderActionPerformed
         Object[] asd ={"Item 1","Item 2","Item 3","Item 4"};
         punchOrderTable(asd);
@@ -1420,17 +1420,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void CashierSavePrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierSavePrintActionPerformed
         //TODO save n print btn
     }//GEN-LAST:event_CashierSavePrintActionPerformed
-    private void punchOrderTable(Object[] add){
-        ((DefaultTableModel)CashierTable.getModel()).addRow(add);
-    }
     private void CashierClearOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierClearOrdersActionPerformed
         ((DefaultTableModel)CashierTable.getModel()).setRowCount(0);
         RefreshTable();
-    }//GEN-LAST:event_CashierClearOrdersActionPerformed
-
+    }//GEN-LAST:event_CashierClearOrdersActionPerformed   
     private void CashierItemNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CashierItemNameItemStateChanged
         populateCashier(evt);
     }//GEN-LAST:event_CashierItemNameItemStateChanged
+    
     private void populateCashier(java.awt.event.ItemEvent evt){
             
         String 
@@ -1456,7 +1453,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
         
     }
-
+    private void punchOrderTable(Object[] add){
+        ((DefaultTableModel)CashierTable.getModel()).addRow(add);
+    }
     private boolean checkInt(String x,String title){
         try {
             Double.parseDouble(x.replaceAll("[^0-9]",""));
@@ -2025,28 +2024,38 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             CustFNamebx.setSelectedItem("");
             CustMNamebx.setSelectedItem("");
             CustLNamebx.setSelectedItem("");
+            AutoCompleteDecorator.decorate(CustFNamebx);
+            AutoCompleteDecorator.decorate(CustMNamebx);
+            AutoCompleteDecorator.decorate(CustLNamebx);
             CustConNumbx.setText("");
             CustAddressbx.setText("");
 
             InvItmName.setSelectedItem("");
+            AutoCompleteDecorator.decorate(InvItmName);
             InvItmID.setText("");
             InvDesc.setText("");
             InvQuan.setText("");
 
             ItmName.setSelectedItem("");
             ItmSupplier.setSelectedItem("");
+            AutoCompleteDecorator.decorate(ItmName);
+            AutoCompleteDecorator.decorate(ItmSupplier);
             ItmCategory.setText("");
             ItmSRP.setText("");
             ItmUPrice.setText("");
             ItmDesc.setText("");
 
             SupplierName.setSelectedItem("");
+            AutoCompleteDecorator.decorate(SupplierName);
             SupplierConNum.setText("");
             SupplierAddress.setText("");
 
             CashierItemName.setSelectedItem("");
             CashierCustomer.setSelectedItem("");
             CashierEmployee.setSelectedItem("");
+            AutoCompleteDecorator.decorate(CashierItemName);
+            AutoCompleteDecorator.decorate(CashierCustomer);
+            AutoCompleteDecorator.decorate(CashierEmployee);
             CashierSubTotal.setText("");
             CashierQuantity.setText("");
             CashierPrice.setText("");
