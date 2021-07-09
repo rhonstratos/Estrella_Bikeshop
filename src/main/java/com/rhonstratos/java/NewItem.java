@@ -193,11 +193,11 @@ public class NewItem extends javax.swing.JDialog implements warn{
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    public void warning(String y){
+    public void warning(String ErrorMessage){
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
                 this, 
-                y, 
+                ErrorMessage, 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -214,12 +214,8 @@ public class NewItem extends javax.swing.JDialog implements warn{
         return re;
     }
     private void loadCbx(){
-        String  test ="jdbc:sqlserver://"+
-                    "localhost:1433;"+
-                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                    "user=root;"+
-                    "password=eykha6068",
-            sqlCombo="select SupName from SUPPLIER";
+        String  
+        sqlCombo="select SupName from SUPPLIER";
 
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
@@ -236,23 +232,25 @@ public class NewItem extends javax.swing.JDialog implements warn{
             warning("An error has occured!");
         }
     }
+    private String test =   "jdbc:sqlserver://"+
+                            "localhost:1433;"+
+                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                            "user=root;"+
+                            "password=eykha6068;"+
+                            "loginTimeout=1;";
     private void Save(){
-        String  test =  "jdbc:sqlserver://"+
-                    "localhost:1433;"+
-                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                    "user=root;"+
-                    "password=eykha6068",
-            sqlcommand = "insert into ITEM "+
-                        "values ('"+ItmNamebx.getText().trim().toUpperCase()+
-                        "','"+ItmCategorybx.getText().trim().toUpperCase()+
-                        "','"+ItmDescbx.getText().trim().toUpperCase()+
-                        "','"+checkPeso(ItmSRPbx.getText().trim(),"SRP")+
-                        "','"+checkPeso(ItmUnitPricebx.getText().trim(),"Unit Price")+
-                        "','"+supplierComboBx.getSelectedItem().toString().trim()
-                        +"'); insert into INVENTORY(InvItemName,InvQuantity,InvCondition)values "+
-                        "('"+ItmNamebx.getText().trim().toUpperCase()+"',0,'"+
-                        ItmDescbx.getText().trim().toUpperCase()+"')",
-            sqlcheck=   "select ItmName from ITEM";
+        String 
+        sqlcommand = "insert into ITEM "+
+                    "values ('"+ItmNamebx.getText().trim().toUpperCase()+
+                    "','"+ItmCategorybx.getText().trim().toUpperCase()+
+                    "','"+ItmDescbx.getText().trim().toUpperCase()+
+                    "','"+checkPeso(ItmSRPbx.getText().trim(),"SRP")+
+                    "','"+checkPeso(ItmUnitPricebx.getText().trim(),"Unit Price")+
+                    "','"+supplierComboBx.getSelectedItem().toString().trim()
+                    +"'); insert into INVENTORY(InvItemName,InvQuantity,InvCondition)values "+
+                    "('"+ItmNamebx.getText().trim().toUpperCase()+"',0,'"+
+                    ItmDescbx.getText().trim().toUpperCase()+"')",
+        sqlcheck=   "select ItmName from ITEM";
         boolean check=false;   
                     
         try (Connection connection = DriverManager.getConnection(test);

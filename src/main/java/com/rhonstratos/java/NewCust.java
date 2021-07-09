@@ -185,11 +185,11 @@ public class NewCust extends javax.swing.JDialog implements warn {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Save();
     }//GEN-LAST:event_jButton1ActionPerformed   
-    public void warning(String y){
+    public void warning(String ErrorMessage){
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
                 this, 
-                y, 
+                ErrorMessage, 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -208,23 +208,25 @@ public class NewCust extends javax.swing.JDialog implements warn {
             return false;
         }
     }
+    private String test =   "jdbc:sqlserver://"+
+                            "localhost:1433;"+
+                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                            "user=root;"+
+                            "password=eykha6068;"+
+                            "loginTimeout=1;";
     private void Save(){
         String  fname=CFName.getText().toUpperCase(),
                 mname=CMName.getText().toUpperCase(),
                 lname=CLName.getText().toUpperCase(),
                 address=CAddress.getText().toUpperCase();
-        String  test =  "jdbc:sqlserver://"+
-                    "localhost:1433;"+
-                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                    "user=root;"+
-                    "password=eykha6068",
-            sqlcommand = "insert into CUSTOMER(CFName,CMName,CLName,Address,ContactNo) "+
-                        "values ('"+fname.trim()+
-                        "','"+mname.trim()+
-                        "','"+lname.trim()+
-                        "','"+address.trim()+
-                        "','"+CConNum.getText().trim()+"')",
-            sqlcheck=   "select CFName,CLName from CUSTOMER";
+        String 
+        sqlcommand = "insert into CUSTOMER(CFName,CMName,CLName,Address,ContactNo) "+
+                    "values ('"+fname.trim()+
+                    "','"+mname.trim()+
+                    "','"+lname.trim()+
+                    "','"+address.trim()+
+                    "','"+CConNum.getText().trim()+"')",
+        sqlcheck=   "select CFName,CLName from CUSTOMER";
         boolean check=false;   
         if( checkInt(CConNum.getText(),"Contact Nulber [11 digits] and try again!")&&
             CConNum.getText().replaceAll("[^0-9]", "").length()!=11)CConNum.setText("");

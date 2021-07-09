@@ -75,11 +75,12 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             warning("An error has occured!");
         }
     }
-    public void warning(String y){
+    public void warning(String ErrorMessage){
+        
         Object[] yy = {"OK"};
             JOptionPane.showOptionDialog(
                 this, 
-                y, 
+                ErrorMessage, 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -202,11 +203,12 @@ public class Frame1 extends javax.swing.JFrame implements warn {
     private void loginBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBActionPerformed
         // Connect to your database.
             ResultSet resultSet = null;
-            String  test =   "jdbc:sqlserver://"+
+            String  test =  "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                             "user=root;"+
-                            "password=eykha6068",
+                            "password=eykha6068;"+
+                            "loginTimeout=1;",
                     selectSql = "SELECT * from LOGIN where \"user\"=("+
                         "select \"user\" from LOGIN where \"user\"='"+this.userr.getText()+"'"
                     +") and pass = ("+
@@ -228,17 +230,21 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                     
                     connection.close();
                     if (check){
-                        new Frame2().setVisible(true);
+                        new Frame2();
                         this.dispose();
                     }
             }
             catch (SQLException e) {
-                String asd;
-                e.printStackTrace();
                 if(e.toString().equals("com.microsoft.sqlserver.jdbc.SQLServerException: The result set has no current row."))
-                    asd="Invalid Username or Password!\nPlease try again!!!";
-                else asd="An error has occured!";
-                warning(asd);
+                    warning("Invalid Username or Password!\nPlease try again!!!");
+                else if(e.getMessage().equalsIgnoreCase("The TCP/IP connection to the host localhost, port 1433 has failed. Error: \"connect timed out. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.\".")){
+                    warning(e.getMessage().replaceAll(":", ":\n").replaceAll("host and accepting", "host and accepting \n")
+                    +"\nPlease check if your Microsoft SQL Server then try again!");
+                }
+                else {
+                    e.printStackTrace();
+                    warning("An error has occured!");
+                }
             }
             finally{
                 resultSet=null;

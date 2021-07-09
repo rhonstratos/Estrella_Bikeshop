@@ -169,11 +169,11 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-    public void warning(String y){
+    public void warning(String ErrorMessage){
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
             this, 
-            y, 
+            ErrorMessage, 
             this.getTitle(), 
             JOptionPane.OK_OPTION, 
             JOptionPane.WARNING_MESSAGE,
@@ -183,18 +183,20 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
     private boolean checkConNum(String x){
         return StringUtils.isNumeric(x.replaceAll("[^0-9]", ""));
     }
+    private String test =   "jdbc:sqlserver://"+
+                            "localhost:1433;"+
+                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                            "user=root;"+
+                            "password=eykha6068;"+
+                            "loginTimeout=1;";
     private void Save(){
         if(checkConNum(SupConNum.getText())&&SupConNum.getText().replaceAll(" ", "").length()==11){
-            String  test =  "jdbc:sqlserver://"+
-                        "localhost:1433;"+
-                        "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                        "user=root;"+
-                        "password=eykha6068",
-                sqlcommand = "insert into SUPPLIER "+
-                            "values ('"+SupName.getText().toUpperCase().trim()+
-                            "','"+SupConNum.getText().replaceAll("[^0-9]", "").trim()+
-                            "','"+SupAddress.getText().toUpperCase().trim()+"')",
-                sqlcheck=   "select * from supplier";
+            String  
+            sqlcommand = "insert into SUPPLIER "+
+                        "values ('"+SupName.getText().toUpperCase().trim()+
+                        "','"+SupConNum.getText().replaceAll("[^0-9]", "").trim()+
+                        "','"+SupAddress.getText().toUpperCase().trim()+"')",
+            sqlcheck=   "select * from supplier";
             boolean check=false;   
                         
             try (Connection connection = DriverManager.getConnection(test);

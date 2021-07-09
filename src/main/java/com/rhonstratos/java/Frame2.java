@@ -29,37 +29,82 @@ package com.rhonstratos.java;
     import java.sql.*;
     import java.util.*;
     import java.time.format.*;  
-    import java.time.*;  
+    import java.time.*;
+    import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;  
+/**
+ * Inventory System Management:
+ * Main Menu Frame
+ * @author rhonstratos
+ */
 public class Frame2 extends javax.swing.JFrame implements warn{
-    public void warning(String y){
+    /**
+     * JOptionPane warning
+     * @param ErrorMessage String value
+     * @return Error value shown in a JOptionPane
+     */
+    public void warning(String ErrorMessage){
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
                 this, 
-                y, 
+                ErrorMessage, 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
                 new ImageIcon(getClass().getResource("/resources/warnico.png")),
                 yy,yy[0]);
     }
+    
+    /**
+     * Test run if Microsoft SQL Database Connection is alive
+     * 
+     * @exception e The TCP/IP connection to the host localhost, port 1433 has failed. 
+     * Error: "connect timed out. Verify the connection properties. Make sure that an instance of SQL Server is running 
+     * on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not 
+     * blocked by a firewall."."
+     */
+    private void firstRe(){
+        boolean cat=true;
+        try {
+            Connection c = DriverManager.getConnection(test);
+            Statement con = c.createStatement();
+            ResultSet r =con.executeQuery("select 1");
+            r.next();
+            c.close();con.close();
+        } catch (Exception e) {
+            if(e.getMessage().equalsIgnoreCase("The TCP/IP connection to the host localhost, port 1433 has failed. Error: \"connect timed out. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.\".")){
+                warning(e.getMessage().replaceAll(":", ":\n").replaceAll("host and accepting", "host and accepting \n")
+                +"\nPlease check if your Microsoft SQL Server then try again!");
+            }else{
+                e.printStackTrace();
+                warning("An error has occured!");
+            }
+            cat=false;
+        }finally{
+            if(cat) RefreshTable();
+        }
+        cat=true;
+    }
+    /**
+     * Initial loading of all components
+     */
     public Frame2() {
         try {
             initComponents();
-            RefreshTable();
+            this.setVisible(true);
             DateTimeFormatter date = DateTimeFormatter.ofPattern("MMMM dd, yyyy (M/dd/yyyy)"); 
             DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");  
-            final Timer t = new Timer(1000, new ActionListener(){
+            new Timer(1000, new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Frame2Clock.setText("Date: "+date.format(LocalDateTime.now())+
                                         " Time: "+time.format(LocalDateTime.now()));
                 }
-            });
-            t.start();
+            }).start();
         } catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
         }
+        firstRe();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,23 +115,26 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierPane = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        CashierEmployee = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         CashierCustomer = new javax.swing.JComboBox<>();
-        jLabel28 = new javax.swing.JLabel();
-        CashierEmployee1 = new javax.swing.JTextField();
+        CashierEmployee = new javax.swing.JComboBox<>();
+        CashierItemName = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        CashierPrice = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        CashierStock = new javax.swing.JTextField();
+        PunchOrder = new javax.swing.JButton();
         CashierSavePrint = new javax.swing.JButton();
+        CashierClearOrders = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        CashierQuantity = new javax.swing.JFormattedTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         CashierTable = new javax.swing.JTable();
         CashierTablePane = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        CashierItemName = new javax.swing.JComboBox<>();
-        CashierQuantity = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        PunchOrder = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
-        CashierPrice = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        CashierTotal = new javax.swing.JTextField();
         CustomerPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -169,6 +217,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -190,20 +239,48 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("INVOICE");
+        jLabel24.setText("CASHIER & CUSTOMER");
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Employee");
 
-        CashierEmployee.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Customer");
 
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Subtotal");
+        CashierCustomer.setEditable(true);
 
-        CashierEmployee1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CashierEmployee.setEditable(true);
+
+        CashierItemName.setEditable(true);
+        CashierItemName.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CashierItemNameItemStateChanged(evt);
+            }
+        });
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Item Name");
+
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("Quantity");
+
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Price");
+
+        CashierPrice.setEditable(false);
+        CashierPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("PUNCH ORDER");
+
+        CashierStock.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        PunchOrder.setText("Punch Order");
+        PunchOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PunchOrderActionPerformed(evt);
+            }
+        });
 
         CashierSavePrint.setText("Save & Print");
         CashierSavePrint.addActionListener(new java.awt.event.ActionListener() {
@@ -212,36 +289,68 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        CashierClearOrders.setText("Clear Orders");
+        CashierClearOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CashierClearOrdersActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("Available Stocks");
+
+        CashierQuantity.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        CashierQuantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout CashierPaneLayout = new javax.swing.GroupLayout(CashierPane);
         CashierPane.setLayout(CashierPaneLayout);
         CashierPaneLayout.setHorizontalGroup(
             CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CashierPaneLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CashierPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CashierEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(CashierPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(CashierPaneLayout.createSequentialGroup()
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CashierEmployee1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CashierEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(CashierPaneLayout.createSequentialGroup()
-                            .addGap(106, 106, 106)
-                            .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                            .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CashierPaneLayout.createSequentialGroup()
+                                    .addComponent(CashierQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CashierStock, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(CashierItemName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(CashierPaneLayout.createSequentialGroup()
+                                    .addComponent(CashierPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(CashierPaneLayout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(CashierClearOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(PunchOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         CashierPaneLayout.setVerticalGroup(
             CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CashierPaneLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -251,13 +360,28 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CashierEmployee1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CashierItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CashierStock, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CashierQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PunchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CashierPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CashierClearOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         CashierTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -265,11 +389,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
             },
             new String [] {
-                "Item Name", "Quantity", "Price"
+                "Item Name", "Quantity", "Price", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -282,72 +406,33 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         CashierTablePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("PUNCH ORDER");
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Total");
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Item Name");
-
-        CashierQuantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Price");
-
-        PunchOrder.setText("Punch Order");
-        PunchOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PunchOrderActionPerformed(evt);
-            }
-        });
-
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("Quantity");
-
-        CashierPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CashierTotal.setEditable(false);
+        CashierTotal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        CashierTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout CashierTablePaneLayout = new javax.swing.GroupLayout(CashierTablePane);
         CashierTablePane.setLayout(CashierTablePaneLayout);
         CashierTablePaneLayout.setHorizontalGroup(
             CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CashierTablePaneLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                    .addGroup(CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(PunchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(CashierTablePaneLayout.createSequentialGroup()
-                            .addGroup(CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CashierItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(CashierTablePaneLayout.createSequentialGroup()
-                                    .addComponent(CashierQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(CashierPrice))))))
-                .addGap(120, 120, 120))
+                .addContainerGap(125, Short.MAX_VALUE)
+                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CashierTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94))
         );
         CashierTablePaneLayout.setVerticalGroup(
             CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CashierTablePaneLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CashierItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CashierQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CashierPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PunchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CashierTablePaneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CashierTotal)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(98, 98, 98))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -421,11 +506,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel3.setText("Search Middle Name");
 
         CustMNamebx.setEditable(true);
+        CustMNamebx.setVerifyInputWhenFocusTarget(false);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Search Last Name");
 
         CustLNamebx.setEditable(true);
+        CustLNamebx.setVerifyInputWhenFocusTarget(false);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Contact Number");
@@ -484,11 +571,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(CustFNamebx, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CustMNamebx, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CustLNamebx, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CustConNumbx, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CustFNamebx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CustLNamebx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CustConNumbx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(custDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -496,7 +582,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CustSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(custRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(custRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CustMNamebx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -520,7 +607,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CustConNumbx, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CustConNumbx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -542,7 +629,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -715,7 +802,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -840,8 +927,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ItmName, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ItmSupplier, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ItmName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItmSupplier, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                                 .addComponent(ItmDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -852,10 +939,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 .addComponent(ItmRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                                 .addComponent(ItmSRP, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ItmUPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ItmCategory, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItmCategory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -880,9 +967,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ItmSRP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ItmUPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ItmUPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItmSRP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -905,8 +992,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -1007,19 +1094,21 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane6)
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addGap(0, 1, Short.MAX_VALUE)
-                                .addComponent(SupplierDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SupplierUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SupplierSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SupplierRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane6)
-                            .addComponent(SupplierName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SupplierConNum))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addComponent(SupplierDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SupplierUpdate)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SupplierSearch)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SupplierRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(SupplierConNum, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1069,7 +1158,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1113,6 +1202,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem6.setText("Refresh All");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -1180,29 +1277,73 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * Closing event of this frame
+     * @param evt catches closing event
+     * @return runs Logout();
+     */
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         Logout();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+    /**
+     * Catches menu item: New Customer
+     * @param evt catches click event
+     * @return Loads New Customer dialog
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new NewCust(this.getTitle().substring(0,27)+": New Customer");
         NewCust.main(null);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+    /**
+     * Catches menu item: New Employee
+     * @param evt catches click event
+     * @return Loads New Employee dialog
+     */
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         new NewEmp(getTitle().substring(0,27)+": New Employee");
         NewEmp.main(null);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+    /**
+     * Catches menu item: New Item
+     * @param evt catches click event
+     * @return Loads New Item dialog
+     */
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         new NewItem(getTitle().substring(0,27)+": New Item");
         NewItem.main(null);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+    /**
+     * Ovverides default JFrame.DISPOSE and JFrame.EXIT_ON_CLOSE event
+     * @param evt catches click event
+     * @return Loads Logout();
+     */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Logout();
     }//GEN-LAST:event_formWindowClosing
+    /**
+     * Catches menu item: New Supplier
+     * @param evt catches click event
+     * @return Loads New Supplier dialog
+     */
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         new NewSupplier(getTitle().substring(0,27)+": New Supplier");
         NewSupplier.main(null);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+    /**
+     * Catches menu item: Refresh All
+     * @param evt catches click event
+     * @return Loads RefreshTable()
+     */
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        RefreshTable();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    /**
+     * Catches click event on Customer Tabbed Pane: CustTable JTable
+     * @param evt catches click event
+     * @return Clears: CustFNamebx, CustMNamebx, CustLNamebx, CustConNumbx, CustAddressbx
+     * @exception e Exception
+     */
     private void CustTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustTableMouseClicked
         try {
             int row = CustTable.getSelectedRow();
@@ -1217,6 +1358,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }//GEN-LAST:event_CustTableMouseClicked
+    
     private void custRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRefreshActionPerformed
         CustFNamebx.setSelectedItem("");
         CustMNamebx.setSelectedItem("");
@@ -1337,18 +1479,83 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             InvQuan.getText().trim(),
             InvDesc.getText().trim());
     }//GEN-LAST:event_InvSeasrchActionPerformed
-    private void InvUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvUpdateActionPerformed
+    private void InvUpdateActionPerformed(java.awt.event.ActionEvent evt) {                                          
         updateInven();
-    }//GEN-LAST:event_InvUpdateActionPerformed
-
+    }                                            
+    
     private void PunchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PunchOrderActionPerformed
-        // TODO add your handling code here:
+        //Object[] asd ={"Item 1","Item 2","Item 3","Item 4"};
+        punchOrderTable(CashierItemName.getSelectedItem().toString(),
+                        CashierQuantity.getText(),
+                        CashierPrice.getText());
     }//GEN-LAST:event_PunchOrderActionPerformed
-
     private void CashierSavePrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierSavePrintActionPerformed
-        // TODO add your handling code here:
+        //TODO save n print btn
     }//GEN-LAST:event_CashierSavePrintActionPerformed
-
+    private void CashierClearOrdersActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        ((DefaultTableModel)CashierTable.getModel()).setRowCount(0);
+        RefreshTable();
+    }                                                     
+    private void CashierItemNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CashierItemNameItemStateChanged
+        populateCashier(evt);
+    }//GEN-LAST:event_CashierItemNameItemStateChanged
+    
+    private void populateCashier(java.awt.event.ItemEvent evt){
+        String 
+        SQLCommand="select ITEM.ItmName,ITEM.ItmUnitPrice,INVENTORY.InvQuantity from ITEM "+
+        " inner join INVENTORY on INVENTORY.InvItemName=ITEM.ItmName "+
+        " where ITEM.Itmname like '%"+CashierItemName.getSelectedItem().toString().trim()+"%'";       
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+        
+        ResultSet x = stmt.executeQuery(SQLCommand);
+        while(x.next()){
+            if(!evt.getItem().toString().trim().isBlank()&&
+                x.getString(1).equalsIgnoreCase(evt.getItem().toString().trim())){
+                CashierStock.setText(x.getString(3));
+                CashierPrice.setText(x.getString(2));
+            }
+        }
+        
+        connection.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
+        
+    }
+    private void punchOrderTable(String ItmName, String Quan, String Price){
+        ItmName=ItmName.trim();
+        Quan=Quan.trim();
+        if(checkInt(Quan, "Quantity!")&&!ItmName.isBlank()){
+            ((DefaultTableModel)CashierTable.getModel()).addRow(new Object[]{
+                ItmName,
+                Quan,
+                Price,
+                Double.toString(
+                    Double.parseDouble(Quan) * Double.parseDouble(Price)
+                    )
+                }
+            );
+            CashierTotal.setText("");
+            double tot=0;
+            try {
+                for (int x=0; x<((DefaultTableModel)CashierTable.getModel()).getRowCount();x++){
+                    tot+=Double.parseDouble(((DefaultTableModel)CashierTable.getModel()).getValueAt(x, 3).toString());
+                }
+                CashierTotal.setText(Double.toString(tot));
+            } catch (Exception e) {
+                e.printStackTrace();
+                warning("An error has occurred!");
+            }
+            finally{
+                //CashierItemName.setSelectedItem("");
+                CashierPrice.setText("");
+                CashierQuantity.setText("");
+                CashierStock.setText("");
+            }
+        }
+    }
     private boolean checkInt(String x,String title){
         try {
             Double.parseDouble(x.replaceAll("[^0-9]",""));
@@ -1377,7 +1584,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }
-    
+
     private void updateCust(){
         String f=CustFNamebx.getSelectedItem().toString(),
         m=CustMNamebx.getSelectedItem().toString(),
@@ -1744,6 +1951,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private DefaultTableModel buildTableModelCust(ResultSet rs)throws SQLException {
 
         ResultSetMetaData metaData = rs.getMetaData();
+        //CashierCustomer.removeAll();
 
         // names of columns
         Vector<String> columnNames = new Vector<String>();
@@ -1761,13 +1969,23 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             if(!((String)vector.get(0)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).getIndexOf((String)vector.get(0))<0)
-                    ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).addElement((String)vector.get(0));
+                    ((DefaultComboBoxModel<String>)
+                    CustFNamebx.getModel()).addElement((String)vector.get(0));
             if(!((String)vector.get(1)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustMNamebx.getModel()).getIndexOf((String)vector.get(1))<0)
-                    ((DefaultComboBoxModel<String>)CustMNamebx.getModel()).addElement((String)vector.get(1));
+                    ((DefaultComboBoxModel<String>)
+                    CustMNamebx.getModel()).addElement((String)vector.get(1));
             if(!((String)vector.get(2)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).getIndexOf((String)vector.get(2))<0)
-                    ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).addElement((String)vector.get(2));
+                    ((DefaultComboBoxModel<String>)
+                    CustLNamebx.getModel()).addElement((String)vector.get(2));
+
+            if(!((String)vector.get(0)).isBlank()&&!((String)vector.get(2)).isBlank()&&
+                ((DefaultComboBoxModel<String>)CashierCustomer.getModel()).getIndexOf(
+                    (String)vector.get(0)+" "+(String)vector.get(2))<0){
+                        ((DefaultComboBoxModel<String>)
+                        CashierCustomer.getModel()).addElement((String)vector.get(0)+" "+(String)vector.get(2));
+            }
             data.add(vector);
         }
 
@@ -1799,9 +2017,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
-            if(!((String)vector.get(1)).isBlank()&&
-                ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(1))<0)
-                    ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(1));
+            if(!((String)vector.get(0)).isBlank()&&
+                ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(0))<0)
+                    ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(0));
             data.add(vector);
         }
 
@@ -1834,8 +2052,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 vector.add(rs.getObject(columnIndex));
             }
             if(!((String)vector.get(0)).isBlank()&&
-                ((DefaultComboBoxModel<String>)ItmName.getModel()).getIndexOf((String)vector.get(0))<0)
+                ((DefaultComboBoxModel<String>)ItmName.getModel()).getIndexOf((String)vector.get(0))<0){
                     ((DefaultComboBoxModel<String>)ItmName.getModel()).addElement((String)vector.get(0));
+                    ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement((String)vector.get(0));
+                }
 
             if(!((String)vector.get(5)).isBlank()&&
                 ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).getIndexOf((String)vector.get(5))<0)
@@ -1895,6 +2115,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             LoadTableInv("", "", "");
             LoadTableItm("", "", "", "");
             LoadTableSup("", "", "");
+            LoadEmployee();
         } catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
@@ -1903,24 +2124,42 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             CustFNamebx.setSelectedItem("");
             CustMNamebx.setSelectedItem("");
             CustLNamebx.setSelectedItem("");
+            AutoCompleteDecorator.decorate(CustFNamebx);
+            AutoCompleteDecorator.decorate(CustMNamebx);
+            AutoCompleteDecorator.decorate(CustLNamebx);
             CustConNumbx.setText("");
             CustAddressbx.setText("");
 
             InvItmName.setSelectedItem("");
+            AutoCompleteDecorator.decorate(InvItmName);
             InvItmID.setText("");
             InvDesc.setText("");
             InvQuan.setText("");
 
             ItmName.setSelectedItem("");
             ItmSupplier.setSelectedItem("");
+            AutoCompleteDecorator.decorate(ItmName);
+            AutoCompleteDecorator.decorate(ItmSupplier);
             ItmCategory.setText("");
             ItmSRP.setText("");
             ItmUPrice.setText("");
             ItmDesc.setText("");
 
             SupplierName.setSelectedItem("");
+            AutoCompleteDecorator.decorate(SupplierName);
             SupplierConNum.setText("");
             SupplierAddress.setText("");
+
+            CashierItemName.setSelectedItem("");
+            CashierCustomer.setSelectedItem("");
+            CashierEmployee.setSelectedItem("");
+            AutoCompleteDecorator.decorate(CashierItemName);
+            AutoCompleteDecorator.decorate(CashierCustomer);
+            AutoCompleteDecorator.decorate(CashierEmployee);
+            CashierTotal.setText("");
+            CashierQuantity.setText("");
+            CashierPrice.setText("");
+            CashierStock.setText("");
         }
     }
     private void LoadTableCust(String cfname, String cmname, String clname){
@@ -1953,7 +2192,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }
     private void LoadTableInv(String InvItemName, String InvQuantity, String InvDescription){
         String 
-        SQLCommand="select InvID as 'ID',"+
+        SQLCommand="select "+
         "InvItemName as 'Item Name',"+
         "InvQuantity as 'Item Quantity', InvCondition as 'Item Description' from INVENTORY ";       
         try (Connection connection = DriverManager.getConnection(test);
@@ -2048,6 +2287,25 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured!");
         }
     }
+    private void LoadEmployee(){
+        String
+        SQLCommand="select EmpFName +' '+EmpLName from EMPLOYEE";
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+            ResultSet x = stmt.executeQuery(SQLCommand);
+
+            while (x.next()) {
+                CashierEmployee.addItem(x.getString(1));
+            }
+            connection.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
+        finally{
+            CashierEmployee.setSelectedItem("");
+        }
+    }
 
     public static void main(String args[]) {
         try {
@@ -2057,11 +2315,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | 
+                javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Frame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
-            new Frame2().setVisible(true);
+            new Frame2();
         });
     }
 
@@ -2069,20 +2328,22 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                             "user=root;"+
-                            "password=eykha6068";
+                            "password=eykha6068;";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CashierClearOrders;
     private javax.swing.JComboBox<String> CashierCustomer;
-    private javax.swing.JTextField CashierEmployee;
-    private javax.swing.JTextField CashierEmployee1;
+    private javax.swing.JComboBox<String> CashierEmployee;
     private javax.swing.JComboBox<String> CashierItemName;
     private javax.swing.JPanel CashierPane;
     private javax.swing.JPanel CashierPanel;
     private javax.swing.JTextField CashierPrice;
-    private javax.swing.JTextField CashierQuantity;
+    private javax.swing.JFormattedTextField CashierQuantity;
     private javax.swing.JButton CashierSavePrint;
+    private javax.swing.JTextField CashierStock;
     private javax.swing.JTable CashierTable;
     private javax.swing.JPanel CashierTablePane;
+    private javax.swing.JTextField CashierTotal;
     private javax.swing.JTextArea CustAddressbx;
     private javax.swing.JTextField CustConNumbx;
     private javax.swing.JComboBox<String> CustFNamebx;
@@ -2136,7 +2397,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -2148,7 +2408,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2163,6 +2425,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
