@@ -75,12 +75,12 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             warning("An error has occured!");
         }
     }
-    public void warning(String y){
+    public void warning(String ErrorMessage){
         
         Object[] yy = {"OK"};
             JOptionPane.showOptionDialog(
                 this, 
-                y, 
+                ErrorMessage, 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,

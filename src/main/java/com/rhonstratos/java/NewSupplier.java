@@ -169,11 +169,11 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-    public void warning(String y){
+    public void warning(String ErrorMessage){
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
             this, 
-            y, 
+            ErrorMessage, 
             this.getTitle(), 
             JOptionPane.OK_OPTION, 
             JOptionPane.WARNING_MESSAGE,

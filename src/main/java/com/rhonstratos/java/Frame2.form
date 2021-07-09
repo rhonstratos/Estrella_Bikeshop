@@ -294,10 +294,10 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="CashierQuantity" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="jLabel27" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="CashierStock" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="jLabel30" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="CashierQuantity" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -382,11 +382,6 @@
                         <Property name="text" type="java.lang.String" value="Quantity"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="CashierQuantity">
-                      <Properties>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel23">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
@@ -440,6 +435,14 @@
                         <Property name="text" type="java.lang.String" value="Available Stocks"/>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JFormattedTextField" name="CashierQuantity">
+                      <Properties>
+                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                          <Format format="#0" subtype="-1" type="0"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane9">
@@ -477,11 +480,11 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace pref="125" max="32767" attributes="0"/>
                               <Component id="jLabel28" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CashierSubTotal" min="-2" pref="330" max="-2" attributes="0"/>
+                              <Component id="CashierTotal" min="-2" pref="330" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -491,7 +494,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="CashierSubTotal" max="32767" attributes="0"/>
+                                  <Component id="CashierTotal" max="32767" attributes="0"/>
                                   <Component id="jLabel28" min="-2" pref="70" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
@@ -509,7 +512,7 @@
                         <Property name="text" type="java.lang.String" value="Total"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="CashierSubTotal">
+                    <Component class="javax.swing.JTextField" name="CashierTotal">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1135,8 +1138,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jScrollPane7" pref="676" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane7" pref="677" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

@@ -24,5 +24,5 @@
 package com.rhonstratos.java;
 
 public interface warn {
-    public void warning(String y);
+    public void warning(String ErrorMessage);
 }
