@@ -208,23 +208,25 @@ public class NewCust extends javax.swing.JDialog implements warn {
             return false;
         }
     }
+    private String test =   "jdbc:sqlserver://"+
+                            "localhost:1433;"+
+                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                            "user=root;"+
+                            "password=eykha6068;"+
+                            "loginTimeout=1;";
     private void Save(){
         String  fname=CFName.getText().toUpperCase(),
                 mname=CMName.getText().toUpperCase(),
                 lname=CLName.getText().toUpperCase(),
                 address=CAddress.getText().toUpperCase();
-        String  test =  "jdbc:sqlserver://"+
-                    "localhost:1433;"+
-                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                    "user=root;"+
-                    "password=eykha6068",
-            sqlcommand = "insert into CUSTOMER(CFName,CMName,CLName,Address,ContactNo) "+
-                        "values ('"+fname.trim()+
-                        "','"+mname.trim()+
-                        "','"+lname.trim()+
-                        "','"+address.trim()+
-                        "','"+CConNum.getText().trim()+"')",
-            sqlcheck=   "select CFName,CLName from CUSTOMER";
+        String 
+        sqlcommand = "insert into CUSTOMER(CFName,CMName,CLName,Address,ContactNo) "+
+                    "values ('"+fname.trim()+
+                    "','"+mname.trim()+
+                    "','"+lname.trim()+
+                    "','"+address.trim()+
+                    "','"+CConNum.getText().trim()+"')",
+        sqlcheck=   "select CFName,CLName from CUSTOMER";
         boolean check=false;   
         if( checkInt(CConNum.getText(),"Contact Nulber [11 digits] and try again!")&&
             CConNum.getText().replaceAll("[^0-9]", "").length()!=11)CConNum.setText("");

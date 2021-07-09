@@ -42,24 +42,42 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 new ImageIcon(getClass().getResource("/resources/warnico.png")),
                 yy,yy[0]);
     }
+    private void firstRe(){
+        boolean cat=true;
+        try {
+            DriverManager.getConnection(test).createStatement();
+        } catch (Exception e) {
+            if(e.getMessage().equalsIgnoreCase("The TCP/IP connection to the host localhost, port 1433 has failed. Error: \"connect timed out. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.\".")){
+                warning(e.getMessage().replaceAll(":", ":\n").replaceAll("host and accepting", "host and accepting \n")
+                +"\nPlease check if your Microsoft SQL Server then try again!");
+            }else{
+                e.printStackTrace();
+                warning("An error has occured!");
+            }
+            cat=false;
+        }finally{
+            if(cat) RefreshTable();
+        }
+        cat=true;
+    }
     public Frame2() {
         try {
             initComponents();
-            RefreshTable();
+            this.setVisible(true);
             DateTimeFormatter date = DateTimeFormatter.ofPattern("MMMM dd, yyyy (M/dd/yyyy)"); 
             DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");  
-            final Timer t = new Timer(1000, new ActionListener(){
+            new Timer(1000, new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Frame2Clock.setText("Date: "+date.format(LocalDateTime.now())+
                                         " Time: "+time.format(LocalDateTime.now()));
                 }
-            });
-            t.start();
+            }).start();
         } catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured!");
         }
+        firstRe();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1411,31 +1429,32 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }//GEN-LAST:event_CashierClearOrdersActionPerformed
 
     private void CashierItemNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CashierItemNameItemStateChanged
-        //populateCashier(evt);
+        populateCashier(evt);
     }//GEN-LAST:event_CashierItemNameItemStateChanged
     private void populateCashier(java.awt.event.ItemEvent evt){
-        if(CashierItemName
-                                                        .getSelectedItem()
-                                                        .toString().trim()
-                                                        .equals((String)evt.getItem())&&
-            !evt.getItem().toString().trim().isBlank()){
             
-            String 
-            SQLCommand="select ITEM.ItmUnitPrice,INVENTORY.InvQuantity from ITEM "+
-            " inner join INVENTORY on INVENTORY.InvItemName=ITEM.ItmName "+
-            " where ITEM.Itmname like '%"+CashierItemName.getSelectedItem().toString().trim()+"%'";       
-            try (Connection connection = DriverManager.getConnection(test);
-                Statement stmt = connection.createStatement();) {
-            
-            ResultSet x = stmt.executeQuery(SQLCommand);
-            CashierQuantity.setText(x.getString(1));
-            CashierPrice.setText(x.getString(2));
-            connection.close();
-            }catch (Exception e) {
-                e.printStackTrace();
-                warning("An error has occured!");
+        String 
+        SQLCommand="select ITEM.ItmName,ITEM.ItmUnitPrice,INVENTORY.InvQuantity from ITEM "+
+        " inner join INVENTORY on INVENTORY.InvItemName=ITEM.ItmName "+
+        " where ITEM.Itmname like '%"+CashierItemName.getSelectedItem().toString().trim()+"%'";       
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+        
+        ResultSet x = stmt.executeQuery(SQLCommand);
+        while(x.next()){
+            if(!evt.getItem().toString().trim().isBlank()&&
+                x.getString(1).equalsIgnoreCase(evt.getItem().toString().trim())){
+                CashierStock.setText(x.getString(3));
+                CashierPrice.setText(x.getString(2));
             }
         }
+        
+        connection.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occured!");
+        }
+        
     }
 
     private boolean checkInt(String x,String title){
@@ -1833,6 +1852,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private DefaultTableModel buildTableModelCust(ResultSet rs)throws SQLException {
 
         ResultSetMetaData metaData = rs.getMetaData();
+        //CashierCustomer.removeAll();
 
         // names of columns
         Vector<String> columnNames = new Vector<String>();
@@ -1850,13 +1870,23 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             if(!((String)vector.get(0)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).getIndexOf((String)vector.get(0))<0)
-                    ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).addElement((String)vector.get(0));
+                    ((DefaultComboBoxModel<String>)
+                    CustFNamebx.getModel()).addElement((String)vector.get(0));
             if(!((String)vector.get(1)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustMNamebx.getModel()).getIndexOf((String)vector.get(1))<0)
-                    ((DefaultComboBoxModel<String>)CustMNamebx.getModel()).addElement((String)vector.get(1));
+                    ((DefaultComboBoxModel<String>)
+                    CustMNamebx.getModel()).addElement((String)vector.get(1));
             if(!((String)vector.get(2)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).getIndexOf((String)vector.get(2))<0)
-                    ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).addElement((String)vector.get(2));
+                    ((DefaultComboBoxModel<String>)
+                    CustLNamebx.getModel()).addElement((String)vector.get(2));
+
+            if(!((String)vector.get(0)).isBlank()&&!((String)vector.get(2)).isBlank()&&
+                ((DefaultComboBoxModel<String>)CashierCustomer.getModel()).getIndexOf(
+                    (String)vector.get(0)+" "+(String)vector.get(2))<0){
+                        ((DefaultComboBoxModel<String>)
+                        CashierCustomer.getModel()).addElement((String)vector.get(0)+" "+(String)vector.get(2));
+            }
             data.add(vector);
         }
 
@@ -2020,6 +2050,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             CashierSubTotal.setText("");
             CashierQuantity.setText("");
             CashierPrice.setText("");
+            CashierStock.setText("");
         }
     }
     private void LoadTableCust(String cfname, String cmname, String clname){
@@ -2180,7 +2211,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             java.util.logging.Logger.getLogger(Frame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
-            new Frame2().setVisible(true);
+            new Frame2();
         });
     }
 
@@ -2188,7 +2219,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
                             "user=root;"+
-                            "password=eykha6068";
+                            "password=eykha6068;"+
+                            "loginTimeout=1;";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CashierClearOrders;

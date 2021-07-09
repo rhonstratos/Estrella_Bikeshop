@@ -290,27 +290,29 @@ public class NewEmp extends javax.swing.JDialog implements warn{
                 new ImageIcon(getClass().getResource("/resources/warnico.png")),
                 yy,yy[0]);
     }
+    private String test =   "jdbc:sqlserver://"+
+                            "localhost:1433;"+
+                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                            "user=root;"+
+                            "password=eykha6068;"+
+                            "loginTimeout=1;";
     private void Save(){
         String  fname=EmpFname.getText().trim().toUpperCase(),
                 mname=EmpMname.getText().trim().toUpperCase(),
                 lname=EmpLname.getText().trim().toUpperCase(),
                 address=EmpAddress.getText().trim().toUpperCase();
-        String  test =  "jdbc:sqlserver://"+
-                    "localhost:1433;"+
-                    "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                    "user=root;"+
-                    "password=eykha6068",
-            sqlcommand = "insert into EMPLOYEE(EmpFName,EmpMName,EmpLName,EmpBDate,EmpAge,EmpSex,EmpContactNo,EmpAddress,RatePHour) "+
-                        "values ('"+fname+
-                        "','"+mname+
-                        "','"+lname+
-                        "','"+EmpBDate.getText().trim()+
-                        "','"+EmpAge.getText().trim()+
-                        "','"+EmpSex.getSelectedItem().toString().trim()+
-                        "','"+EmpCnum.getText().trim()+
-                        "','"+address+
-                        "',"+checkrph(EmpRPH.getText(),"Rate per Hour!!!")+")",
-            sqlcheck=   "select EmpFName,EmpMName,EmpLName from EMPLOYEE";
+        String 
+        sqlcommand = "insert into EMPLOYEE(EmpFName,EmpMName,EmpLName,EmpBDate,EmpAge,EmpSex,EmpContactNo,EmpAddress,RatePHour) "+
+                    "values ('"+fname+
+                    "','"+mname+
+                    "','"+lname+
+                    "','"+EmpBDate.getText().trim()+
+                    "','"+EmpAge.getText().trim()+
+                    "','"+EmpSex.getSelectedItem().toString().trim()+
+                    "','"+EmpCnum.getText().trim()+
+                    "','"+address+
+                    "',"+checkrph(EmpRPH.getText(),"Rate per Hour!!!")+")",
+        sqlcheck=   "select EmpFName,EmpMName,EmpLName from EMPLOYEE";
         boolean check=false;   
                     
         try (Connection connection = DriverManager.getConnection(test);
