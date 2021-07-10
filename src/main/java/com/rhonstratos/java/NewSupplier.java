@@ -32,8 +32,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
         try {
             initComponents();
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -172,13 +171,13 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
     public void warning(String ErrorMessage){
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
-            this, 
-            ErrorMessage, 
-            this.getTitle(), 
-            JOptionPane.OK_OPTION, 
-            JOptionPane.WARNING_MESSAGE,
-            new ImageIcon(getClass().getResource("/resources/warnico.png")),
-            yy,yy[0]);
+                this, 
+                "<html><body><p style='width: 300px;'>"+ErrorMessage+" </p></body></html>", 
+                this.getTitle(), 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/warnico.png")),
+                yy,yy[0]);
     }
     private boolean checkConNum(String x){
         return StringUtils.isNumeric(x.replaceAll("[^0-9]", ""));

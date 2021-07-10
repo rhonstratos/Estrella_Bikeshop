@@ -46,7 +46,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
                 this, 
-                ErrorMessage, 
+                "<html><body><p style='width: 300px;'>"+ErrorMessage+" </p></body></html>", 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -72,11 +72,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             c.close();con.close();
         } catch (Exception e) {
             if(e.getMessage().equalsIgnoreCase("The TCP/IP connection to the host localhost, port 1433 has failed. Error: \"connect timed out. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.\".")){
-                warning(e.getMessage().replaceAll(":", ":\n").replaceAll("host and accepting", "host and accepting \n")
-                +"\nPlease check if your Microsoft SQL Server then try again!");
+                warning(e.getMessage()+" <br>Please check if your Microsoft SQL Server then try again!");
             }else{
-                e.printStackTrace();
-                warning("An error has occured!");
+                warning("An error has occured! <br>"+e.getMessage());
             }
             cat=false;
         }finally{
@@ -101,8 +99,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 }
             }).start();
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
         firstRe();
     }
@@ -1354,8 +1351,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 CustAddressbx.setText(CustTable.getModel().getValueAt(row, 3).toString()); 
             
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }//GEN-LAST:event_CustTableMouseClicked
     
@@ -1409,8 +1405,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 SupplierConNum.setText(SupplierTable.getModel().getValueAt(row, 1).toString());
                 SupplierAddress.setText(SupplierTable.getModel().getValueAt(row, 2).toString()); 
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }//GEN-LAST:event_SupplierTableMouseClicked
 
@@ -1424,8 +1419,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 ItmUPrice.setText(ItmTable.getModel().getValueAt(row, 4).toString());
                 ItmSupplier.setSelectedItem(ItmTable.getModel().getValueAt(row, 5).toString());
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }//GEN-LAST:event_ItmTableMouseClicked
     private void ItmDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmDeleteActionPerformed
@@ -1462,8 +1456,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 InvDesc.setText(InvTable.getModel().getValueAt(row, 3).toString()); 
             
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }                                       
     private void InvRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvRefreshActionPerformed
@@ -1519,8 +1512,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         
         connection.close();
         }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
         
     }
@@ -1545,8 +1537,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 }
                 CashierTotal.setText(Double.toString(tot));
             } catch (Exception e) {
-                e.printStackTrace();
-                warning("An error has occurred!");
+                warning("An error has occured! <br>"+e.getMessage());
             }
             finally{
                 //CashierItemName.setSelectedItem("");
@@ -1580,8 +1571,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 this.dispose();
             }
         }catch(Exception e){
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
 
@@ -1646,8 +1636,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 stmt.executeUpdate(sqlUpdate);
                 connection.close();
             }catch (Exception e) {
-                e.printStackTrace();
-                warning("An error has occured!");
+                warning("An error has occured! <br>"+e.getMessage());
             }
             finally{
                 CustFNamebx.setSelectedItem("");
@@ -1723,8 +1712,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 stmt.executeUpdate(sqlUpdate);
                 connection.close();
             }catch (Exception e) {
-                e.printStackTrace();
-                warning("An error has occured!");
+                warning("An error has occured! <br>"+e.getMessage());
             }
             finally{
                 run=false;
@@ -1792,8 +1780,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 stmt.executeUpdate(sqlUpdate);
                 connection.close();
             }catch (Exception e) {
-                e.printStackTrace();
-                warning("An error has occured!");
+                warning("An error has occured! <br>"+e.getMessage());
             }
             finally{
                 CustFNamebx.setSelectedItem("");
@@ -1846,8 +1833,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 stmt.executeUpdate(sqlUpdate);
                 connection.close();
             }catch (Exception e) {
-                e.printStackTrace();
-                warning("An error has occured!");
+                warning("An error has occured! <br>"+e.getMessage());
             }
             finally{
                 SupplierName.setSelectedItem("");
@@ -1882,8 +1868,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 stmt.executeUpdate(sqlDelete);
                 connection.close();
             }catch (Exception e) {
-                e.printStackTrace();
-                warning("An error has occured!");
+                warning("An error has occured! <br>"+e.getMessage());
             }
             finally{
                 RefreshTable();
@@ -1911,7 +1896,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 if(e.toString().equalsIgnoreCase("com.microsoft.sqlserver.jdbc.SQLServerException: The DELETE statement conflicted with the REFERENCE constraint \"FK__INVENTORY__InvIt__5CD6CB2B\". The conflict occurred in database \"INVENTORY_MANAGEMENT_SYS\", table \"dbo.INVENTORY\", column 'InvItemName'."))
                 warning("Item cannot be deleted because it is referencing an intance in the INVENTORY table\n"+
                         "Delete the instances in INVENTORY table first!");
-                else {e.printStackTrace();warning("An error has occured!");}
+                else {
+                    warning("An error has occured! <br>"+e.getMessage());
+                }
             }
             finally{
                 RefreshTable();
@@ -1939,7 +1926,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 if(e.toString().equalsIgnoreCase("com.microsoft.sqlserver.jdbc.SQLServerException: The DELETE statement conflicted with the REFERENCE constraint \"FK__ITEM__ItmSupplie__3E52440B\". The conflict occurred in database \"INVENTORY_MANAGEMENT_SYS\", table \"dbo.ITEM\", column 'ItmSupplier'."))
                 warning("Supplier cannot be deleted because it is referencing an intance in the ITEM table\n"+
                         "Delete the instances in ITEM table first!");
-                else {e.printStackTrace();warning("An error has occured!");}
+                else {
+                    warning("An error has occured! <br>"+e.getMessage());
+                }
             }
             finally{
                 RefreshTable();
@@ -2117,8 +2106,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             LoadTableSup("", "", "");
             LoadEmployee();
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
         finally{
             CustFNamebx.setSelectedItem("");
@@ -2186,8 +2174,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 CustTable.setModel(buildTableModelCust(x));
                 connection.close();
         }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     private void LoadTableInv(String InvItemName, String InvQuantity, String InvDescription){
@@ -2213,8 +2200,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             
             connection.close();
         }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     private void LoadTableItm(String ItmName, String ItmCategory, String ItmDesc, String ItmSupplier){
@@ -2245,8 +2231,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             ItmTable.setModel(buildTableModelItm(x));
             connection.close();
         }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     private void LoadTableSup(String SupName, String ConNum, String Address){
@@ -2283,8 +2268,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             SupplierTable.setModel(buildTableModelSup(x));
             connection.close();
         }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     private void LoadEmployee(){
@@ -2299,8 +2283,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             connection.close();
         }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
         finally{
             CashierEmployee.setSelectedItem("");

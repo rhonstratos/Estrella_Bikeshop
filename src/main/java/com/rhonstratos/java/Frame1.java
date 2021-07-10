@@ -62,8 +62,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 myWriter.close();
             } 
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     public Frame1() {
@@ -71,16 +70,14 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             //printlcs();
             initComponents();
         }catch(Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     public void warning(String ErrorMessage){
-        
         Object[] yy = {"OK"};
-            JOptionPane.showOptionDialog(
+        JOptionPane.showOptionDialog(
                 this, 
-                ErrorMessage, 
+                "<html><body><p style='width: 300px;'>"+ErrorMessage+" </p></body></html>", 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -242,8 +239,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                     +"\nPlease check if your Microsoft SQL Server then try again!");
                 }
                 else {
-                    e.printStackTrace();
-                    warning("An error has occured!");
+                    warning("An error has occured! <br>"+e.getMessage());
                 }
             }
             finally{
