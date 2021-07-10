@@ -34,8 +34,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
         try {
             initComponents();
         } catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -283,7 +282,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
                 this, 
-                ErrorMessage, 
+                "<html><body><p style='width: 300px;'>"+ErrorMessage+" </p></body></html>", 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -350,8 +349,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
                 connection.close();
         }
         catch (SQLException e) {
-            e.printStackTrace();
-            warning("An error has occured!");
+            warning("An error has occured! <br>"+e.getMessage());
         }
     }
     public static void main(String[] args){
