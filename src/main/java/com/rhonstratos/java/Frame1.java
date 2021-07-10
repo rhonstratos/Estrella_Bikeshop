@@ -98,7 +98,11 @@ public class Frame1 extends javax.swing.JFrame implements warn {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inventory Management System");
-        
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setSize(new java.awt.Dimension(1280, 720));
+
+        jPanel1.setName(""); // NOI18N
         jPanel1.setOpaque(false);
 
         label1.setAlignment(java.awt.Label.CENTER);
@@ -155,7 +159,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(loginB, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         label1.getAccessibleContext().setAccessibleName("");
@@ -172,7 +176,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,8 +190,8 @@ public class Frame1 extends javax.swing.JFrame implements warn {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("");
