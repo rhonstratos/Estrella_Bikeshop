@@ -32,8 +32,7 @@ package com.rhonstratos.java;
     import java.time.*;
     import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;  
 /**
- * Inventory System Management:
- * Main Menu Frame
+ * Inventory System Management: Main Menu Frame
  * @author rhonstratos
  */
 public class Frame2 extends javax.swing.JFrame implements warn{
