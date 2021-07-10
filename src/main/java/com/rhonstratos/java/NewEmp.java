@@ -74,7 +74,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NEW EMPLOYEE");
 
-        jButton2.setText("Register Customer");
+        jButton2.setText("Register Employee");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

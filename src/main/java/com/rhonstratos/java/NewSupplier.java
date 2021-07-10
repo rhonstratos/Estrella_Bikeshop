@@ -89,7 +89,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
             }
         });
 
-        jButton1.setText("Register Customer");
+        jButton1.setText("Register Supplier");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
