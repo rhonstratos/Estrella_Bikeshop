@@ -1389,8 +1389,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
         }
-    }//GEN-LAST:event_CustTableMouseClicked
-    
+    }//GEN-LAST:event_CustTableMouseClicked   
     private void custRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRefreshActionPerformed
         CustFNamebx.setSelectedItem("");
         CustMNamebx.setSelectedItem("");
@@ -1444,20 +1443,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured! <br>"+e.getMessage());
         }
     }//GEN-LAST:event_SupplierTableMouseClicked
-
-    private void ItmTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItmTableMouseClicked
-        try {
-            int row = ItmTable.getSelectedRow();
-                ItmName.setSelectedItem(ItmTable.getModel().getValueAt(row, 0).toString());
-                ItmCategory.setText(ItmTable.getModel().getValueAt(row, 1).toString());
-                ItmDesc.setText(ItmTable.getModel().getValueAt(row, 2).toString());
-                ItmSRP.setText(ItmTable.getModel().getValueAt(row, 3).toString());
-                ItmUPrice.setText(ItmTable.getModel().getValueAt(row, 4).toString());
-                ItmSupplier.setSelectedItem(ItmTable.getModel().getValueAt(row, 5).toString());
-        } catch (Exception e) {
-            warning("An error has occured! <br>"+e.getMessage());
-        }
-    }//GEN-LAST:event_ItmTableMouseClicked
     
     private void InvTableMouseClicked(java.awt.event.MouseEvent evt) {                                      
         try {
@@ -1493,21 +1478,28 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         CashierPrice.getText());
     }//GEN-LAST:event_PunchOrderActionPerformed
     private void CashierSavePrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierSavePrintActionPerformed
-        //TODO save n print btn
+        saveInvcOrder();
     }//GEN-LAST:event_CashierSavePrintActionPerformed
     private void CashierClearOrdersActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        ((DefaultTableModel)CashierTable.getModel()).setRowCount(0);
-        ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeAllElements();
-        for(int x=0;x<ItmTable.getRowCount();x++){
-            ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement(
-                ((DefaultTableModel)ItmTable.getModel()).getValueAt(x, 0).toString()
-                
-            );
-            CashierItemName.setSelectedItem("");
-            CashierStock.setText("");
-            CashierPrice.setText("");
-        }
+        clearOrder();
     }                                                     
+    private void CashierItmLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierItmLoadActionPerformed
+        populateCashier(CashierItemName.getSelectedItem().toString().trim());
+    }//GEN-LAST:event_CashierItmLoadActionPerformed
+    
+    private void ItmTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItmTableMouseClicked
+        try {
+            int row = ItmTable.getSelectedRow();
+                ItmName.setSelectedItem(ItmTable.getModel().getValueAt(row, 0).toString());
+                ItmCategory.setText(ItmTable.getModel().getValueAt(row, 1).toString());
+                ItmDesc.setText(ItmTable.getModel().getValueAt(row, 2).toString());
+                ItmSRP.setText(ItmTable.getModel().getValueAt(row, 3).toString());
+                ItmUPrice.setText(ItmTable.getModel().getValueAt(row, 4).toString());
+                ItmSupplier.setSelectedItem(ItmTable.getModel().getValueAt(row, 5).toString());
+        } catch (Exception e) {
+            warning("An error has occured! <br>"+e.getMessage());
+        }
+    }//GEN-LAST:event_ItmTableMouseClicked
     private void ItmDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmDeleteActionPerformed
         deleteItem();
     }//GEN-LAST:event_ItmDeleteActionPerformed
@@ -1531,74 +1523,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmSupplier.removeAllItems();
         ItmSupplier.setSelectedItem("");
         LoadTableItm("", "", "", "");
-    }//GEN-LAST:event_ItmRefreshActionPerformed
-
-    private void CashierItmLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashierItmLoadActionPerformed
-        populateCashier(CashierItemName.getSelectedItem().toString().trim());
-    }//GEN-LAST:event_CashierItmLoadActionPerformed
+    }//GEN-LAST:event_ItmRefreshActionPerformed  
     
-    private void populateCashier(String ItemName){
-        String 
-        SQLCommand="select ITEM.ItmName,ITEM.ItmUnitPrice,INVENTORY.InvQuantity from ITEM "+
-        " inner join INVENTORY on INVENTORY.InvItemName=ITEM.ItmName "+
-        " where ITEM.Itmname like '%"+ItemName+"%'";       
-        try (Connection connection = DriverManager.getConnection(test);
-            Statement stmt = connection.createStatement();) {
-        
-        ResultSet x = stmt.executeQuery(SQLCommand);
-        while(x.next()){
-            if(!ItemName.isBlank()&&
-                x.getString(1).equalsIgnoreCase(ItemName)){
-                CashierStock.setText(x.getString(3));
-                CashierPrice.setText(x.getString(2));
-            }
-        }
-        
-        connection.close();
-        }catch (Exception e) {
-            warning("An error has occured! <br>"+e.getMessage());
-        }
-        
-    }
-    private void punchOrderTable(String ItmName, String Quan, String Price){
-        ItmName=ItmName.trim();
-        Quan=Quan.trim();
-        if(checkInt(Quan, "Quantity!")&&!ItmName.isBlank()){
-            if(Double.parseDouble(CashierStock.getText())>=Double.parseDouble(Quan)&&
-                Double.parseDouble(Quan)>0){
-                ((DefaultTableModel)CashierTable.getModel()).addRow(new Object[]{
-                    ItmName,
-                    Quan,
-                    Price,
-                    Double.toString(
-                        Double.parseDouble(Quan) * Double.parseDouble(Price)
-                        )
-                    });
-                ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeElement(ItmName);
-                double tot=0;
-                try {
-                    for (int x=0; x<((DefaultTableModel)CashierTable.getModel()).getRowCount();x++){
-                        tot+=Double.parseDouble(((DefaultTableModel)CashierTable.getModel()).getValueAt(x, 3).toString());
-                    }
-                    CashierTotal.setText("PHP "+Double.toString(tot));
-                } catch (Exception e) {
-                    warning("An error has occured! <br>"+e.getMessage());
-                }
-                finally{
-                    CashierItemName.setSelectedItem("");
-                    CashierPrice.setText("");
-                    CashierQuantity.setText("");
-                    CashierStock.setText("");
-                }
-            }
-            else if (Double.parseDouble(Quan) <1)
-            warning("An error has occurred! <br>Quantity value must be greater than or equal to 1! <br>Please try again!");
-            else if (Double.parseDouble(CashierStock.getText())<1)
-            warning("An error has occurred! <br>"+ItmName+" is already out of stock!");
-            else if (Double.parseDouble(CashierStock.getText()) < Double.parseDouble(Quan))
-            warning("An error has occurred! <br>Quantiy must not be greater than the stock value! <br>Please try again!");
-        }
-    }
     private boolean checkInt(String x,String title){
         try {
             Double.parseDouble(x.replaceAll("[^0-9]",""));
@@ -1627,6 +1553,211 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }
 
+    private void populateCashier(String ItemName){
+        String 
+        SQLCommand="select ITEM.ItmName,ITEM.ItmUnitPrice,INVENTORY.InvQuantity from ITEM "+
+        " inner join INVENTORY on INVENTORY.InvItemName=ITEM.ItmName "+
+        " where ITEM.Itmname like '%"+ItemName+"%'";       
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+        
+        ResultSet x = stmt.executeQuery(SQLCommand);
+        while(x.next()){
+            if(!ItemName.isBlank()&&
+                x.getString(1).equalsIgnoreCase(ItemName)){
+                CashierStock.setText(x.getString(3));
+                CashierPrice.setText(x.getString(2));
+            }
+        }
+        connection.close();
+        }catch (Exception e) {
+            warning("An error has occured! <br>"+e.getMessage());
+        }
+        finally{
+            CashierQuantity.setText("");
+        }
+    }
+    private void punchOrderTable(String ItmName, String Quan, String Price){
+        ItmName=ItmName.trim();
+        Quan=Quan.trim();
+        if (ItmName.isBlank()){
+            warning("An error has occurred! <br>Please select an item then try again!");
+        }
+        else if(checkInt(Quan, "Quantity!")){
+            if(Double.parseDouble(CashierStock.getText())>=Double.parseDouble(Quan)&&
+                Double.parseDouble(Quan)>0){
+                ((DefaultTableModel)CashierTable.getModel()).addRow(new Object[]{
+                    ItmName,
+                    Quan,
+                    Price,
+                    Double.toString(
+                        Double.parseDouble(Quan) * Double.parseDouble(Price)
+                        )
+                    });
+                ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeElement(ItmName);
+                double tot=0;
+                try {
+                    for (int x=0; x<((DefaultTableModel)CashierTable.getModel()).getRowCount();x++){
+                        tot+=Double.parseDouble(((DefaultTableModel)CashierTable.getModel()).getValueAt(x, 3).toString());
+                    }
+                    CashierTotal.setText("PHP "+Double.toString(tot));
+                    invcTotal=tot;
+                } catch (Exception e) {
+                    warning("An error has occured! <br>"+e.getMessage());
+                }
+                finally{
+                    CashierItemName.setSelectedItem("");
+                    CashierPrice.setText("");
+                    CashierQuantity.setText("");
+                    CashierStock.setText("");
+                }
+            }
+            else if (Double.parseDouble(Quan) <1)
+            warning("An error has occurred! <br>Quantity value must be greater than or equal to 1! <br>Please try again!");
+            else if (Double.parseDouble(CashierStock.getText())<1)
+            warning("An error has occurred! <br>"+ItmName+" is already out of stock!");
+            else if (Double.parseDouble(CashierStock.getText()) < Double.parseDouble(Quan))
+            warning("An error has occurred! <br>Quantiy must not be greater than the stock value! <br>Please try again!");
+        }
+    }
+    private void clearOrder(){
+        ((DefaultTableModel)CashierTable.getModel()).setRowCount(0);
+        ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeAllElements();
+        for(int x=0;x<InvTable.getRowCount();x++){
+            ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement(
+                ((DefaultTableModel)InvTable.getModel()).getValueAt(x, 0).toString()
+            );
+        }
+        CashierItemName.setSelectedItem("");
+        CashierStock.setText("");
+        CashierPrice.setText("");
+        CashierCustomer.setSelectedItem("");
+        CashierEmployee.setSelectedItem("");
+        CashierTotal.setText("");
+        CashierQuantity.setText("");
+    }
+    private void saveInvcOrder(){
+        try {
+            if(((DefaultTableModel)CashierTable.getModel()).getRowCount()>0){
+                Object[] y = {"Yes","No","Cancel"};
+                int x = JOptionPane.showOptionDialog(this,
+                    "message",
+                    "Are you sure that you want to continue?",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    new ImageIcon(getClass().getResource("/resources/woggy_deskSlap.gif"))/*icon*/,
+                    y, y[2]);
+                if(x==0){
+                    JFormattedTextField pei = new JFormattedTextField();
+                    pei.setFormatterFactory(
+                        new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.NumberFormatter(
+                                new java.text.DecimalFormat("#0"))));
+                    int paynt = JOptionPane.showOptionDialog(this,
+                    new Object[]{
+                        "Enter Payment: ",pei
+                    }, 
+                    "Payment", 
+                    JOptionPane.OK_CANCEL_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, 
+                    new ImageIcon(getClass().getResource("/resources/woggy_moneh.gif")), 
+                    new Object[]{"Proceed","Cancel"}, null);
+                    double payment=0;
+                    try {
+                        payment=Double.parseDouble(pei.getText());
+                    } catch (Exception e) { warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");}
+                    if(payment < invcTotal)
+                        warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");
+                    else if(paynt==0){
+                        String[]custname = CashierCustomer.getSelectedItem().toString().trim().split(" "),
+                                emplo=CashierEmployee.getSelectedItem().toString().trim().split(" ");
+                        String SQLinitCust=
+                                "select CustID from CUSTOMER where CFName='"+custname[0]+"' and "+
+                                "CLName='"+custname[1]+"'",
+                                SQLinitEmplo=
+                                "select EmpID from EMPLOYEE where EmpFName='"+emplo[0]+"' and "+
+                                "EmpLName='"+emplo[1]+"'";
+                        int custID=0,empID=0; 
+                        int invoiceID=0;
+    
+                        try (Connection connection = DriverManager.getConnection(test);
+                            Statement stmt = connection.createStatement();){                   
+    
+                            ResultSet initCust = stmt.executeQuery(SQLinitCust);
+                            while(initCust.next()){
+                                custID=initCust.getInt("CustID");
+                            }initCust.close();
+    
+                            ResultSet initEmp = stmt.executeQuery(SQLinitEmplo);
+                            while (initEmp.next()){
+                                empID=initEmp.getInt("EmpID");
+                            }initEmp.close();
+                            
+                            String SQLInvoice =
+                            "insert into INVOICE (CustomerID,EmployeeID,InvcTotal,InvcPay,InvcChange) "+
+                            "values( cast("+Double.toString(custID)+" as int),"+
+                            "cast("+Double.toString(empID)+" as int),"+
+                            invcTotal+","+
+                            payment+","+
+                            (payment-invcTotal)+")";
+                            stmt.executeUpdate(SQLInvoice);
+                            
+                            ResultSet invc = stmt.executeQuery("select InvcID from INVOICE where "+
+                            "InvcOrderDate = cast(datepart(year,getdate()) as varchar)+'-'+cast(datepart(month,getdate()) as varchar)+'-'+cast(datepart(day,getdate()) as varchar)"+
+                            " and "+
+                            "CustomerID = "+Double.toString(custID)+
+                            " and "+
+                            "EmployeeID = "+Double.toString(empID)+
+                            " and "+
+                            "InvcTotal="+Double.toString(invcTotal));
+                            while(invc.next()){
+                                invoiceID=invc.getInt("InvcID");
+                            }invc.close();
+                            
+                            int orders =0;
+                            while(orders<((DefaultTableModel)CashierTable.getModel()).getRowCount()){
+                                String SQLOrder =
+                                "insert into \"ORDER\" (OrdID,CustID,ItmName,OrdQuantity,OrdPrice,OrdSubtotal) values ("+
+                                invoiceID+","+custID+",'"+
+                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+"',"+
+                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 1)+","+
+                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 2)+","+
+                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 3)+")";
+                                stmt.executeUpdate(SQLOrder);
+                                String SQLInvenUpdate=
+                                "update INVENTORY set InvQuantity=(select InvQuantity from INVENTORY where InvItemName='"+
+                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+
+                                "')-"+((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 1)+
+                                " where "+
+                                "InvItemName='"+((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+"'";
+                                stmt.executeUpdate(SQLInvenUpdate);
+                                orders++;
+                            }stmt.close();
+                            JOptionPane.showOptionDialog(this, 
+                                "", 
+                                "Payment Successful!", 
+                                JOptionPane.OK_OPTION, 
+                                JOptionPane.PLAIN_MESSAGE, 
+                                new ImageIcon(getClass().getResource("/resources/woggy_wineWink.gif")), new Object[]{"Noice!"}, null);
+                            clearOrder();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            warning("An error has occurred! <br>"+e.getMessage());
+                        } 
+                    }else{
+                        warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");
+                    }
+                    payment=0;
+                }
+            }
+            else{
+                warning("An error has occurred! <br>The ORDER table is empty!");
+            }
+        } catch (Exception e) {
+            warning("An error has occurred! <br>"+e.getMessage());
+        }
+    }
+    
     private void updateCust(){
         String f=CustFNamebx.getSelectedItem().toString(),
         m=CustMNamebx.getSelectedItem().toString(),
@@ -2057,8 +2188,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 vector.add(rs.getObject(columnIndex));
             }
             if(!((String)vector.get(0)).isBlank()&&
-                ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(0))<0)
+                ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(0))<0){
                     ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(0));
+                    ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement((String)vector.get(0));
+                }
             data.add(vector);
         }
 
@@ -2091,10 +2224,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 vector.add(rs.getObject(columnIndex));
             }
             if(!((String)vector.get(0)).isBlank()&&
-                ((DefaultComboBoxModel<String>)ItmName.getModel()).getIndexOf((String)vector.get(0))<0){
+                ((DefaultComboBoxModel<String>)ItmName.getModel()).getIndexOf((String)vector.get(0))<0)
                     ((DefaultComboBoxModel<String>)ItmName.getModel()).addElement((String)vector.get(0));
-                    ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement((String)vector.get(0));
-                }
 
             if(!((String)vector.get(5)).isBlank()&&
                 ((DefaultComboBoxModel<String>)ItmSupplier.getModel()).getIndexOf((String)vector.get(5))<0)
@@ -2349,7 +2480,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             new Frame2();
         });
     }
-
+    
+    private double invcTotal=0;
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
