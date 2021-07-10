@@ -466,6 +466,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="CashierItmLoad">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="SEARCH ITEM AND LOADS "/>
+                      </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CashierItmLoadActionPerformed"/>
                       </Events>

@@ -185,9 +185,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "user=root;"+
-                            "password=eykha6068;"+
-                            "loginTimeout=1;";
+                            "integratedSecurity=true";
     private void Save(){
         if(checkConNum(SupConNum.getText())&&SupConNum.getText().replaceAll(" ", "").length()==11){
             String  

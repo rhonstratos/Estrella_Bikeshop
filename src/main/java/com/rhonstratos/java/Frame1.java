@@ -220,9 +220,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             String  test =  "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "user=root;"+
-                            "password=eykha6068;"+
-                            "loginTimeout=1;",
+                            "integratedSecurity=true",
                     selectSql = "SELECT * from LOGIN where \"user\"=("+
                         "select \"user\" from LOGIN where \"user\"='"+this.userr.getText()+"'"
                     +") and pass = ("+
@@ -237,7 +235,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                     resultSet.next();
                     if(!new String(this.passw.getPassword()).equals(resultSet.getString(2)) &&
                             !this.userr.getText().equals(resultSet.getString(1)))
-                        warning("Username or Password is Incorrect!!!\n"+
+                        warning("Username or Password is Incorrect!!! <br>"+
                                 "Please try again...");  
                     else
                         check=true;
@@ -250,12 +248,12 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             }
             catch (SQLException e) {
                 if(e.toString().equals("com.microsoft.sqlserver.jdbc.SQLServerException: The result set has no current row."))
-                    warning("Invalid Username or Password!\nPlease try again!!!");
+                    warning("Invalid Username or Password! <br>Please try again!!!");
                 else if(e.getMessage().equalsIgnoreCase("The TCP/IP connection to the host localhost, port 1433 has failed. Error: \"connect timed out. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.\".")){
-                    warning(e.getMessage().replaceAll(":", ":\n").replaceAll("host and accepting", "host and accepting \n")
-                    +"\nPlease check if your Microsoft SQL Server then try again!");
+                    warning(e.getMessage()+"<br>Please check if your Microsoft SQL Server is running then try again!");
                 }
                 else {
+                    e.printStackTrace();
                     warning("An error has occured! <br>"+e.getMessage());
                 }
             }

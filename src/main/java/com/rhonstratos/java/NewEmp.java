@@ -292,9 +292,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "user=root;"+
-                            "password=eykha6068;"+
-                            "loginTimeout=1;";
+                            "integratedSecurity=true";
     private void Save(){
         String  fname=EmpFname.getText().trim().toUpperCase(),
                 mname=EmpMname.getText().trim().toUpperCase(),

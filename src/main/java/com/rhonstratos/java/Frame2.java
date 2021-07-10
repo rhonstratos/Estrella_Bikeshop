@@ -316,6 +316,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Price");
 
+        CashierItmLoad.setToolTipText("SEARCH ITEM AND LOADS ");
         CashierItmLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CashierItmLoadActionPerformed(evt);
@@ -2352,8 +2353,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "user=root;"+
-                            "password=eykha6068;";
+                            "integratedSecurity=true";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CashierClearOrders;

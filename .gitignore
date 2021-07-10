@@ -2,3 +2,4 @@ target
 .settings
 .vscode
 clean-build-clean.bat
+bugs.txt
