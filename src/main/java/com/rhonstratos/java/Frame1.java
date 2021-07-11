@@ -66,6 +66,19 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
+    private void setUIFont(javax.swing.plaf.FontUIResource f)
+    {
+        java.util.Enumeration<Object> keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements())
+        {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof javax.swing.plaf.FontUIResource)
+            {
+                UIManager.put(key, f);
+            }
+        }
+    }
     public Frame1() {
         try{
             GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -75,34 +88,36 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                     getClass().getResource(
                         "/resources/fonts/Product-Sans-Bold-Italic.ttf")
                     .openStream()
-                ).deriveFont(12f)
-            );
+                ).deriveFont(12f));
             x.registerFont(
                 Font.createFont(
                     Font.TRUETYPE_FONT, 
                     getClass().getResource(
                         "/resources/fonts/Product-Sans-Bold.ttf")
                     .openStream()
-                ).deriveFont(12f)
-            );
+                ).deriveFont(12f));
             x.registerFont(
                 Font.createFont(
                     Font.TRUETYPE_FONT, 
                     getClass().getResource(
                         "/resources/fonts/Product-Sans-Italic.ttf")
                     .openStream()
-                ).deriveFont(12f)
-            );
+                ).deriveFont(12f));
             x.registerFont(
                 Font.createFont(
                     Font.TRUETYPE_FONT, 
                     getClass().getResource(
                         "/resources/fonts/Product-Sans-Regular.ttf")
                     .openStream()
-                ).deriveFont(12f)
-            );              
+                ).deriveFont(12f));    
+            this.setUIFont(
+                new javax.swing.plaf.FontUIResource(
+                new Font("Product Sans Regular",Font.PLAIN, 16)
+                ));  
             //printlcs();
             initComponents();
+            SwingUtilities.updateComponentTreeUI(this);
+            setVisible(true);
         }catch(Exception e) {
             e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
@@ -145,7 +160,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
         jPanel1.setOpaque(false);
 
         label1.setAlignment(java.awt.Label.CENTER);
-        label1.setFont(new Font("Product Sans Regular", Font.PLAIN, 22));
+        label1.setFont(new Font("Product Sans Bold",Font.PLAIN, 32));
         label1.setText("ESTRELLA BIKE SHOP");
 
         passw.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +173,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
 
         jLabel2.setText("Enter Your Password:");
 
+        loginB.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         loginB.setText("Login");
         loginB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +181,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             }
         });
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox1.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         jCheckBox1.setText("Show Password");
         jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -175,7 +191,8 @@ public class Frame1 extends javax.swing.JFrame implements warn {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jButton1.setText("<html><p><u>Forgot Password?</u></p></html>");
+        jButton1.setFont(new Font("Product Sans Bold",Font.PLAIN, 14));
+        jButton1.setText("<html><p style='font-family:Product Sans Italic;'><u>Forgot Password?</u></p></html>");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -200,48 +217,44 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(userr)
                         .addComponent(passw, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loginB, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(loginB, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(158, 158, 158)))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(100, 100, 100)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userr, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginB, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(35, 35, 35))
         );
 
         label1.getAccessibleContext().setAccessibleName("");
@@ -338,7 +351,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
     }//GEN-LAST:event_passwActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(this, "test", this.getTitle(), JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, "<html><p style='font-family:Product Sans Italic;'>FORGOT PASSWORD?<br>BOBO KA KASE</p></html>", this.getTitle(), JOptionPane.OK_OPTION);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
@@ -369,7 +382,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             java.util.logging.Logger.getLogger(Frame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         javax.swing.SwingUtilities.invokeLater(() -> {
-            new Frame1().setVisible(true);
+            new Frame1();
         });
     }
     

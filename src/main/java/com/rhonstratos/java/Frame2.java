@@ -49,7 +49,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ErrorMessage=ErrorMessage.replaceAll("An error has occurred!", "An error has occurred!<br>");
         JOptionPane.showOptionDialog(
                 this, 
-                "<html><body><p style='width: 300px;'>"+ErrorMessage+" </p></body></html>", 
+                "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>"+ErrorMessage+" </p></body></html>", 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -88,7 +88,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     /**
      * Initial loading of all components
      */
-    public Frame2() {
+    private void setUIFont(javax.swing.plaf.FontUIResource f)
+    {
+        java.util.Enumeration<Object> keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements())
+        {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof javax.swing.plaf.FontUIResource)
+            {
+                UIManager.put(key, f);
+            }
+        }
+    }
+     public Frame2() {
         try {
             GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
             x.registerFont(
@@ -122,13 +135,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         "/resources/fonts/Product-Sans-Regular.ttf")
                     .openStream()
                 ).deriveFont(12f)
-            );              
+            );      
+            this.setUIFont(new javax.swing.plaf.FontUIResource(
+                new Font("Product Sans Bold Italic",Font.PLAIN, 16)));        
             initComponents();
             ArrayList<java.awt.Image> ico = new ArrayList<>();
             ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/20x20.png").toString())));
             ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/40x40.png").toString())));
             setIconImages(ico);
             this.setVisible(true);
+
+
             DateTimeFormatter date = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy (MM/dd/yyyy)"); 
             DateTimeFormatter time = DateTimeFormatter.ofPattern("hh:mm:ss a");  
             new Timer(1000, new ActionListener(){
@@ -287,6 +304,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
 
         MainFrame.setBackground(new java.awt.Color(153, 153, 153));
+        MainFrame.setFont(new Font("Product Sans Italic",Font.PLAIN, 14));
 
         CashierPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -464,15 +482,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         CashierTablePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel28.setFont(new Font("Product Sans Bold",Font.PLAIN, 36));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("Total");
 
         CashierTotal.setEditable(false);
         CashierTotal.setBackground(new java.awt.Color(0, 0, 0));
-        CashierTotal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        CashierTotal.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 36));
         CashierTotal.setForeground(new java.awt.Color(0, 255, 0));
-        CashierTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        CashierTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout CashierTablePaneLayout = new javax.swing.GroupLayout(CashierTablePane);
         CashierTablePane.setLayout(CashierTablePaneLayout);
@@ -1247,6 +1265,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Suppliers", SupplierPanel);
 
+        Frame2Clock.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 12));
         Frame2Clock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         Frame2Clock.setText("Time:");
 
@@ -1411,7 +1430,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
      * @return Clears: CustFNamebx, CustMNamebx, CustLNamebx, CustConNumbx, CustAddressbx
      * @exception e Exception
      */
-    private void CustTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustTableMouseClicked
+    private void CustTableMouseClicked(java.awt.event.MouseEvent evt) {                                       
         try {
             int row = CustTable.getSelectedRow();
                 CustFNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 0).toString()); 
@@ -1423,7 +1442,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
         }
-    }//GEN-LAST:event_CustTableMouseClicked   
+    }                                         
     private void custRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRefreshActionPerformed
         CustFNamebx.setSelectedItem("");
         CustMNamebx.setSelectedItem("");
@@ -1547,7 +1566,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             ItmDesc.getText().trim(),
             ItmSupplier.getSelectedItem().toString().trim());
     }//GEN-LAST:event_ItmSearchActionPerformed
-    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
+    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {                                           
         ItmName.removeAllItems();
         ItmName.setSelectedItem("");
         ItmCategory.setText("");
@@ -1557,7 +1576,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmSupplier.removeAllItems();
         ItmSupplier.setSelectedItem("");
         LoadTableItm("", "", "", "");
-    }//GEN-LAST:event_ItmRefreshActionPerformed  
+    }                                            
     
     private boolean checkInt(String x,String title){
         try {
@@ -1718,7 +1737,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     double payment=0;
                     try {
                         payment=Double.parseDouble(pei.getText());
-                    } catch (Exception e) { warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");}
+                    } catch (Exception e) {warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");}
                     if(payment < invcTotal)
                         warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");
                     else if(paynt==0){
@@ -1793,6 +1812,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 JOptionPane.PLAIN_MESSAGE, 
                                 new ImageIcon(getClass().getResource("/resources/woggy_wineWink.gif")), new Object[]{"Noice!"}, null);
                             clearOrder();
+                            RefreshTable();
                         } catch (Exception e) {
                             e.printStackTrace();
                             warning("An error has occurred! <br>"+e.getMessage());
@@ -1807,6 +1827,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 warning("An error has occurred! <br>The ORDER table is empty!");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             warning("An error has occurred! <br>"+e.getMessage());
         }
     }
