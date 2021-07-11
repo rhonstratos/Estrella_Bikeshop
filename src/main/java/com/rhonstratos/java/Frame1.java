@@ -23,7 +23,8 @@
  */
 package com.rhonstratos.java;
 
-    import javax.swing.*;
+    import javax.imageio.ImageIO;
+import javax.swing.*;
     import java.awt.Color;
     import java.io.*;
     import java.sql.*;
@@ -147,7 +148,23 @@ public class Frame1 extends javax.swing.JFrame implements warn {
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                try {
+                    java.awt.image.BufferedImage image
+                    = javax.imageio.ImageIO.read(
+                        new java.net.URL(getClass().getResource("/resources/login_bg.png").toString())
+                    );
+                    super.paintComponent(g);
+                    g.drawImage(
+                        image,
+                        0, 0, null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inventory Management System");
@@ -260,7 +277,6 @@ public class Frame1 extends javax.swing.JFrame implements warn {
         label1.getAccessibleContext().setAccessibleName("");
         label1.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
         jPanel2.setName("panelLogin"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
