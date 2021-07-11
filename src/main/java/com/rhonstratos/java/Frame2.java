@@ -250,19 +250,26 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         Frame2Clock = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        MenuBar = new javax.swing.JMenu();
+        RefreshAllMenuItem = new javax.swing.JMenuItem();
+        LogoutMenuItem = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        RegisterBar = new javax.swing.JMenu();
+        NewCustomerMenuItem = new javax.swing.JMenuItem();
+        NewEmployeeMenuItem = new javax.swing.JMenuItem();
+        NewItemMenuItem = new javax.swing.JMenuItem();
+        NewSupplierMenuItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        ManageBar = new javax.swing.JMenu();
+        MgEmployeesMenuItem = new javax.swing.JMenuItem();
+        MgLoginMenutem = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        PrintBar = new javax.swing.JMenu();
+        prntCustomers = new javax.swing.JMenuItem();
+        prntEmployees = new javax.swing.JMenuItem();
+        prntInventory = new javax.swing.JMenuItem();
+        prntItems = new javax.swing.JMenuItem();
+        prntSuppliers = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inventory Management System: Main Menu");
@@ -501,7 +508,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CashierTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         CashierTablePaneLayout.setVerticalGroup(
             CashierTablePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,8 +540,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CashierPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)
                         .addComponent(CashierTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -582,12 +589,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel2.setText("First Name");
 
         CustFNamebx.setEditable(true);
+        CustFNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
         jLabel3.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Middle Name");
 
         CustMNamebx.setEditable(true);
+        CustMNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         CustMNamebx.setVerifyInputWhenFocusTarget(false);
 
         jLabel4.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -595,6 +604,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel4.setText("Last Name");
 
         CustLNamebx.setEditable(true);
+        CustLNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         CustLNamebx.setVerifyInputWhenFocusTarget(false);
 
         jLabel5.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -602,6 +612,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel5.setText("Contact Number");
 
         CustConNumbx.setEditable(false);
+        CustConNumbx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
         CustAddressbx.setEditable(false);
         CustAddressbx.setColumns(20);
@@ -728,7 +739,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -784,8 +795,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel9.setText("Search Item");
 
         InvItmName.setEditable(true);
+        InvItmName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
         InvQuan.setEditable(false);
+        InvQuan.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         InvQuan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         InvDesc.setEditable(false);
@@ -901,7 +914,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -956,8 +969,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel11.setText("Search Item");
 
         ItmName.setEditable(true);
+        ItmName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
         ItmSupplier.setEditable(true);
+        ItmSupplier.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
         jLabel20.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -967,12 +982,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Category");
 
+        ItmCategory.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         ItmCategory.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         ItmSRP.setEditable(false);
+        ItmSRP.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         ItmSRP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         ItmUPrice.setEditable(false);
+        ItmUPrice.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         ItmUPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         ItmDesc.setEditable(false);
@@ -1109,7 +1127,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -1152,8 +1170,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel17.setText("Search Supplier");
 
         SupplierName.setEditable(true);
+        SupplierName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
         SupplierConNum.setEditable(false);
+        SupplierConNum.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         SupplierConNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         SupplierAddress.setEditable(false);
@@ -1280,7 +1300,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1319,88 +1339,140 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jMenu6.setText(" ");
         jMenuBar1.add(jMenu6);
 
-        jMenu1.setText("Menu");
-        jMenu1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        MenuBar.setText("Menu");
+        MenuBar.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
 
-        jMenuItem3.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem3.setText("Logout");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        RefreshAllMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        RefreshAllMenuItem.setText("Refresh All");
+        RefreshAllMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                RefreshAllMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        MenuBar.add(RefreshAllMenuItem);
 
-        jMenuItem6.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem6.setText("Refresh All");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        LogoutMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        LogoutMenuItem.setText("Logout");
+        LogoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                LogoutMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        MenuBar.add(LogoutMenuItem);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(MenuBar);
 
         jMenu4.setText(" ");
         jMenuBar1.add(jMenu4);
 
-        jMenu2.setText("Register");
-        jMenu2.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        RegisterBar.setText("Register");
+        RegisterBar.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
 
-        jMenuItem1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem1.setText("New Customer");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        NewCustomerMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        NewCustomerMenuItem.setText("New Customer");
+        NewCustomerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                NewCustomerMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        RegisterBar.add(NewCustomerMenuItem);
 
-        jMenuItem2.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem2.setText("New Employee");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        NewEmployeeMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        NewEmployeeMenuItem.setText("New Employee");
+        NewEmployeeMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                NewEmployeeMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        RegisterBar.add(NewEmployeeMenuItem);
 
-        jMenuItem4.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem4.setText("New Item");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        NewItemMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        NewItemMenuItem.setText("New Item");
+        NewItemMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                NewItemMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        RegisterBar.add(NewItemMenuItem);
 
-        jMenuItem5.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem5.setText("New Supplier");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        NewSupplierMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        NewSupplierMenuItem.setText("New Supplier");
+        NewSupplierMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                NewSupplierMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        RegisterBar.add(NewSupplierMenuItem);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(RegisterBar);
 
         jMenu5.setText(" ");
         jMenuBar1.add(jMenu5);
 
-        jMenu3.setText("Manage");
-        jMenu3.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        ManageBar.setText("Manage");
+        ManageBar.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
 
-        jMenuItem7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem7.setText("Employees");
-        jMenu3.add(jMenuItem7);
+        MgEmployeesMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        MgEmployeesMenuItem.setText("Employees");
+        ManageBar.add(MgEmployeesMenuItem);
 
-        jMenuItem8.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        jMenuItem8.setText("Login");
-        jMenu3.add(jMenuItem8);
+        MgLoginMenutem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        MgLoginMenutem.setText("Login");
+        ManageBar.add(MgLoginMenutem);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(ManageBar);
+
+        jMenu7.setText(" ");
+        jMenuBar1.add(jMenu7);
+
+        PrintBar.setText("Print");
+
+        prntCustomers.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        prntCustomers.setText("Customers");
+        prntCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prntCustomersActionPerformed(evt);
+            }
+        });
+        PrintBar.add(prntCustomers);
+
+        prntEmployees.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        prntEmployees.setText("Employees");
+        prntEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prntEmployeesActionPerformed(evt);
+            }
+        });
+        PrintBar.add(prntEmployees);
+
+        prntInventory.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        prntInventory.setText("Inventory");
+        prntInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prntInventoryActionPerformed(evt);
+            }
+        });
+        PrintBar.add(prntInventory);
+
+        prntItems.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        prntItems.setText("Item");
+        prntItems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prntItemsActionPerformed(evt);
+            }
+        });
+        PrintBar.add(prntItems);
+
+        prntSuppliers.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
+        prntSuppliers.setText("Suppliers");
+        prntSuppliers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prntSuppliersActionPerformed(evt);
+            }
+        });
+        PrintBar.add(prntSuppliers);
+
+        jMenuBar1.add(PrintBar);
 
         setJMenuBar(jMenuBar1);
 
@@ -1435,36 +1507,36 @@ public class Frame2 extends javax.swing.JFrame implements warn{
      * @param evt catches closing event
      * @return runs Logout();
      */
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void LogoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutMenuItemActionPerformed
         Logout();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_LogoutMenuItemActionPerformed
     /**
      * Catches menu item: New Customer
      * @param evt catches click event
      * @return Loads New Customer dialog
      */
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void NewCustomerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCustomerMenuItemActionPerformed
         new NewCust(this.getTitle().substring(0,27)+": New Customer");
         NewCust.main(null);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_NewCustomerMenuItemActionPerformed
     /**
      * Catches menu item: New Employee
      * @param evt catches click event
      * @return Loads New Employee dialog
      */
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void NewEmployeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewEmployeeMenuItemActionPerformed
         new NewEmp(getTitle().substring(0,27)+": New Employee");
         NewEmp.main(null);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_NewEmployeeMenuItemActionPerformed
     /**
      * Catches menu item: New Item
      * @param evt catches click event
      * @return Loads New Item dialog
      */
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void NewItemMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewItemMenuItemActionPerformed
         new NewItem(getTitle().substring(0,27)+": New Item");
         NewItem.main(null);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_NewItemMenuItemActionPerformed
     /**
      * Ovverides default JFrame.DISPOSE and JFrame.EXIT_ON_CLOSE event
      * @param evt catches click event
@@ -1478,18 +1550,18 @@ public class Frame2 extends javax.swing.JFrame implements warn{
      * @param evt catches click event
      * @return Loads New Supplier dialog
      */
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void NewSupplierMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewSupplierMenuItemActionPerformed
         new NewSupplier(getTitle().substring(0,27)+": New Supplier");
         NewSupplier.main(null);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_NewSupplierMenuItemActionPerformed
     /**
      * Catches menu item: Refresh All
      * @param evt catches click event
      * @return Loads RefreshTable()
      */
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void RefreshAllMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshAllMenuItemActionPerformed
         RefreshTable();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_RefreshAllMenuItemActionPerformed
 
     /**
      * Catches click event on Customer Tabbed Pane: CustTable JTable
@@ -1633,6 +1705,26 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             ItmDesc.getText().trim(),
             ItmSupplier.getSelectedItem().toString().trim());
     }//GEN-LAST:event_ItmSearchActionPerformed
+
+    private void prntCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntCustomersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prntCustomersActionPerformed
+
+    private void prntEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntEmployeesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prntEmployeesActionPerformed
+
+    private void prntInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntInventoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prntInventoryActionPerformed
+
+    private void prntItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntItemsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prntItemsActionPerformed
+
+    private void prntSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntSuppliersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prntSuppliersActionPerformed
     private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {                                           
         ItmName.removeAllItems();
         ItmName.setSelectedItem("");
@@ -1761,6 +1853,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }
     private void clearOrder(){
         ((DefaultTableModel)CashierTable.getModel()).setRowCount(0);
+
+        rendererFromHeader = CashierTable.getTableHeader().getDefaultRenderer();
+        headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        CashierTable.getColumnModel().getColumn(0).setCellRenderer(r);
+        CashierTable.getColumnModel().getColumn(1).setCellRenderer(r);
+        CashierTable.getColumnModel().getColumn(2).setCellRenderer(r);
+        CashierTable.getColumnModel().getColumn(3).setCellRenderer(r);
+        
         ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeAllElements();
         for(int x=0;x<InvTable.getRowCount();x++){
             ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement(
@@ -2465,8 +2566,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         String 
         SQLCommand="select CFName as 'First Name',"+
         "CMName as 'Middle Name',"+
-        "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER "+
-        "order by CFName asc";
+        "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER ";
         cfname=cfname.trim();
         cmname=cmname.trim();
         clname=clname.trim();
@@ -2480,6 +2580,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             if(!clname.isBlank()&&!cmname.isBlank()||!cfname.isBlank()) SQLCommand = SQLCommand+" and CLName like '%"+clname+"%' ";
             else if(!clname.isBlank()) SQLCommand = SQLCommand+" CLName like '%"+clname+"% '";
         }
+        SQLCommand=SQLCommand+" order by CFName asc";
         try (Connection connection = DriverManager.getConnection(test);
                 Statement stmt = connection.createStatement();) {
                 ResultSet x = stmt.executeQuery(SQLCommand);
@@ -2503,8 +2604,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         String 
         SQLCommand="select "+
         "InvItemName as 'Item Name',"+
-        "InvQuantity as 'Item Quantity', InvCondition as 'Item Description' from INVENTORY "+
-        "order by InvItemName asc";       
+        "InvQuantity as 'Item Quantity', InvCondition as 'Item Description' from INVENTORY ";     
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
 
@@ -2518,6 +2618,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 if(!InvDescription.isBlank()&&!InvQuantity.isBlank()||!InvItemName.isBlank()) SQLCommand = SQLCommand+" and InvCondition like '%"+InvDescription+"%' ";
                 else if(!InvDescription.isBlank()) SQLCommand = SQLCommand+" InvCondition like '%"+InvDescription+"% '";
             }
+            SQLCommand=SQLCommand+" order by InvItemName asc";
             ResultSet x = stmt.executeQuery(SQLCommand);
             InvTable.setModel(buildTableModelInv(x));
 
@@ -2542,8 +2643,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         " ItmDescription as 'Item Description',"+
         "ItmSRP as 'Suggested Retail Price',"+
         "ItmUnitPrice as 'Unit Price',"+
-        "ItmSupplier as 'Supplier' from ITEM "+
-        "order by ItmName asc";       
+        "ItmSupplier as 'Supplier' from ITEM ";    
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
 
@@ -2563,6 +2663,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 else if(!ItmDesc.isBlank())SQLCommand = SQLCommand+" ItmDescription like '%"+ItmDesc+"%' ";
 
             }
+            SQLCommand=SQLCommand+" order by ItmName asc";
             ResultSet x = stmt.executeQuery(SQLCommand);
             ItmTable.setModel(buildTableModelItm(x));
 
@@ -2585,8 +2686,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         String 
         SQLCommand="select "+
         "SupName as 'Supplier Name',"+
-        "SupContactNo as 'Contact Number', SupAddress as 'Supplier Address' from SUPPLIER "+
-        "order by SupName asc";
+        "SupContactNo as 'Contact Number', SupAddress as 'Supplier Address' from SUPPLIER ";
         SupName=SupName.trim();  
         ConNum=ConNum.trim();
         Address=Address.trim(); 
@@ -2612,6 +2712,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 else if(!ConNum.isBlank())
                 SQLCommand = SQLCommand+" SupContactNo like '%"+ConNum+"% '";
             }
+            SQLCommand=SQLCommand+" order by SupName asc";
             ResultSet x = stmt.executeQuery(SQLCommand);
             SupplierTable.setModel(buildTableModelSup(x));
 
@@ -2727,8 +2828,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JTable ItmTable;
     private javax.swing.JTextField ItmUPrice;
     private javax.swing.JButton ItmUpdate;
+    private javax.swing.JMenuItem LogoutMenuItem;
     private javax.swing.JTabbedPane MainFrame;
+    private javax.swing.JMenu ManageBar;
+    private javax.swing.JMenu MenuBar;
+    private javax.swing.JMenuItem MgEmployeesMenuItem;
+    private javax.swing.JMenuItem MgLoginMenutem;
+    private javax.swing.JMenuItem NewCustomerMenuItem;
+    private javax.swing.JMenuItem NewEmployeeMenuItem;
+    private javax.swing.JMenuItem NewItemMenuItem;
+    private javax.swing.JMenuItem NewSupplierMenuItem;
+    private javax.swing.JMenu PrintBar;
     private javax.swing.JButton PunchOrder;
+    private javax.swing.JMenuItem RefreshAllMenuItem;
+    private javax.swing.JMenu RegisterBar;
     private javax.swing.JTextArea SupplierAddress;
     private javax.swing.JTextField SupplierConNum;
     private javax.swing.JButton SupplierDelete;
@@ -2770,21 +2883,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -2804,5 +2907,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JMenuItem prntCustomers;
+    private javax.swing.JMenuItem prntEmployees;
+    private javax.swing.JMenuItem prntInventory;
+    private javax.swing.JMenuItem prntItems;
+    private javax.swing.JMenuItem prntSuppliers;
     // End of variables declaration//GEN-END:variables
 }
