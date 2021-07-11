@@ -31,6 +31,7 @@ package com.rhonstratos.java;
     import java.util.*;
     import java.time.format.*;  
     import java.time.*;
+    import java.awt.*;
     import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -89,6 +90,39 @@ public class Frame2 extends javax.swing.JFrame implements warn{
      */
     public Frame2() {
         try {
+            GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Regular.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );              
             initComponents();
             ArrayList<java.awt.Image> ico = new ArrayList<>();
             ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/20x20.png").toString())));

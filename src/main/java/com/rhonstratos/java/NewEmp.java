@@ -26,12 +26,46 @@ package com.rhonstratos.java;
     import org.joda.time.*;
     import java.util.stream.*;
     import javax.swing.*;
+    import java.awt.*;
 public class NewEmp extends javax.swing.JDialog implements warn{
     private static String t;
     private static String[] xxx ={"M","F"};
     public NewEmp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         try {
+            GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Regular.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );              
             initComponents();
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());

@@ -24,13 +24,12 @@
 package com.rhonstratos.java;
 
     import javax.swing.*;
-
-import java.awt.Color;
-import java.io.*;
+    import java.awt.Color;
+    import java.io.*;
     import java.sql.*;
+    import java.awt.*;
 
 public class Frame1 extends javax.swing.JFrame implements warn {
-    
     private void printlcs(){
         try {
             File myObj = new File(System.getProperty("user.dir")+"\\LICENSE");
@@ -69,9 +68,43 @@ public class Frame1 extends javax.swing.JFrame implements warn {
     }
     public Frame1() {
         try{
+            GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Regular.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );              
             //printlcs();
             initComponents();
         }catch(Exception e) {
+            e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
@@ -112,6 +145,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
         jPanel1.setOpaque(false);
 
         label1.setAlignment(java.awt.Label.CENTER);
+        label1.setFont(new Font("Product Sans Regular", Font.PLAIN, 22));
         label1.setText("ESTRELLA BIKE SHOP");
 
         passw.addActionListener(new java.awt.event.ActionListener() {
