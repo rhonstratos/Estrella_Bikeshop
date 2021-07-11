@@ -1553,6 +1553,25 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }
 
+    private void printRecipt(){
+
+    }
+    private void printInventory(){
+
+    }
+    private void printItem(){
+
+    }
+    private void printCustomer(){
+
+    }
+    private void printSupplier(){
+
+    }
+    private void printEmployee(){
+
+    }
+    
     private void populateCashier(String ItemName){
         String 
         SQLCommand="select ITEM.ItmName,ITEM.ItmUnitPrice,INVENTORY.InvQuantity from ITEM "+
