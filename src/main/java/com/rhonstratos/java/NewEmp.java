@@ -65,7 +65,9 @@ public class NewEmp extends javax.swing.JDialog implements warn{
                         "/resources/fonts/Product-Sans-Regular.ttf")
                     .openStream()
                 ).deriveFont(12f)
-            );              
+            );      
+            //this.setUIFont(new javax.swing.plaf.FontUIResource(
+            //   new Font("Product Sans Bold Italic",Font.PLAIN, 16))); 
             initComponents();
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());

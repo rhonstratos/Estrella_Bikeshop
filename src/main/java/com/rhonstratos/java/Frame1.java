@@ -22,9 +22,7 @@
  * SOFTWARE.
  */
 package com.rhonstratos.java;
-
-    import javax.imageio.ImageIO;
-import javax.swing.*;
+    import javax.swing.*;
     import java.awt.Color;
     import java.io.*;
     import java.sql.*;
@@ -67,7 +65,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
-    private void setUIFont(javax.swing.plaf.FontUIResource f)
+    public void setUIFont(javax.swing.plaf.FontUIResource f)
     {
         java.util.Enumeration<Object> keys = UIManager.getDefaults().keys();
         while (keys.hasMoreElements())

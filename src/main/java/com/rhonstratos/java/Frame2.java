@@ -96,49 +96,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             Object key = keys.nextElement();
             Object value = UIManager.get(key);
             if (value instanceof javax.swing.plaf.FontUIResource)
-            {
                 UIManager.put(key, f);
-            }
         }
     }
      public Frame2() {
-        try {
-            GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Bold-Italic.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Bold.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Italic.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Regular.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );      
+        try {   
             this.setUIFont(new javax.swing.plaf.FontUIResource(
-                new Font("Product Sans Bold Italic",Font.PLAIN, 16)));        
+                new Font("Product Sans Bold Italic",Font.PLAIN, 16)));  
+                    
             initComponents();
+            SwingUtilities.updateComponentTreeUI(this);
+            
             ArrayList<java.awt.Image> ico = new ArrayList<>();
             ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/20x20.png").toString())));
             ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/40x40.png").toString())));
@@ -299,6 +267,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inventory Management System: Main Menu");
         setBackground(new java.awt.Color(153, 153, 153));
+        setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -312,12 +281,16 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         CashierPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel24.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16)
+        );
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("CASHIER & CUSTOMER");
 
+        jLabel25.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Employee");
 
+        jLabel26.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Customer");
 
@@ -330,12 +303,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierItemName.setEditable(true);
         CashierItemName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
+        jLabel1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Item Name");
 
+        jLabel27.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("Quantity");
 
+        jLabel29.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("PUNCH ORDER");
 
@@ -343,6 +319,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierStock.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         CashierStock.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        PunchOrder.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         PunchOrder.setText("Punch Order");
         PunchOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,6 +327,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        CashierSavePrint.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         CashierSavePrint.setText("Save & Print");
         CashierSavePrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,6 +335,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        CashierClearOrders.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         CashierClearOrders.setText("Clear Orders");
         CashierClearOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,6 +343,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        jLabel30.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("Stocks");
 
@@ -375,6 +355,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierPrice.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         CashierPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jLabel23.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Price");
 
@@ -471,6 +452,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        CashierTable.setAutoCreateRowSorter(true);
         CashierTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -487,6 +469,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 return canEdit [columnIndex];
             }
         });
+        rendererFromHeader = CashierTable.getTableHeader().getDefaultRenderer();
+        headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        CashierTable.getColumnModel().getColumn(0).setCellRenderer(r);
+        CashierTable.getColumnModel().getColumn(1).setCellRenderer(r);
+        CashierTable.getColumnModel().getColumn(2).setCellRenderer(r);
+        CashierTable.getColumnModel().getColumn(3).setCellRenderer(r);
         CashierTable.setRowHeight(35);
         CashierTable.setShowGrid(true);
         jScrollPane9.setViewportView(CashierTable);
@@ -584,26 +573,31 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setPreferredSize(new java.awt.Dimension(508, 653));
 
+        jLabel7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("MANAGE CUSTOMERS");
 
+        jLabel2.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("First Name");
 
         CustFNamebx.setEditable(true);
 
+        jLabel3.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Middle Name");
 
         CustMNamebx.setEditable(true);
         CustMNamebx.setVerifyInputWhenFocusTarget(false);
 
+        jLabel4.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Last Name");
 
         CustLNamebx.setEditable(true);
         CustLNamebx.setVerifyInputWhenFocusTarget(false);
 
+        jLabel5.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Contact Number");
 
@@ -615,9 +609,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CustAddressbx.setRows(5);
         jScrollPane1.setViewportView(CustAddressbx);
 
+        jLabel6.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Address");
 
+        custDelete.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         custDelete.setText("Delete");
         custDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -625,6 +621,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        custUpdate.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         custUpdate.setText("Update");
         custUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -639,6 +636,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        custRefresh.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         custRefresh.setText("Refresh");
         custRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -651,7 +649,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -681,7 +679,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(62, 62, 62))
+                .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -777,9 +775,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel8.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("MANAGE INVENTORY");
 
+        jLabel9.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Search Item");
 
@@ -795,10 +795,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         InvDesc.setRows(5);
         jScrollPane3.setViewportView(InvDesc);
 
+        jLabel13.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Quantiy");
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        InvUpdate.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         InvUpdate.setText("Update");
         InvUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -813,6 +815,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        InvRefresh.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         InvRefresh.setText("Refresh");
         InvRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -820,6 +823,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        jLabel14.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Description");
         jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -849,7 +853,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(InvItmName, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -878,6 +882,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
+        InvTable.setAutoCreateRowSorter(true);
         InvTable.setToolTipText("");
         InvTable.setRowHeight(35);
         InvTable.setShowGrid(true);
@@ -928,6 +933,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Inventory", InventoryPanel);
 
+        ItmTable.setAutoCreateRowSorter(true);
         ItmTable.setToolTipText("");
         ItmTable.setRowHeight(35);
         ItmTable.setShowGrid(true);
@@ -941,9 +947,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel11.setPreferredSize(new java.awt.Dimension(508, 653));
 
+        jLabel10.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("MANAGE ITEMS");
 
+        jLabel11.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Search Item");
 
@@ -951,9 +959,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         ItmSupplier.setEditable(true);
 
+        jLabel20.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("Search Supplier");
 
+        jLabel21.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Category");
 
@@ -972,6 +982,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmDesc.setRows(5);
         jScrollPane5.setViewportView(ItmDesc);
 
+        ItmRefresh.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         ItmRefresh.setText("Refresh");
         ItmRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -979,13 +990,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
-        ItmSearch.setText("Search");
+        ItmSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/searchIcox32.png"))); // NOI18N
         ItmSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ItmSearchActionPerformed(evt);
             }
         });
 
+        ItmUpdate.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         ItmUpdate.setText("Update");
         ItmUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -993,6 +1005,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        ItmDelete.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         ItmDelete.setText("Delete");
         ItmDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1000,10 +1013,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        jLabel16.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Description");
         jLabel16.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        jLabel15.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("SRP & Unit Price");
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1128,9 +1143,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel12.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("MANAGE SUPPLIERS");
 
+        jLabel17.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("Search Supplier");
 
@@ -1146,6 +1163,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         SupplierAddress.setRows(5);
         jScrollPane6.setViewportView(SupplierAddress);
 
+        SupplierUpdate.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         SupplierUpdate.setText("Update");
         SupplierUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1160,6 +1178,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        SupplierRefresh.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         SupplierRefresh.setText("Refresh");
         SupplierRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1167,10 +1186,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        jLabel19.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Address");
         jLabel19.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        SupplierDelete.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         SupplierDelete.setText("Delete");
         SupplierDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1178,6 +1199,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
+        jLabel22.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Contact Number");
 
@@ -1239,6 +1261,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
+        SupplierTable.setAutoCreateRowSorter(true);
         SupplierTable.setToolTipText("");
         SupplierTable.setRowHeight(35);
         SupplierTable.setShowGrid(true);
@@ -1297,7 +1320,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jMenuBar1.add(jMenu6);
 
         jMenu1.setText("Menu");
+        jMenu1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
 
+        jMenuItem3.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem3.setText("Logout");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1306,6 +1331,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem6.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem6.setText("Refresh All");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1320,7 +1346,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jMenuBar1.add(jMenu4);
 
         jMenu2.setText("Register");
+        jMenu2.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
 
+        jMenuItem1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem1.setText("New Customer");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1329,6 +1357,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
         jMenu2.add(jMenuItem1);
 
+        jMenuItem2.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem2.setText("New Employee");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1337,6 +1366,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem4.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem4.setText("New Item");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1345,6 +1375,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
         jMenu2.add(jMenuItem4);
 
+        jMenuItem5.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem5.setText("New Supplier");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1359,10 +1390,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Manage");
+        jMenu3.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
 
+        jMenuItem7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem7.setText("Employees");
         jMenu3.add(jMenuItem7);
 
+        jMenuItem8.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         jMenuItem8.setText("Login");
         jMenu3.add(jMenuItem8);
 
@@ -2431,7 +2465,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         String 
         SQLCommand="select CFName as 'First Name',"+
         "CMName as 'Middle Name',"+
-        "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER ";
+        "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER "+
+        "order by CFName asc";
         cfname=cfname.trim();
         cmname=cmname.trim();
         clname=clname.trim();
@@ -2449,8 +2484,18 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 Statement stmt = connection.createStatement();) {
                 ResultSet x = stmt.executeQuery(SQLCommand);
                 CustTable.setModel(buildTableModelCust(x));
+                
+                rendererFromHeader = CustTable.getTableHeader().getDefaultRenderer();
+                headerLabel = (JLabel) rendererFromHeader;
+                headerLabel.setHorizontalAlignment(JLabel.CENTER);
+                CustTable.getColumnModel().getColumn(0).setCellRenderer(r);
+                CustTable.getColumnModel().getColumn(1).setCellRenderer(r);
+                CustTable.getColumnModel().getColumn(2).setCellRenderer(r);
+                CustTable.getColumnModel().getColumn(3).setCellRenderer(r);
+                CustTable.getColumnModel().getColumn(4).setCellRenderer(r);
                 connection.close();
         }catch (Exception e) {
+            e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
@@ -2458,7 +2503,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         String 
         SQLCommand="select "+
         "InvItemName as 'Item Name',"+
-        "InvQuantity as 'Item Quantity', InvCondition as 'Item Description' from INVENTORY ";       
+        "InvQuantity as 'Item Quantity', InvCondition as 'Item Description' from INVENTORY "+
+        "order by InvItemName asc";       
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
 
@@ -2474,9 +2520,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             ResultSet x = stmt.executeQuery(SQLCommand);
             InvTable.setModel(buildTableModelInv(x));
+
+            rendererFromHeader = InvTable.getTableHeader().getDefaultRenderer();
+            headerLabel = (JLabel) rendererFromHeader;
+            headerLabel.setHorizontalAlignment(JLabel.CENTER);
+            InvTable.getColumnModel().getColumn(0).setCellRenderer(r);
+            InvTable.getColumnModel().getColumn(1).setCellRenderer(r);
+            InvTable.getColumnModel().getColumn(2).setCellRenderer(r);
             
             connection.close();
         }catch (Exception e) {
+            e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
@@ -2488,7 +2542,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         " ItmDescription as 'Item Description',"+
         "ItmSRP as 'Suggested Retail Price',"+
         "ItmUnitPrice as 'Unit Price',"+
-        "ItmSupplier as 'Supplier' from ITEM ";       
+        "ItmSupplier as 'Supplier' from ITEM "+
+        "order by ItmName asc";       
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
 
@@ -2510,8 +2565,19 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             ResultSet x = stmt.executeQuery(SQLCommand);
             ItmTable.setModel(buildTableModelItm(x));
+
+            rendererFromHeader = ItmTable.getTableHeader().getDefaultRenderer();
+            headerLabel = (JLabel) rendererFromHeader;
+            headerLabel.setHorizontalAlignment(JLabel.CENTER);
+            ItmTable.getColumnModel().getColumn(0).setCellRenderer(r);
+            ItmTable.getColumnModel().getColumn(1).setCellRenderer(r);
+            ItmTable.getColumnModel().getColumn(2).setCellRenderer(r);
+            ItmTable.getColumnModel().getColumn(3).setCellRenderer(r);
+            ItmTable.getColumnModel().getColumn(4).setCellRenderer(r);
+            ItmTable.getColumnModel().getColumn(5).setCellRenderer(r);
             connection.close();
         }catch (Exception e) {
+            e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
@@ -2519,7 +2585,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         String 
         SQLCommand="select "+
         "SupName as 'Supplier Name',"+
-        "SupContactNo as 'Contact Number', SupAddress as 'Supplier Address' from SUPPLIER ";
+        "SupContactNo as 'Contact Number', SupAddress as 'Supplier Address' from SUPPLIER "+
+        "order by SupName asc";
         SupName=SupName.trim();  
         ConNum=ConNum.trim();
         Address=Address.trim(); 
@@ -2547,14 +2614,23 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             ResultSet x = stmt.executeQuery(SQLCommand);
             SupplierTable.setModel(buildTableModelSup(x));
+
+            rendererFromHeader = SupplierTable.getTableHeader().getDefaultRenderer();
+            headerLabel = (JLabel) rendererFromHeader;
+            headerLabel.setHorizontalAlignment(JLabel.CENTER);
+            SupplierTable.getColumnModel().getColumn(0).setCellRenderer(r);
+            SupplierTable.getColumnModel().getColumn(1).setCellRenderer(r);
+            SupplierTable.getColumnModel().getColumn(2).setCellRenderer(r);
             connection.close();
         }catch (Exception e) {
+            e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
     private void LoadEmployee(){
         String
-        SQLCommand="select EmpFName +' '+EmpLName from EMPLOYEE";
+        SQLCommand="select EmpFName +' '+EmpLName from EMPLOYEE "+
+        "order by EmpFName asc";
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
             ResultSet x = stmt.executeQuery(SQLCommand);
@@ -2564,6 +2640,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             connection.close();
         }catch (Exception e) {
+            e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
         finally{
@@ -2587,7 +2664,19 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             new Frame2();
         });
     }
-    
+    private DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object
+            value, boolean isSelected, boolean hasFocus, int row, int column) {
+            super.getTableCellRendererComponent(
+                table, value, isSelected, hasFocus, row, column);
+            setHorizontalAlignment(JLabel.CENTER);
+            //setFont(getFont().deriveFont(50f));
+            return this;
+        }
+    };
+    private TableCellRenderer rendererFromHeader;
+    private JLabel headerLabel;
     private double invcTotal=0;
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
