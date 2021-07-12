@@ -57,7 +57,6 @@ create table INVOICE(
     InvcChange float default 0,
     InvcOrderDate varchar(100) not null 
         default cast(datepart(year,getdate()) as varchar)+'-'+cast(datepart(month,getdate()) as varchar)+'-'+cast(datepart(day,getdate()) as varchar),
-    InvcPaymentOption varchar(50) not null
 )--select * from INVOICE
 create table "ORDER"(
     OrdID int not null

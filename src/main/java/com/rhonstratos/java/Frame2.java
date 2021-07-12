@@ -56,7 +56,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 new ImageIcon(getClass().getResource("/resources/warnico.png")),
                 yy,yy[0]);
     }
-    
+    public void success(String Message){
+        Object[] yy = {"Noice"};
+        JOptionPane.showOptionDialog(
+                this, 
+                "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>"+Message+" </p></body></html>", 
+                "Inventory Management System: Success!", 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/woggy_wineWink.gif")),
+                yy,yy[0]);
+    }
     /**
      * Test run if Microsoft SQL Database Connection is alive
      * 
@@ -99,7 +109,27 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 UIManager.put(key, f);
         }
     }
-     public Frame2() {
+    private void loadDirs()throws Exception{
+        dir = System.getProperty("user.dir");
+        if(!new java.io.File(dir+"\\Print-Outs").isDirectory())
+            new java.io.File(dir+"\\Print-Outs").mkdir();
+        if(!new java.io.File(dir+"\\Print-Outs\\Inventory").isDirectory())
+            new java.io.File(dir+"\\Print-Outs\\Inventory").mkdir();
+            dirInventory=dir+"\\Print-Outs\\Inventory";
+        if(!new java.io.File(dir+"\\Print-Outs\\Supplier").isDirectory())
+            new java.io.File(dir+"\\Print-Outs\\Supplier").mkdir();
+            dirSupplier=dir+"\\Print-Outs\\Supplier";
+        if(!new java.io.File(dir+"\\Print-Outs\\Customer").isDirectory())
+            new java.io.File(dir+"\\Print-Outs\\Customer").mkdir();
+            dirCustomer=dir+"\\Print-Outs\\Customer";
+        if(!new java.io.File(dir+"\\Print-Outs\\Item").isDirectory())
+                new java.io.File(dir+"\\Print-Outs\\Item").mkdir();
+            dirItem=dir+"\\Print-Outs\\Item";
+        if(!new java.io.File(dir+"\\Print-Outs\\Invoice").isDirectory())
+                new java.io.File(dir+"\\Print-Outs\\Invoice").mkdir();
+            dirInvoice=dir+"\\Print-Outs\\Invoice";
+    }
+    public Frame2() {
         try {   
             this.setUIFont(new javax.swing.plaf.FontUIResource(
                 new Font("Product Sans Bold Italic",Font.PLAIN, 16)));  
@@ -128,7 +158,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured! <br>"+e.getMessage());
         }
         firstRe();
-        
         AutoCompleteDecorator.decorate(CustFNamebx);
         AutoCompleteDecorator.decorate(CustMNamebx);
         AutoCompleteDecorator.decorate(CustLNamebx);
@@ -139,6 +168,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         AutoCompleteDecorator.decorate(CashierItemName);
         AutoCompleteDecorator.decorate(CashierCustomer);
         AutoCompleteDecorator.decorate(CashierEmployee);
+        try{
+            loadDirs();
+        }catch(Exception e){
+           e.printStackTrace();
+           warning("An error has occurred! <br>"+e.getMessage());
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1705,26 +1740,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             ItmDesc.getText().trim(),
             ItmSupplier.getSelectedItem().toString().trim());
     }//GEN-LAST:event_ItmSearchActionPerformed
-
-    private void prntCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntCustomersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prntCustomersActionPerformed
-
-    private void prntEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntEmployeesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prntEmployeesActionPerformed
-
-    private void prntInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntInventoryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prntInventoryActionPerformed
-
-    private void prntItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntItemsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prntItemsActionPerformed
-
-    private void prntSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntSuppliersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prntSuppliersActionPerformed
     private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {                                           
         ItmName.removeAllItems();
         ItmName.setSelectedItem("");
@@ -1736,6 +1751,22 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmSupplier.setSelectedItem("");
         LoadTableItm("", "", "", "");
     }                                            
+    
+    private void prntCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntCustomersActionPerformed
+        printCustomer();
+    }//GEN-LAST:event_prntCustomersActionPerformed
+    private void prntEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntEmployeesActionPerformed
+        // TODO print emp or not?
+    }//GEN-LAST:event_prntEmployeesActionPerformed
+    private void prntInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntInventoryActionPerformed
+        printInventory();
+    }//GEN-LAST:event_prntInventoryActionPerformed
+    private void prntItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntItemsActionPerformed
+        printItem();
+    }//GEN-LAST:event_prntItemsActionPerformed
+    private void prntSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntSuppliersActionPerformed
+        printSupplier();
+    }//GEN-LAST:event_prntSuppliersActionPerformed
     
     private boolean checkInt(String x,String title){
         try {
@@ -1765,23 +1796,165 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }
 
-    private void printRecipt(){
+    /**
+     * Save the contents of a table to a TSV file
+     * Note:  uses toString() on the header cells as well as the data cells.  If you've got funny columns,
+     * expect funny behavior
+     * @see Changes Changes by rhonstratos: removed static and changed access modifier from private to public
+     * @param table
+     * @param outFile
+     * @throws IOException
+     * @author Fred Hutchinson Cancer Research Center
+     */
+    private void SaveTableAsTSV(JTable table, java.io.File outFile)throws java.io.IOException {
+        java.io.PrintWriter outPW = new java.io.PrintWriter(outFile);
 
+        TableModel tableModel = table.getModel();
+        TableColumnModel columnModel = table.getColumnModel();
+
+        StringBuffer headerLineBuf = new StringBuffer();
+        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+            if (i > 0)
+                headerLineBuf.append("\t");
+            headerLineBuf.append(columnModel.getColumn(i).getHeaderValue()
+                    .toString());
+        }
+        outPW.println(headerLineBuf.toString());
+        outPW.flush();
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            StringBuffer lineBuf = new StringBuffer();
+            for (int j = 0; j < tableModel.getColumnCount(); j++) {
+                if (j > 0)
+                    lineBuf.append("\t");
+                lineBuf.append(tableModel.getValueAt(i, j).toString());
+            }
+            outPW.println(lineBuf.toString());
+            outPW.flush();
+        }
+        outPW.close();
+    }
+    private void printRecipt(int invoiceID,String custID,String empID,
+                            double totalPH,double paymentPH, double changePH,
+                            String dateOrder){
+        String dirInvoicee="";
+        try {
+            for(int x=0;x<=Integer.MAX_VALUE;x++){
+                if(!new java.io.File(dirInvoice+"\\Invoice.tsv").isFile()){
+                    dirInvoicee=dirInvoice+"\\Invoice.tsv";
+                    break;
+                }else if (!new java.io.File(dirInvoice+"\\Invoice("+x+").tsv").isFile()){
+                    dirInvoicee=dirInvoice+"\\Invoice("+x+").tsv";
+                    break;
+                }
+            }
+            java.io.PrintWriter outPW = new java.io.PrintWriter(dirInvoicee);
+            String SQLOrders = "select ItmName,OrdQuantity,OrdPrice,OrdSubtotal"+
+                    " from \"ORDER\" where OrdID="+invoiceID+" order by ItmName asc";
+            try (Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();){
+                ResultSet ord = stmt.executeQuery(SQLOrders);
+
+                outPW.println(
+                "Invoice ID = "+invoiceID+"\t"+
+                "Customer ID = "+custID+"\t"+
+                "Employee ID = "+empID+"\t"+
+                "Total = PHP "+totalPH+"\t"+
+                "Payment = PHP"+paymentPH+"\t"+
+                "Change = PHP"+changePH+"\t"+
+                "Order Date = "+dateOrder
+                );
+                
+                outPW.flush();
+                outPW.println("Item Name\tQuantity\tPrice\tSubtotal");
+                while (ord.next())
+                    outPW.println(
+                        ord.getString("ItmName")+"\t"+
+                        ord.getString("OrdQuantity")+"\t"+
+                        ord.getString("OrdPrice")+"\t"+
+                        ord.getString("OrdSubtotal")
+                    );
+                outPW.flush();
+                outPW.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                warning("An error has occurred! <br>"+e.getMessage());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occurred! <br>"+e.getMessage());
+        }
     }
     private void printInventory(){
-
+        try {
+            for(int x=0;x<=Integer.MAX_VALUE;x++){
+                if(!new java.io.File(dirInventory+"\\Inventory.tsv").isFile()){
+                    SaveTableAsTSV(InvTable, new java.io.File(dirInventory+"\\Inventory.tsv"));
+                    success("Print Successful!<br><br>"+dirInventory);
+                    break;
+                }else if (!new java.io.File(dirInventory+"\\Inventory("+x+").tsv").isFile()){
+                    SaveTableAsTSV(InvTable, new java.io.File(dirInventory+"\\Inventory("+x+").tsv"));
+                    success("Print Successful!<br><br>"+dirInventory);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occurred! <br>"+e.getMessage());
+        }
     }
     private void printItem(){
-
+        try {
+            for(int x=0;x<=Integer.MAX_VALUE;x++){
+                if(!new java.io.File(dirItem+"\\Item.tsv").isFile()){
+                    SaveTableAsTSV(ItmTable, new java.io.File(dirItem+"\\Item.tsv"));
+                    success("Print Successful!<br><br>"+dirItem);
+                    break;
+                }else if (!new java.io.File(dirItem+"\\Item("+x+").tsv").isFile()){
+                    SaveTableAsTSV(ItmTable, new java.io.File(dirItem+"\\Item("+x+").tsv"));
+                    success("Print Successful!<br><br>"+dirItem);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occurred! <br>"+e.getMessage());
+        }
     }
     private void printCustomer(){
-
+        try {
+            for(int x=0;x<=Integer.MAX_VALUE;x++){
+                if(!new java.io.File(dirCustomer+"\\Customer.tsv").isFile()){
+                    SaveTableAsTSV(CustTable, new java.io.File(dirCustomer+"\\Customer.tsv"));
+                    success("Print Successful!<br><br>"+dirCustomer);
+                    break;
+                }else if (!new java.io.File(dirCustomer+"\\Customer("+x+").tsv").isFile()){
+                    SaveTableAsTSV(CustTable, new java.io.File(dirCustomer+"\\Customer("+x+").tsv"));
+                    success("Print Successful!<br><br>"+dirCustomer);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occurred! <br>"+e.getMessage());
+        }
     }
     private void printSupplier(){
-
-    }
-    private void printEmployee(){
-
+        try {
+            for(int x=0;x<=Integer.MAX_VALUE;x++){
+                if(!new java.io.File(dirSupplier+"\\Supplier.tsv").isFile()){
+                    SaveTableAsTSV(SupplierTable, new java.io.File(dirSupplier+"\\Supplier.tsv"));
+                    success("Print Successful!<br><br>"+dirSupplier);
+                    break;
+                }else if (!new java.io.File(dirSupplier+"\\Supplier("+x+").tsv").isFile()){
+                    SaveTableAsTSV(SupplierTable, new java.io.File(dirSupplier+"\\Supplier("+x+").tsv"));
+                    success("Print Successful!<br><br>"+dirSupplier);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            warning("An error has occurred! <br>"+e.getMessage());
+        }
     }
     
     private void populateCashier(String ItemName){
@@ -1919,7 +2092,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 "EmpLName='"+emplo[1]+"'";
                         int custID=0,empID=0; 
                         int invoiceID=0;
-    
+                        String dateor="";
                         try (Connection connection = DriverManager.getConnection(test);
                             Statement stmt = connection.createStatement();){                   
     
@@ -1942,7 +2115,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             (payment-invcTotal)+")";
                             stmt.executeUpdate(SQLInvoice);
                             
-                            ResultSet invc = stmt.executeQuery("select InvcID from INVOICE where "+
+                            ResultSet invc = stmt.executeQuery("select InvcID,InvcOrderDate from INVOICE where "+
                             "InvcOrderDate = cast(datepart(year,getdate()) as varchar)+'-'+cast(datepart(month,getdate()) as varchar)+'-'+cast(datepart(day,getdate()) as varchar)"+
                             " and "+
                             "CustomerID = "+Double.toString(custID)+
@@ -1952,33 +2125,35 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             "InvcTotal="+Double.toString(invcTotal));
                             while(invc.next()){
                                 invoiceID=invc.getInt("InvcID");
+                                dateor=invc.getString("InvcOrderDate");
                             }invc.close();
                             
                             int orders =0;
                             while(orders<((DefaultTableModel)CashierTable.getModel()).getRowCount()){
                                 String SQLOrder =
-                                "insert into \"ORDER\" (OrdID,CustID,ItmName,OrdQuantity,OrdPrice,OrdSubtotal) values ("+
-                                invoiceID+","+custID+",'"+
-                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+"',"+
-                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 1)+","+
-                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 2)+","+
-                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 3)+")";
+                                    "insert into \"ORDER\" (OrdID,CustID,ItmName,OrdQuantity,OrdPrice,OrdSubtotal) values ("+
+                                    invoiceID+","+custID+",'"+
+                                    ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+"',"+
+                                    ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 1)+","+
+                                    ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 2)+","+
+                                    ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 3)+")";
                                 stmt.executeUpdate(SQLOrder);
                                 String SQLInvenUpdate=
-                                "update INVENTORY set InvQuantity=(select InvQuantity from INVENTORY where InvItemName='"+
-                                ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+
-                                "')-"+((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 1)+
-                                " where "+
-                                "InvItemName='"+((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+"'";
+                                    "update INVENTORY set InvQuantity=(select InvQuantity from INVENTORY where InvItemName='"+
+                                    ((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+
+                                    "')-"+((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 1)+
+                                    " where "+
+                                    "InvItemName='"+((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+"'";
                                 stmt.executeUpdate(SQLInvenUpdate);
                                 orders++;
                             }stmt.close();
-                            JOptionPane.showOptionDialog(this, 
-                                "", 
-                                "Payment Successful!", 
-                                JOptionPane.OK_OPTION, 
-                                JOptionPane.PLAIN_MESSAGE, 
-                                new ImageIcon(getClass().getResource("/resources/woggy_wineWink.gif")), new Object[]{"Noice!"}, null);
+                            success("Success!<br><br>Order saved and printed at ["+dirInvoice+"]!");
+                            printRecipt(invoiceID,
+                                CashierCustomer.getSelectedItem().toString(),
+                                CashierEmployee.getSelectedItem().toString(),
+                                invcTotal,payment,(payment-invcTotal),
+                                dateor
+                            );
                             clearOrder();
                             RefreshTable();
                         } catch (Exception e) {
@@ -2782,7 +2957,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "integratedSecurity=true";
+                            "integratedSecurity=true",
+                    dir,
+                    dirInventory,
+                    dirCustomer,
+                    dirInvoice,
+                    dirItem,
+                    dirSupplier ;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CashierClearOrders;
