@@ -312,7 +312,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jMenu7 = new javax.swing.JMenu();
         PrintBar = new javax.swing.JMenu();
         prntCustomers = new javax.swing.JMenuItem();
-        prntEmployees = new javax.swing.JMenuItem();
         prntInventory = new javax.swing.JMenuItem();
         prntItems = new javax.swing.JMenuItem();
         prntSuppliers = new javax.swing.JMenuItem();
@@ -1460,10 +1459,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MgEmployeesMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         MgEmployeesMenuItem.setText("Employees");
+        MgEmployeesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MgEmployeesMenuItemActionPerformed(evt);
+            }
+        });
         ManageBar.add(MgEmployeesMenuItem);
 
         MgLoginMenutem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         MgLoginMenutem.setText("Login");
+        MgLoginMenutem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MgLoginMenutemActionPerformed(evt);
+            }
+        });
         ManageBar.add(MgLoginMenutem);
 
         jMenuBar1.add(ManageBar);
@@ -1481,15 +1490,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
         PrintBar.add(prntCustomers);
-
-        prntEmployees.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        prntEmployees.setText("Employees");
-        prntEmployees.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prntEmployeesActionPerformed(evt);
-            }
-        });
-        PrintBar.add(prntEmployees);
 
         prntInventory.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         prntInventory.setText("Inventory");
@@ -1744,14 +1744,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
         updateItem();
     }//GEN-LAST:event_ItmUpdateActionPerformed
-    private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmSearchActionPerformed
+    private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {                                          
         LoadTableItm(
             ItmName.getSelectedItem().toString().trim(),
             ItmCategory.getText().trim(),
             ItmDesc.getText().trim(),
             ItmSupplier.getSelectedItem().toString().trim());
-    }//GEN-LAST:event_ItmSearchActionPerformed
-    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    }                                                                            
+    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
         ItmName.removeAllItems();
         ItmName.setSelectedItem("");
         ItmCategory.setText("");
@@ -1761,14 +1761,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmSupplier.removeAllItems();
         ItmSupplier.setSelectedItem("");
         LoadTableItm("", "", "", "");
-    }                                            
-    
+    }//GEN-LAST:event_ItmRefreshActionPerformed
+
     private void prntCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntCustomersActionPerformed
         printCustomer();
     }//GEN-LAST:event_prntCustomersActionPerformed
-    private void prntEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntEmployeesActionPerformed
-        // TODO print emp or not?
-    }//GEN-LAST:event_prntEmployeesActionPerformed
     private void prntInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntInventoryActionPerformed
         printInventory();
     }//GEN-LAST:event_prntInventoryActionPerformed
@@ -1778,7 +1775,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void prntSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntSuppliersActionPerformed
         printSupplier();
     }//GEN-LAST:event_prntSuppliersActionPerformed
-    
+
+    private void MgLoginMenutemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgLoginMenutemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MgLoginMenutemActionPerformed
+    private void MgEmployeesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgEmployeesMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MgEmployeesMenuItemActionPerformed
+  
     private boolean checkInt(String x,String title){
         try {
             Double.parseDouble(x.replaceAll("[^0-9]",""));
@@ -1887,15 +1891,16 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 outPW.println(
                 "Invoice ID = "+invoiceID+"\t"+
                 "Customer ID = "+custID+"\t"+
-                "Employee ID = "+empID+"\t"+
-                "Total = PHP "+totalPH+"\t"+
-                "Payment = PHP"+paymentPH+"\t"+
-                "Change = PHP"+changePH+"\t"+
-                "Order Date = "+dateOrder
+                "Employee ID = "+empID+"\t"
                 );
-                
+                /*
+                    "Total = PHP "+totalPH+"\t"+
+                    "Payment = PHP"+paymentPH+"\t"+
+                    "Change = PHP"+changePH+"\t"+
+                    "Order Date = "+dateOrder
+                */
                 outPW.flush();
-                outPW.println("Item Name\tQuantity\tPrice\tSubtotal");
+                outPW.println("Item Name\tQuantity\tPrice\tSubtotal\tOrder Date = "+dateOrder);
                 while (ord.next())
                     outPW.println(
                         ord.getString("ItmName")+"\t"+
@@ -1903,6 +1908,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         ord.getString("OrdPrice")+"\t"+
                         ord.getString("OrdSubtotal")
                     );
+                outPW.println("\t\t\tTotal = PHP "+totalPH+"\tPayment = PHP "+paymentPH);
+                outPW.println("\t\t\t\tChange = PHP "+changePH);
                 outPW.flush();
                 outPW.close();
             } catch (Exception e) {
@@ -3122,7 +3129,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JMenuItem prntCustomers;
-    private javax.swing.JMenuItem prntEmployees;
     private javax.swing.JMenuItem prntInventory;
     private javax.swing.JMenuItem prntItems;
     private javax.swing.JMenuItem prntSuppliers;

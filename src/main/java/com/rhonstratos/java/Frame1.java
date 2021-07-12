@@ -365,6 +365,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
     }//GEN-LAST:event_passwActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //TODO forgot pass
         JOptionPane.showMessageDialog(this, "<html><p style='font-family:Product Sans Italic;'>FORGOT PASSWORD?<br>BOBO KA KASE</p></html>", this.getTitle(), JOptionPane.OK_OPTION);
     }//GEN-LAST:event_jButton1ActionPerformed
 
