@@ -50,7 +50,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         JOptionPane.showOptionDialog(
                 this, 
                 "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>"+ErrorMessage+" </p></body></html>", 
-                this.getTitle(), 
+                "Inventory Managemen System: Warning!", 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
                 new ImageIcon(getClass().getResource("/resources/warnico.png")),
@@ -65,6 +65,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
                 new ImageIcon(getClass().getResource("/resources/woggy_wineWink.gif")),
+                yy,yy[0]);
+    }
+    public void caution(String Message){
+        Object[] yy = {"Ok"};
+        JOptionPane.showOptionDialog(
+                this, 
+                "<html><body><p style='width: 250px; font-family:Product Sans Regular;font-size:12px'>"+Message+" </p></body></html>", 
+                "Inventory Management System: Caution!", 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/woggy_hmm.gif")),
                 yy,yy[0]);
     }
     /**
@@ -1779,15 +1790,19 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }
     private void Logout(){
         try{
-            Object[] y = {"Yes","No","Cancel"};
-            int x = JOptionPane.showOptionDialog(
-                this, 
-                "Are you sure that you want to Logout?\n"+
-                "Any UNSAVED progress will be unrecorded...", 
-                this.getTitle(), 
-                JOptionPane.YES_NO_CANCEL_OPTION, 
-                JOptionPane.WARNING_MESSAGE,null,y,y[2]);
-            if (x == JOptionPane.YES_OPTION){
+            Object[] yy = {"Yes","No","Cancel"};
+            int x =
+            JOptionPane.showOptionDialog(
+                    this, 
+                    "<html><body><p style='width: 250px; font-family:Product Sans Regular;font-size:12px'>"+
+                    "Are you sure that you want to Logout?<br>Any <b><u>UNSAVED</u></b> changes will be unrecorded..."
+                    +"</p></body></html>", 
+                    "Inventory Management System: Logging Out!", 
+                    JOptionPane.OK_OPTION, 
+                    JOptionPane.WARNING_MESSAGE,
+                    new ImageIcon(getClass().getResource("/resources/woggy_exit.gif")),
+                    yy,yy[2]);
+            if (x == 0){
                 new Frame1().setVisible(true);
                 this.dispose();
             }
@@ -2602,7 +2617,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         };
     }
     private DefaultTableModel buildTableModelInv(ResultSet rs)throws SQLException {
-
+        int error=0;
         ResultSetMetaData metaData = rs.getMetaData();
 
         // names of columns
@@ -2619,6 +2634,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
+            if(rs.getInt(2)<11) error++;
             if(!((String)vector.get(0)).isBlank()&&
                 ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(0))<0){
                     ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(0));
@@ -2626,6 +2642,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 }
             data.add(vector);
         }
+        if(error>0) 
+            caution("Attention!<br><br>"+error+" Item/s are only 10 or less stocks left!");
 
         return new DefaultTableModel(data, columnNames){
             boolean[] canEdit = new boolean [] {
