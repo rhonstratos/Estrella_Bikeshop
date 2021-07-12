@@ -168,7 +168,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
-        firstRe();
+        //firstRe();
         AutoCompleteDecorator.decorate(CustFNamebx);
         AutoCompleteDecorator.decorate(CustMNamebx);
         AutoCompleteDecorator.decorate(CustLNamebx);
@@ -185,6 +185,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
            e.printStackTrace();
            warning("An error has occurred! <br>"+e.getMessage());
         }
+        firstRe();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -2071,13 +2072,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierTable.getColumnModel().getColumn(1).setCellRenderer(r);
         CashierTable.getColumnModel().getColumn(2).setCellRenderer(r);
         CashierTable.getColumnModel().getColumn(3).setCellRenderer(r);
-        
+
         ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeAllElements();
-        for(int x=0;x<InvTable.getRowCount();x++){
+        for(int i=0;i<InvTable.getRowCount();i++){
             ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement(
-                ((DefaultTableModel)InvTable.getModel()).getValueAt(x, 0).toString()
+                ((DefaultTableModel)InvTable.getModel()).getValueAt(i, 0).toString()
             );
         }
+        
         CashierItemName.setSelectedItem("");
         CashierStock.setText("");
         CashierPrice.setText("");
@@ -2645,7 +2647,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             if(!((String)vector.get(0)).isBlank()&&
                 ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(0))<0){
                     ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(0));
-                    ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement((String)vector.get(0));
                 }
             data.add(vector);
         }
@@ -2843,7 +2844,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             InvTable.getColumnModel().getColumn(0).setCellRenderer(r);
             InvTable.getColumnModel().getColumn(1).setCellRenderer(r);
             InvTable.getColumnModel().getColumn(2).setCellRenderer(r);
-            
+
+            ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeAllElements();
+            for(int i=0;i<InvTable.getRowCount();i++){
+                ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement(
+                    ((DefaultTableModel)InvTable.getModel()).getValueAt(i, 0).toString()
+                );
+            }
+            CashierItemName.setSelectedItem("");
             connection.close();
         }catch (Exception e) {
             e.printStackTrace();
