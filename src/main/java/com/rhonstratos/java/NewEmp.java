@@ -26,12 +26,48 @@ package com.rhonstratos.java;
     import org.joda.time.*;
     import java.util.stream.*;
     import javax.swing.*;
+    import java.awt.*;
 public class NewEmp extends javax.swing.JDialog implements warn{
     private static String t;
     private static String[] xxx ={"M","F"};
     public NewEmp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         try {
+            GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Regular.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );      
+            //this.setUIFont(new javax.swing.plaf.FontUIResource(
+            //   new Font("Product Sans Bold Italic",Font.PLAIN, 16))); 
             initComponents();
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
@@ -74,7 +110,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NEW EMPLOYEE");
 
-        jButton2.setText("Register Customer");
+        jButton2.setText("Register Employee");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -292,9 +328,7 @@ public class NewEmp extends javax.swing.JDialog implements warn{
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "user=root;"+
-                            "password=eykha6068;"+
-                            "loginTimeout=1;";
+                            "integratedSecurity=true";
     private void Save(){
         String  fname=EmpFname.getText().trim().toUpperCase(),
                 mname=EmpMname.getText().trim().toUpperCase(),

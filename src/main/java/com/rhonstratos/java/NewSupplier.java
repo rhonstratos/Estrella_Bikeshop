@@ -24,12 +24,48 @@
 package com.rhonstratos.java;
     import java.sql.*;
     import javax.swing.*;
+    import java.awt.*;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 public class NewSupplier extends javax.swing.JDialog implements warn{
     public NewSupplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         try {
+            GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Bold.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Italic.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );
+            x.registerFont(
+                Font.createFont(
+                    Font.TRUETYPE_FONT, 
+                    getClass().getResource(
+                        "/resources/fonts/Product-Sans-Regular.ttf")
+                    .openStream()
+                ).deriveFont(12f)
+            );      
+            //this.setUIFont(new javax.swing.plaf.FontUIResource(
+            //    new Font("Product Sans Bold Italic",Font.PLAIN, 16)));               
             initComponents();
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
@@ -89,7 +125,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
             }
         });
 
-        jButton1.setText("Register Customer");
+        jButton1.setText("Register Supplier");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -185,9 +221,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
     private String test =   "jdbc:sqlserver://"+
                             "localhost:1433;"+
                             "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "user=root;"+
-                            "password=eykha6068;"+
-                            "loginTimeout=1;";
+                            "integratedSecurity=true";
     private void Save(){
         if(checkConNum(SupConNum.getText())&&SupConNum.getText().replaceAll(" ", "").length()==11){
             String  

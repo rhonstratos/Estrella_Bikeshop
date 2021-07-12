@@ -52,12 +52,11 @@ create table INVOICE(
     foreign key references CUSTOMER(CustID),
     EmployeeID int not null 
     foreign key references EMPLOYEE(EmpID),
-    InvcTotal float not null,
-    InvcOrderDate varchar(100) not null default
-        datename(month,getdate())+'-'+
-        datename(day,getdate())+'-'+
-        datename(year,getdate()),
-    InvcPaymentOption varchar(50) not null
+    InvcTotal float default 0,
+    InvcPay float default 0,
+    InvcChange float default 0,
+    InvcOrderDate varchar(100) not null 
+        default cast(datepart(year,getdate()) as varchar)+'-'+cast(datepart(month,getdate()) as varchar)+'-'+cast(datepart(day,getdate()) as varchar),
 )--select * from INVOICE
 create table "ORDER"(
     OrdID int not null
@@ -75,4 +74,3 @@ SELECT
 FROM
   INVENTORY_MANAGEMENT_SYS.INFORMATION_SCHEMA.TABLES;
 GO
-select * from employee
