@@ -2519,22 +2519,22 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).getIndexOf((String)vector.get(0))<0)
                     ((DefaultComboBoxModel<String>)
                         CustFNamebx.getModel()).addElement((String)vector.get(0));
-            if(!((String)vector.get(2)).isBlank()&&
-                ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).getIndexOf((String)vector.get(2))<0)
+            if(!((String)vector.get(1)).isBlank()&&
+                ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).getIndexOf((String)vector.get(1))<0)
                     ((DefaultComboBoxModel<String>)
-                        CustLNamebx.getModel()).addElement((String)vector.get(2));
+                        CustLNamebx.getModel()).addElement((String)vector.get(1));
             if(!((String)vector.get(0)).isBlank()&&!((String)vector.get(2)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CashierCustomer.getModel()).getIndexOf(
-                    (String)vector.get(0)+" "+(String)vector.get(2))<0){
+                    (String)vector.get(0)+" "+(String)vector.get(1))<0){
                         ((DefaultComboBoxModel<String>)
-                        CashierCustomer.getModel()).addElement((String)vector.get(0)+" "+(String)vector.get(2));
+                        CashierCustomer.getModel()).addElement((String)vector.get(0)+" "+(String)vector.get(1));
             }
             data.add(vector);
         }
 
         return new DefaultTableModel(data, columnNames){
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

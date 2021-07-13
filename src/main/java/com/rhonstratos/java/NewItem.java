@@ -306,17 +306,17 @@ public class NewItem extends javax.swing.JDialog implements warn{
             !ItmSRPbx.getText().trim().isBlank()&&
             !ItmUnitPricebx.getText().trim().isBlank()&&
             !supplierComboBx.getSelectedItem().toString().trim().isBlank()&&
-            checkPeso(ItmSRPbx.getText().trim(), "SRP!")&&
-            checkPeso(ItmUnitPricebx.getText().trim(), "Unit Price!")&&
+            checkPeso(ItmSRPbx.getText().replaceAll("[^0-9]", ""), "SRP!")&&
+            checkPeso(ItmUnitPricebx.getText().replaceAll("[^0-9]", ""), "Unit Price!")&&
             caution("Are you sure that you want to register: "+ItmNamebx.getText().trim())==0){
             String 
             sqlcommand = "insert into ITEM "+
                         "values ('"+ItmNamebx.getText().trim().toUpperCase()+
                         "','"+ItmCategorybx.getText().trim().toUpperCase()+
                         "','"+ItmDescbx.getText().trim().toUpperCase()+
-                        "','"+checkPeso(ItmSRPbx.getText().trim(),"SRP")+
-                        "','"+checkPeso(ItmUnitPricebx.getText().trim(),"Unit Price")+
-                        "','"+supplierComboBx.getSelectedItem().toString().trim()
+                        "',"+ItmSRPbx.getText().replaceAll("[^0-9]", "")+
+                        ","+ItmUnitPricebx.getText().replaceAll("[^0-9]", "")+
+                        ",'"+supplierComboBx.getSelectedItem().toString().trim()
                         +"'); insert into INVENTORY(InvItemName,InvQuantity,InvCondition)values "+
                         "('"+ItmNamebx.getText().trim().toUpperCase()+"',0,'"+
                         ItmDescbx.getText().trim().toUpperCase()+"')",
