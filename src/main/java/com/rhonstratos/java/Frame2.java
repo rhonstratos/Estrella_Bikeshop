@@ -33,7 +33,6 @@ package com.rhonstratos.java;
     import java.time.*;
     import java.awt.*;
     import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-
 /**
  * Inventory System Management: Main Menu Frame
  * @author rhonstratos
@@ -50,7 +49,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         JOptionPane.showOptionDialog(
                 this, 
                 "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>"+ErrorMessage+" </p></body></html>", 
-                this.getTitle(), 
+                "Inventory Managemen System: Warning!", 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
                 new ImageIcon(getClass().getResource("/resources/warnico.png")),
@@ -65,6 +64,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
                 new ImageIcon(getClass().getResource("/resources/woggy_wineWink.gif")),
+                yy,yy[0]);
+    }
+    public int caution(String Message){
+        Object[] yy = {"Ok"};
+        return JOptionPane.showOptionDialog(
+                this, 
+                "<html><body><p style='width: 250px; font-family:Product Sans Regular;font-size:12px'>"+Message+" </p></body></html>", 
+                "Inventory Management System: Caution!", 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/woggy_hmm.gif")),
                 yy,yy[0]);
     }
     /**
@@ -157,9 +167,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
         }
-        firstRe();
+        //firstRe();
         AutoCompleteDecorator.decorate(CustFNamebx);
-        AutoCompleteDecorator.decorate(CustMNamebx);
         AutoCompleteDecorator.decorate(CustLNamebx);
         AutoCompleteDecorator.decorate(InvItmName);
         AutoCompleteDecorator.decorate(ItmName);
@@ -167,12 +176,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         AutoCompleteDecorator.decorate(SupplierName);
         AutoCompleteDecorator.decorate(CashierItemName);
         AutoCompleteDecorator.decorate(CashierCustomer);
-        AutoCompleteDecorator.decorate(CashierEmployee);
         try{
             loadDirs();
         }catch(Exception e){
-           e.printStackTrace();
-           warning("An error has occurred! <br>"+e.getMessage());
+            e.printStackTrace();
+            warning("An error has occurred! <br>"+e.getMessage());
+        }
+        finally{
+            firstRe();
         }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -183,10 +194,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jPanel6 = new javax.swing.JPanel();
         CashierPane = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         CashierCustomer = new javax.swing.JComboBox<>();
-        CashierEmployee = new javax.swing.JComboBox<>();
         CashierItemName = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -214,8 +223,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         CustFNamebx = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        CustMNamebx = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         CustLNamebx = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -291,17 +298,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jMenu4 = new javax.swing.JMenu();
         RegisterBar = new javax.swing.JMenu();
         NewCustomerMenuItem = new javax.swing.JMenuItem();
-        NewEmployeeMenuItem = new javax.swing.JMenuItem();
         NewItemMenuItem = new javax.swing.JMenuItem();
         NewSupplierMenuItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         ManageBar = new javax.swing.JMenu();
-        MgEmployeesMenuItem = new javax.swing.JMenuItem();
         MgLoginMenutem = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         PrintBar = new javax.swing.JMenu();
         prntCustomers = new javax.swing.JMenuItem();
-        prntEmployees = new javax.swing.JMenuItem();
         prntInventory = new javax.swing.JMenuItem();
         prntItems = new javax.swing.JMenuItem();
         prntSuppliers = new javax.swing.JMenuItem();
@@ -328,19 +332,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("CASHIER & CUSTOMER");
 
-        jLabel25.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Employee");
-
         jLabel26.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Customer");
 
         CashierCustomer.setEditable(true);
         CashierCustomer.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
-
-        CashierEmployee.setEditable(true);
-        CashierEmployee.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
         CashierItemName.setEditable(true);
         CashierItemName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
@@ -439,13 +436,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CashierItmLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(CashierPaneLayout.createSequentialGroup()
-                        .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CashierEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
@@ -455,15 +448,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             .addGroup(CashierPaneLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CashierEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CashierCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(69, 69, 69)
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CashierPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,7 +480,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         .addComponent(CashierClearOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CashierSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         CashierTable.setAutoCreateRowSorter(true);
@@ -626,14 +615,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CustFNamebx.setEditable(true);
         CustFNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
 
-        jLabel3.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Middle Name");
-
-        CustMNamebx.setEditable(true);
-        CustMNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
-        CustMNamebx.setVerifyInputWhenFocusTarget(false);
-
         jLabel4.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Last Name");
@@ -701,7 +682,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -717,7 +697,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                         .addComponent(custUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(custRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(CustLNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CustMNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CustFNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -732,13 +711,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -746,9 +723,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(CustFNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CustMNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(CustLNamebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CustConNumbx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -763,7 +738,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             .addComponent(custDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(custUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(CustSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -1412,15 +1387,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
         RegisterBar.add(NewCustomerMenuItem);
 
-        NewEmployeeMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        NewEmployeeMenuItem.setText("New Employee");
-        NewEmployeeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewEmployeeMenuItemActionPerformed(evt);
-            }
-        });
-        RegisterBar.add(NewEmployeeMenuItem);
-
         NewItemMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         NewItemMenuItem.setText("New Item");
         NewItemMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -1447,12 +1413,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ManageBar.setText("Manage");
         ManageBar.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
 
-        MgEmployeesMenuItem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        MgEmployeesMenuItem.setText("Employees");
-        ManageBar.add(MgEmployeesMenuItem);
-
         MgLoginMenutem.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         MgLoginMenutem.setText("Login");
+        MgLoginMenutem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MgLoginMenutemActionPerformed(evt);
+            }
+        });
         ManageBar.add(MgLoginMenutem);
 
         jMenuBar1.add(ManageBar);
@@ -1470,15 +1437,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
         PrintBar.add(prntCustomers);
-
-        prntEmployees.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
-        prntEmployees.setText("Employees");
-        prntEmployees.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prntEmployeesActionPerformed(evt);
-            }
-        });
-        PrintBar.add(prntEmployees);
 
         prntInventory.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 14));
         prntInventory.setText("Inventory");
@@ -1551,27 +1509,35 @@ public class Frame2 extends javax.swing.JFrame implements warn{
      * @return Loads New Customer dialog
      */
     private void NewCustomerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCustomerMenuItemActionPerformed
-        new NewCust(this.getTitle().substring(0,27)+": New Customer");
         NewCust.main(null);
     }//GEN-LAST:event_NewCustomerMenuItemActionPerformed
-    /**
-     * Catches menu item: New Employee
-     * @param evt catches click event
-     * @return Loads New Employee dialog
-     */
-    private void NewEmployeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewEmployeeMenuItemActionPerformed
-        new NewEmp(getTitle().substring(0,27)+": New Employee");
-        NewEmp.main(null);
-    }//GEN-LAST:event_NewEmployeeMenuItemActionPerformed
-    /**
+
+   /**
      * Catches menu item: New Item
      * @param evt catches click event
      * @return Loads New Item dialog
      */
-    private void NewItemMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewItemMenuItemActionPerformed
-        new NewItem(getTitle().substring(0,27)+": New Item");
-        NewItem.main(null);
-    }//GEN-LAST:event_NewItemMenuItemActionPerformed
+    private void NewItemMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        boolean check=true;
+        String  
+        sqlCombo="select SupName from SUPPLIER";
+        try (Connection connection = DriverManager.getConnection(test);
+            Statement stmt = connection.createStatement();) {
+            ResultSet x = stmt.executeQuery(sqlCombo);
+            x.next();
+            if(x.getRow()==0){
+                warning("An error has occurred!<br><br>Error loading list of suppliers!<br>"+
+                    "SUPPLIER table must not be empty before registering an ITEM.");
+                check=false;
+            }
+            connection.close();
+        }
+        catch (SQLException e) {
+            check=false;
+            warning("An error has occured! <br>"+e.getMessage());
+        }
+        if(check)NewItem.main(null);
+    }                                               
     /**
      * Ovverides default JFrame.DISPOSE and JFrame.EXIT_ON_CLOSE event
      * @param evt catches click event
@@ -1586,7 +1552,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
      * @return Loads New Supplier dialog
      */
     private void NewSupplierMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewSupplierMenuItemActionPerformed
-        new NewSupplier(getTitle().substring(0,27)+": New Supplier");
         NewSupplier.main(null);
     }//GEN-LAST:event_NewSupplierMenuItemActionPerformed
     /**
@@ -1608,7 +1573,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         try {
             int row = CustTable.getSelectedRow();
                 CustFNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 0).toString()); 
-                CustMNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 1).toString()); 
                 CustLNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 2).toString()); 
                 CustConNumbx.setText(CustTable.getModel().getValueAt(row, 4).toString()); 
                 CustAddressbx.setText(CustTable.getModel().getValueAt(row, 3).toString()); 
@@ -1619,11 +1583,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }                                         
     private void custRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custRefreshActionPerformed
         CustFNamebx.setSelectedItem("");
-        CustMNamebx.setSelectedItem("");
         CustLNamebx.setSelectedItem("");
         CustConNumbx.setText("");
         CustAddressbx.setText("");
-        LoadTableCust("", "", "");
+        LoadTableCust("", "");
     }//GEN-LAST:event_custRefreshActionPerformed
     private void custUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custUpdateActionPerformed
         if( CustFNamebx.getSelectedItem().toString().trim().isBlank() ||
@@ -1639,7 +1602,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }                                                                                    
     private void CustSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustSearchActionPerformed
         LoadTableCust(  CustFNamebx.getSelectedItem().toString().trim(),
-                    CustMNamebx.getSelectedItem().toString().trim(),
                     CustLNamebx.getSelectedItem().toString().trim());
     }//GEN-LAST:event_CustSearchActionPerformed
     
@@ -1652,6 +1614,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     SupplierAddress.getText());
     }//GEN-LAST:event_SupplierSearchActionPerformed
     private void SupplierRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierRefreshActionPerformed
+        SupplierName.removeAllItems();
         SupplierName.setSelectedItem("");
         SupplierAddress.setText("");
         SupplierConNum.setText("");
@@ -1733,14 +1696,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
         updateItem();
     }//GEN-LAST:event_ItmUpdateActionPerformed
-    private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmSearchActionPerformed
+    private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {                                          
         LoadTableItm(
             ItmName.getSelectedItem().toString().trim(),
             ItmCategory.getText().trim(),
             ItmDesc.getText().trim(),
             ItmSupplier.getSelectedItem().toString().trim());
-    }//GEN-LAST:event_ItmSearchActionPerformed
-    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    }                                                                            
+    private void ItmRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmRefreshActionPerformed
         ItmName.removeAllItems();
         ItmName.setSelectedItem("");
         ItmCategory.setText("");
@@ -1750,14 +1713,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ItmSupplier.removeAllItems();
         ItmSupplier.setSelectedItem("");
         LoadTableItm("", "", "", "");
-    }                                            
-    
+    }//GEN-LAST:event_ItmRefreshActionPerformed
+
     private void prntCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntCustomersActionPerformed
         printCustomer();
     }//GEN-LAST:event_prntCustomersActionPerformed
-    private void prntEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntEmployeesActionPerformed
-        // TODO print emp or not?
-    }//GEN-LAST:event_prntEmployeesActionPerformed
     private void prntInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntInventoryActionPerformed
         printInventory();
     }//GEN-LAST:event_prntInventoryActionPerformed
@@ -1767,7 +1727,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void prntSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prntSuppliersActionPerformed
         printSupplier();
     }//GEN-LAST:event_prntSuppliersActionPerformed
-    
+
+    private void MgLoginMenutemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgLoginMenutemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MgLoginMenutemActionPerformed
+  
     private boolean checkInt(String x,String title){
         try {
             Double.parseDouble(x.replaceAll("[^0-9]",""));
@@ -1779,15 +1743,19 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }
     private void Logout(){
         try{
-            Object[] y = {"Yes","No","Cancel"};
-            int x = JOptionPane.showOptionDialog(
-                this, 
-                "Are you sure that you want to Logout?\n"+
-                "Any UNSAVED progress will be unrecorded...", 
-                this.getTitle(), 
-                JOptionPane.YES_NO_CANCEL_OPTION, 
-                JOptionPane.WARNING_MESSAGE,null,y,y[2]);
-            if (x == JOptionPane.YES_OPTION){
+            Object[] yy = {"Yes","No","Cancel"};
+            int x =
+            JOptionPane.showOptionDialog(
+                    this, 
+                    "<html><body><p style='width: 250px; font-family:Product Sans Regular;font-size:12px'>"+
+                    "Are you sure that you want to Logout?<br>Any <b><u>UNSAVED</u></b> changes will be unrecorded..."
+                    +"</p></body></html>", 
+                    "Inventory Management System: Logging Out!", 
+                    JOptionPane.OK_OPTION, 
+                    JOptionPane.WARNING_MESSAGE,
+                    new ImageIcon(getClass().getResource("/resources/woggy_exit.gif")),
+                    yy,yy[2]);
+            if (x == 0){
                 new Frame1().setVisible(true);
                 this.dispose();
             }
@@ -1848,7 +1816,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
         outPW.close();
     }
-    private void printRecipt(int invoiceID,String custID,String empID,
+    private void printRecipt(int invoiceID,String custID,
                             double totalPH,double paymentPH, double changePH,
                             String dateOrder){
         String dirInvoicee="";
@@ -1868,19 +1836,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             try (Connection connection = DriverManager.getConnection(test);
                 Statement stmt = connection.createStatement();){
                 ResultSet ord = stmt.executeQuery(SQLOrders);
-
+                outPW.println("ESTRELLA BIKE SHOP");
                 outPW.println(
                 "Invoice ID = "+invoiceID+"\t"+
-                "Customer ID = "+custID+"\t"+
-                "Employee ID = "+empID+"\t"+
-                "Total = PHP "+totalPH+"\t"+
-                "Payment = PHP"+paymentPH+"\t"+
-                "Change = PHP"+changePH+"\t"+
-                "Order Date = "+dateOrder
+                "Customer ID = "+custID+"\t"
                 );
-                
                 outPW.flush();
-                outPW.println("Item Name\tQuantity\tPrice\tSubtotal");
+                outPW.println("Item Name\tQuantity\tPrice\tSubtotal\tOrder Date = "+dateOrder);
                 while (ord.next())
                     outPW.println(
                         ord.getString("ItmName")+"\t"+
@@ -1888,6 +1850,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                         ord.getString("OrdPrice")+"\t"+
                         ord.getString("OrdSubtotal")
                     );
+                outPW.println("\t\t\tTotal = PHP "+totalPH+"\tPayment = PHP "+paymentPH);
+                outPW.println("\t\t\t\tChange = PHP "+changePH);
                 outPW.flush();
                 outPW.close();
             } catch (Exception e) {
@@ -2049,18 +2013,18 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierTable.getColumnModel().getColumn(1).setCellRenderer(r);
         CashierTable.getColumnModel().getColumn(2).setCellRenderer(r);
         CashierTable.getColumnModel().getColumn(3).setCellRenderer(r);
-        
+
         ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeAllElements();
-        for(int x=0;x<InvTable.getRowCount();x++){
+        for(int i=0;i<InvTable.getRowCount();i++){
             ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement(
-                ((DefaultTableModel)InvTable.getModel()).getValueAt(x, 0).toString()
+                ((DefaultTableModel)InvTable.getModel()).getValueAt(i, 0).toString()
             );
         }
+        
         CashierItemName.setSelectedItem("");
         CashierStock.setText("");
         CashierPrice.setText("");
         CashierCustomer.setSelectedItem("");
-        CashierEmployee.setSelectedItem("");
         CashierTotal.setText("");
         CashierQuantity.setText("");
     }
@@ -2090,41 +2054,35 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     JOptionPane.QUESTION_MESSAGE, 
                     new ImageIcon(getClass().getResource("/resources/woggy_moneh.gif")), 
                     new Object[]{"Proceed","Cancel"}, null);
-                    double payment=0;
+                    double payment=0; boolean kek = true;
                     try {
                         payment=Double.parseDouble(pei.getText());
-                    } catch (Exception e) {warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");}
+                        kek=true;
+                    } catch (Exception e) {
+                        kek=false;
+                        warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");
+                    }
                     if(payment < invcTotal)
                         warning("An error has occurred! <br>Please enter the proper amount of payment then try again!");
-                    else if(paynt==0){
-                        String[]custname = CashierCustomer.getSelectedItem().toString().trim().split(" "),
-                                emplo=CashierEmployee.getSelectedItem().toString().trim().split(" ");
+                    else if(kek && paynt==0){
+                        String[]custname = CashierCustomer.getSelectedItem().toString().trim().split(" ");
                         String SQLinitCust=
                                 "select CustID from CUSTOMER where CFName='"+custname[0]+"' and "+
-                                "CLName='"+custname[1]+"'",
-                                SQLinitEmplo=
-                                "select EmpID from EMPLOYEE where EmpFName='"+emplo[0]+"' and "+
-                                "EmpLName='"+emplo[1]+"'";
-                        int custID=0,empID=0; 
+                                "CLName='"+custname[1]+"'";
+                        int custID=0; 
                         int invoiceID=0;
                         String dateor="";
                         try (Connection connection = DriverManager.getConnection(test);
                             Statement stmt = connection.createStatement();){                   
     
                             ResultSet initCust = stmt.executeQuery(SQLinitCust);
-                            while(initCust.next()){
+                            while(initCust.next())
                                 custID=initCust.getInt("CustID");
-                            }initCust.close();
-    
-                            ResultSet initEmp = stmt.executeQuery(SQLinitEmplo);
-                            while (initEmp.next()){
-                                empID=initEmp.getInt("EmpID");
-                            }initEmp.close();
-                            
+                            initCust.close();
+
                             String SQLInvoice =
-                            "insert into INVOICE (CustomerID,EmployeeID,InvcTotal,InvcPay,InvcChange) "+
-                            "values( cast("+Double.toString(custID)+" as int),"+
-                            "cast("+Double.toString(empID)+" as int),"+
+                            "insert into INVOICE (CustomerID,InvcTotal,InvcPay,InvcChange) "+
+                            "values( cast("+custID+" as int),"+
                             invcTotal+","+
                             payment+","+
                             (payment-invcTotal)+")";
@@ -2135,16 +2093,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                             " and "+
                             "CustomerID = "+Double.toString(custID)+
                             " and "+
-                            "EmployeeID = "+Double.toString(empID)+
+                            "InvcTotal="+invcTotal+
                             " and "+
-                            "InvcTotal="+Double.toString(invcTotal));
+                            "InvcPay="+payment+
+                            " and "+
+                            "InvcChange="+(payment-invcTotal));
                             while(invc.next()){
                                 invoiceID=invc.getInt("InvcID");
                                 dateor=invc.getString("InvcOrderDate");
                             }invc.close();
                             
-                            int orders =0;
-                            while(orders<((DefaultTableModel)CashierTable.getModel()).getRowCount()){
+                            for(int orders=0;orders<((DefaultTableModel)CashierTable.getModel()).getRowCount();orders++){
                                 String SQLOrder =
                                     "insert into \"ORDER\" (OrdID,CustID,ItmName,OrdQuantity,OrdPrice,OrdSubtotal) values ("+
                                     invoiceID+","+custID+",'"+
@@ -2160,12 +2119,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                                     " where "+
                                     "InvItemName='"+((DefaultTableModel)CashierTable.getModel()).getValueAt(orders, 0)+"'";
                                 stmt.executeUpdate(SQLInvenUpdate);
-                                orders++;
                             }stmt.close();
                             success("Success!<br><br>Order saved and printed at ["+dirInvoice+"]!");
                             printRecipt(invoiceID,
                                 CashierCustomer.getSelectedItem().toString(),
-                                CashierEmployee.getSelectedItem().toString(),
                                 invcTotal,payment,(payment-invcTotal),
                                 dateor
                             );
@@ -2192,19 +2149,16 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     
     private void updateCust(){
         String f=CustFNamebx.getSelectedItem().toString(),
-        m=CustMNamebx.getSelectedItem().toString(),
         l=CustLNamebx.getSelectedItem().toString(),
         a=CustAddressbx.getText(),
         c=CustConNumbx.getText();
         JTextField fname = new JTextField(f);
-        JTextField mname = new JTextField(m);
         JTextField lname = new JTextField(l);
         JTextField contact = new JTextField(c);
         JTextArea address = new JTextArea(a,5,0);
         address.setLineWrap(true);
         Object[] message={
             "First Name:", fname,
-            "Middle Name(Optional):", mname,
             "Last Name:", lname,
             "Contact #:", contact,
             "Address:", address
@@ -2225,23 +2179,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         else if(Double.parseDouble(contact.getText())<0){
             warning("Invalid Contact Number! \nPlease enter a valid Contact Number and try again!");
             CustFNamebx.setSelectedItem("");
-            CustMNamebx.setSelectedItem("");
             CustLNamebx.setSelectedItem("");
             CustConNumbx.setText("");
             CustAddressbx.setText("");
-            LoadTableCust("", "", "");
+            LoadTableCust("", "");
         }
         else if (result == JOptionPane.OK_OPTION) {
             String  
             sqlUpdate="update CUSTOMER set "+
                     "CFName='"+fname.getText()+"',"+
-                    "CMName='"+mname.getText()+"',"+
                     "CLName='"+lname.getText()+"',"+
                     "Address='"+address.getText()+"',"+
                     "ContactNo='"+contact.getText()+"' "+
                     "where "+
                     "CFName='"+f+"' and "+
-                    "CMName='"+m+"' and "+
                     "CLName='"+l+"' and "+
                     "Address='"+a+"' and "+
                     "ContactNo='"+c+"'";
@@ -2255,11 +2206,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             finally{
                 CustFNamebx.setSelectedItem("");
-                CustMNamebx.setSelectedItem("");
                 CustLNamebx.setSelectedItem("");
                 CustConNumbx.setText("");
                 CustAddressbx.setText("");
-                LoadTableCust("", "", "");
+                LoadTableCust("", "");
             }
         }
     }
@@ -2372,11 +2322,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         if(result == JOptionPane.OK_OPTION&&!checkInt(SRP.getText(), "SRP!")&&
             !checkInt(UPrice.getText(), "Unit Price!")){
             CustFNamebx.setSelectedItem("");
-            CustMNamebx.setSelectedItem("");
             CustLNamebx.setSelectedItem("");
             CustConNumbx.setText("");
             CustAddressbx.setText("");
-            LoadTableCust("", "", "");
+            LoadTableCust("", "");
         }
         else if (result == JOptionPane.OK_OPTION) {
             String  
@@ -2397,11 +2346,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
             finally{
                 CustFNamebx.setSelectedItem("");
-                CustMNamebx.setSelectedItem("");
                 CustLNamebx.setSelectedItem("");
                 CustConNumbx.setText("");
                 CustAddressbx.setText("");
-                LoadTableCust("", "", "");
+                LoadTableCust("","");
             }
         }
     }
@@ -2460,14 +2408,12 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private void deleteCust(){
         String  
         fname=CustFNamebx.getSelectedItem().toString(),
-        mname=CustMNamebx.getSelectedItem().toString(),
         lname=CustLNamebx.getSelectedItem().toString(),
         contact=CustAddressbx.getText(),
         address=CustConNumbx.getText(),
         sqlDelete=  "delete from CUSTOMER "+
                     "where "+
                     "CFName='"+fname+"' and "+
-                    "CMName='"+mname+"' and "+
                     "CLName='"+lname+"' and "+
                     "Address='"+contact+"' and "+
                     "ContactNo='"+address+"'";
@@ -2572,16 +2518,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             if(!((String)vector.get(0)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).getIndexOf((String)vector.get(0))<0)
                     ((DefaultComboBoxModel<String>)
-                    CustFNamebx.getModel()).addElement((String)vector.get(0));
-            if(!((String)vector.get(1)).isBlank()&&
-                ((DefaultComboBoxModel<String>)CustMNamebx.getModel()).getIndexOf((String)vector.get(1))<0)
-                    ((DefaultComboBoxModel<String>)
-                    CustMNamebx.getModel()).addElement((String)vector.get(1));
+                        CustFNamebx.getModel()).addElement((String)vector.get(0));
             if(!((String)vector.get(2)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).getIndexOf((String)vector.get(2))<0)
                     ((DefaultComboBoxModel<String>)
-                    CustLNamebx.getModel()).addElement((String)vector.get(2));
-
+                        CustLNamebx.getModel()).addElement((String)vector.get(2));
             if(!((String)vector.get(0)).isBlank()&&!((String)vector.get(2)).isBlank()&&
                 ((DefaultComboBoxModel<String>)CashierCustomer.getModel()).getIndexOf(
                     (String)vector.get(0)+" "+(String)vector.get(2))<0){
@@ -2602,7 +2543,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         };
     }
     private DefaultTableModel buildTableModelInv(ResultSet rs)throws SQLException {
-
+        int error=0;
         ResultSetMetaData metaData = rs.getMetaData();
 
         // names of columns
@@ -2619,13 +2560,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
                 vector.add(rs.getObject(columnIndex));
             }
+            if(rs.getInt(2)<11) error++;
             if(!((String)vector.get(0)).isBlank()&&
                 ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(0))<0){
                     ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(0));
-                    ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement((String)vector.get(0));
                 }
             data.add(vector);
         }
+        if(error>0) 
+            caution("Attention!<br><br>"+error+" Item/s are only 10 or less stocks left!");
 
         return new DefaultTableModel(data, columnNames){
             boolean[] canEdit = new boolean [] {
@@ -2713,17 +2656,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
     private void RefreshTable(){
         try {
-            LoadTableCust("", "", "");
-            LoadTableInv("", "", "");
+            LoadTableCust("","");
             LoadTableItm("", "", "", "");
             LoadTableSup("", "", "");
-            LoadEmployee();
+            LoadTableInv("", "", "");
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
         }
         finally{
             CustFNamebx.setSelectedItem("");
-            CustMNamebx.setSelectedItem("");
             CustLNamebx.setSelectedItem("");
             CustConNumbx.setText("");
             CustAddressbx.setText("");
@@ -2745,29 +2686,23 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
             CashierItemName.setSelectedItem("");
             CashierCustomer.setSelectedItem("");
-            CashierEmployee.setSelectedItem("");
             CashierTotal.setText("");
             CashierQuantity.setText("");
             CashierPrice.setText("");
             CashierStock.setText("");
         }
     }
-    private void LoadTableCust(String cfname, String cmname, String clname){
+    private void LoadTableCust(String cfname, String clname){
         String 
         SQLCommand="select CFName as 'First Name',"+
-        "CMName as 'Middle Name',"+
         "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER ";
         cfname=cfname.trim();
-        cmname=cmname.trim();
         clname=clname.trim();
-        if(!cfname.isBlank()||!cmname.isBlank()||!clname.isBlank()){
+        if(!cfname.isBlank()||!clname.isBlank()){
             SQLCommand=SQLCommand+" where ";
             if(!cfname.isBlank()) SQLCommand = SQLCommand+" CFName like '%"+cfname+"%' ";
-        
-            if(!cmname.isBlank()&&!cfname.isBlank()) SQLCommand = SQLCommand+" and CMName like '%"+cmname+"%' ";
-            else if(!cmname.isBlank()) SQLCommand = SQLCommand+" CMName like '%"+cmname+"%' ";
 
-            if(!clname.isBlank()&&!cmname.isBlank()||!cfname.isBlank()) SQLCommand = SQLCommand+" and CLName like '%"+clname+"%' ";
+            if(!clname.isBlank()&&!cfname.isBlank()) SQLCommand = SQLCommand+" and CLName like '%"+clname+"%' ";
             else if(!clname.isBlank()) SQLCommand = SQLCommand+" CLName like '%"+clname+"% '";
         }
         SQLCommand=SQLCommand+" order by CFName asc";
@@ -2783,7 +2718,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 CustTable.getColumnModel().getColumn(1).setCellRenderer(r);
                 CustTable.getColumnModel().getColumn(2).setCellRenderer(r);
                 CustTable.getColumnModel().getColumn(3).setCellRenderer(r);
-                CustTable.getColumnModel().getColumn(4).setCellRenderer(r);
                 connection.close();
         }catch (Exception e) {
             e.printStackTrace();
@@ -2818,7 +2752,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             InvTable.getColumnModel().getColumn(0).setCellRenderer(r);
             InvTable.getColumnModel().getColumn(1).setCellRenderer(r);
             InvTable.getColumnModel().getColumn(2).setCellRenderer(r);
-            
+
+            ((DefaultComboBoxModel<String>)CashierItemName.getModel()).removeAllElements();
+            for(int i=0;i<InvTable.getRowCount();i++){
+                ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement(
+                    ((DefaultTableModel)InvTable.getModel()).getValueAt(i, 0).toString()
+                );
+            }
+            CashierItemName.setSelectedItem("");
             connection.close();
         }catch (Exception e) {
             e.printStackTrace();
@@ -2918,26 +2859,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
-    private void LoadEmployee(){
-        String
-        SQLCommand="select EmpFName +' '+EmpLName from EMPLOYEE "+
-        "order by EmpFName asc";
-        try (Connection connection = DriverManager.getConnection(test);
-            Statement stmt = connection.createStatement();) {
-            ResultSet x = stmt.executeQuery(SQLCommand);
-
-            while (x.next()) {
-                CashierEmployee.addItem(x.getString(1));
-            }
-            connection.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-            warning("An error has occured! <br>"+e.getMessage());
-        }
-        finally{
-            CashierEmployee.setSelectedItem("");
-        }
-    }
 
     public static void main(String args[]) {
         try {
@@ -2962,7 +2883,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             super.getTableCellRendererComponent(
                 table, value, isSelected, hasFocus, row, column);
             setHorizontalAlignment(JLabel.CENTER);
-            //setFont(getFont().deriveFont(50f));
             return this;
         }
     };
@@ -2983,7 +2903,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CashierClearOrders;
     private javax.swing.JComboBox<String> CashierCustomer;
-    private javax.swing.JComboBox<String> CashierEmployee;
     private javax.swing.JComboBox<String> CashierItemName;
     private javax.swing.JButton CashierItmLoad;
     private javax.swing.JPanel CashierPane;
@@ -2999,7 +2918,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JTextField CustConNumbx;
     private javax.swing.JComboBox<String> CustFNamebx;
     private javax.swing.JComboBox<String> CustLNamebx;
-    private javax.swing.JComboBox<String> CustMNamebx;
     private javax.swing.JButton CustSearch;
     public javax.swing.JTable CustTable;
     private javax.swing.JPanel CustomerPanel;
@@ -3028,10 +2946,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JTabbedPane MainFrame;
     private javax.swing.JMenu ManageBar;
     private javax.swing.JMenu MenuBar;
-    private javax.swing.JMenuItem MgEmployeesMenuItem;
     private javax.swing.JMenuItem MgLoginMenutem;
     private javax.swing.JMenuItem NewCustomerMenuItem;
-    private javax.swing.JMenuItem NewEmployeeMenuItem;
     private javax.swing.JMenuItem NewItemMenuItem;
     private javax.swing.JMenuItem NewSupplierMenuItem;
     private javax.swing.JMenu PrintBar;
@@ -3066,12 +2982,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3104,7 +3018,6 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JMenuItem prntCustomers;
-    private javax.swing.JMenuItem prntEmployees;
     private javax.swing.JMenuItem prntInventory;
     private javax.swing.JMenuItem prntItems;
     private javax.swing.JMenuItem prntSuppliers;
