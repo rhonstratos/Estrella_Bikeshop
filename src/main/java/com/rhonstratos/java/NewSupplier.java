@@ -25,47 +25,10 @@ package com.rhonstratos.java;
     import java.sql.*;
     import javax.swing.*;
     import java.awt.*;
-
-import com.microsoft.sqlserver.jdbc.StringUtils;
 public class NewSupplier extends javax.swing.JDialog implements warn{
     public NewSupplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        try {
-            GraphicsEnvironment x = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Bold-Italic.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Bold.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Italic.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );
-            x.registerFont(
-                Font.createFont(
-                    Font.TRUETYPE_FONT, 
-                    getClass().getResource(
-                        "/resources/fonts/Product-Sans-Regular.ttf")
-                    .openStream()
-                ).deriveFont(12f)
-            );      
-            //this.setUIFont(new javax.swing.plaf.FontUIResource(
-            //    new Font("Product Sans Bold Italic",Font.PLAIN, 16)));               
+        try {          
             initComponents();
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
@@ -100,24 +63,36 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NEW SUPPLIER");
 
+        jLabel2.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Supplier Name");
 
+        SupName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        SupName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel5.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Contact Number");
 
+        SupConNum.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        SupConNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Address");
 
         SupAddress.setColumns(20);
+        SupAddress.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
         SupAddress.setLineWrap(true);
         SupAddress.setRows(5);
         SupAddress.setWrapStyleWord(true);
         jScrollPane2.setViewportView(SupAddress);
 
+        jButton2.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +100,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
             }
         });
 
+        jButton1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jButton1.setText("Register Supplier");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,21 +115,22 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(SupName)
-                            .addComponent(SupConNum, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(SupConNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addComponent(SupName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,7 +154,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,48 +192,74 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
                 new ImageIcon(getClass().getResource("/resources/warnico.png")),
                 yy,yy[0]);
     }
-    private boolean checkConNum(String x){
-        return StringUtils.isNumeric(x.replaceAll("[^0-9]", ""));
+    public void success(String Message){
+        Object[] yy = {"Noice"};
+        JOptionPane.showOptionDialog(
+                this, 
+                "<html><body><p style='font-family:Product Sans Regular;font-size:12px'>"+Message+" </p></body></html>", 
+                "Inventory Management System: Success!", 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/woggy_wineWink.gif")),
+                yy,yy[0]);
     }
-    private String test =   "jdbc:sqlserver://"+
-                            "localhost:1433;"+
-                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
-                            "integratedSecurity=true";
+    public int caution(String Message){
+        Object[] yy = {"Ok"};
+        return JOptionPane.showOptionDialog(
+                this, 
+                "<html><body><p style='width: 250px; font-family:Product Sans Regular;font-size:12px'>"+Message+" </p></body></html>", 
+                "Inventory Management System: Caution!", 
+                JOptionPane.OK_OPTION, 
+                JOptionPane.WARNING_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/woggy_hmm.gif")),
+                yy,yy[0]);
+    }
+    private boolean checkConNum(String x){
+        boolean check=true;
+        try {
+            Double.parseDouble(x);
+            check=true;
+        } catch (Exception e) {
+            warning("An error has occurred!<br><br>Please enter a proper Contact Number then try again!");
+            check=false;
+        }
+        return check;
+    }
     private void Save(){
-        if(checkConNum(SupConNum.getText())&&SupConNum.getText().replaceAll(" ", "").length()==11){
+        if( !SupName.getText().trim().isBlank()&&
+            !SupConNum.getText().trim().isBlank()&&
+            !SupAddress.getText().trim().isBlank()&&
+            checkConNum(SupConNum.getText())&&
+            SupConNum.getText().replaceAll("[^0-9]", "").length()==11&&
+            caution("Are you sure that you want to register: "+SupName.getText().trim())==0){
             String  
             sqlcommand = "insert into SUPPLIER "+
                         "values ('"+SupName.getText().toUpperCase().trim()+
                         "','"+SupConNum.getText().replaceAll("[^0-9]", "").trim()+
                         "','"+SupAddress.getText().toUpperCase().trim()+"')",
-            sqlcheck=   "select * from supplier";
+            sqlcheck=   "select SupName from supplier";
             boolean check=false;   
                         
             try (Connection connection = DriverManager.getConnection(test);
-                    Statement stmt = connection.createStatement();) {
-                    ResultSet x = stmt.executeQuery(sqlcheck);
-                    while(x.next()){
-                        if(SupName.getText().equalsIgnoreCase(x.getString("SupName"))){
-                            warning(SupName.getText()+", already exist!\n"+
-                            "Please enter a different Supplier!!!");
-                            check=true;
-                            SupName.setText(null);
-                            SupConNum.setText(null);
-                            SupAddress.setText(null);
-                        }
+                Statement stmt = connection.createStatement();) {
+                ResultSet x = stmt.executeQuery(sqlcheck);
+                while(x.next()){
+                    if(SupName.getText().equalsIgnoreCase(x.getString("SupName"))){
+                        warning(SupName.getText()+", already exist!\n"+
+                        "Please enter a different Supplier!!!");
+                        check=true;
+                        SupName.setText(null);
+                        SupConNum.setText(null);
+                        SupAddress.setText(null);
+                        break;
                     }
-                    if(!check){
-                        stmt.executeUpdate(sqlcommand);
-                        Object[] yy = {"OK"};
-                            javax.swing.JOptionPane.showOptionDialog(
-                            this, 
-                            "New Supplier Saved!", 
-                            this.getTitle(), 
-                            javax.swing.JOptionPane.OK_OPTION, 
-                            javax.swing.JOptionPane.INFORMATION_MESSAGE,null,yy,yy[0]);
-                            this.dispose();
-                    }
+                }
+                if(!check){
+                    stmt.executeUpdate(sqlcommand);
+                    success("New Supplier Saved!");
                     connection.close();
+                    this.dispose();
+                }
             }
             catch (SQLException e) {
                 e.printStackTrace();
@@ -270,14 +273,13 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
                 check=false;
             }
         } 
+        else if(SupConNum.getText().replaceAll("[^0-9]", "").length()!=11){
+            warning("An error has occurred!<br><br>Please enter a proper Contact Number then try again!");
+        }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Save();
     }//GEN-LAST:event_jButton1ActionPerformed
-    private static String t;
-    NewSupplier(String t){
-        NewSupplier.t=t;
-    }
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -298,12 +300,15 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
                         dialog.dispose();
                     }
                 });
-                dialog.setTitle(t);
+                dialog.setTitle("Inventory Management System: New Supplier");
                 dialog.setVisible(true);
             }
         });
     }
-
+    private String test =   "jdbc:sqlserver://"+
+                            "localhost:1433;"+
+                            "databaseName=INVENTORY_MANAGEMENT_SYS;"+
+                            "integratedSecurity=true";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea SupAddress;
     private javax.swing.JTextField SupConNum;

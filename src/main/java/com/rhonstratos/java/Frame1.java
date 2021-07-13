@@ -359,11 +359,9 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 this.passw.setText("");
             }
     }//GEN-LAST:event_loginBActionPerformed
-
     private void passwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwActionPerformed
         loginBActionPerformed(evt);
     }//GEN-LAST:event_passwActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Object[] yy = {"Sadge, Ok"};
         JOptionPane.showOptionDialog(
@@ -378,7 +376,6 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 new ImageIcon(getClass().getResource("/resources/woggy_sadCry.png")),
                 yy,null);
     }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.DESELECTED) {
             passw.setEchoChar('*');
@@ -386,15 +383,13 @@ public class Frame1 extends javax.swing.JFrame implements warn {
             passw.setEchoChar((char) 0);
         }
     }//GEN-LAST:event_jCheckBox1ItemStateChanged
-
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
         jButton1.setForeground(Color.blue);
     }//GEN-LAST:event_jButton1MouseEntered
-
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
         jButton1.setForeground(Color.black);
     }//GEN-LAST:event_jButton1MouseExited
-
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

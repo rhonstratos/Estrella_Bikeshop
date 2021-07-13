@@ -1,29 +1,18 @@
+drop database INVENTORY_MANAGEMENT_SYS
 create database INVENTORY_MANAGEMENT_SYS
 create table LOGIN(
-    "user" varchar(30) not null DEFAULT 'admin',
-    pass varchar(30) not null DEFAULT 'admin12345'
+    "user" varchar(30) not null,
+    pass varchar(30) not null
 )--select * from LOGIN
+insert into LOGIN
+values ('admin','admin12345')
 create table CUSTOMER(
     CustID int not null identity(1,1) primary key,
     CFName varchar(50) not null,
-    CMName varchar(50),
     CLName varchar(50) not null,
     Address varchar(255) not null,
     ContactNo varchar(11) not null
 )--select * from CUSTOMER
-create table EMPLOYEE(
-    EmpID int not null identity(1,1) primary key,
-    EmpFName varchar(50) not null,
-    EmpMName varchar(50),
-    EmpLName varchar(50) not null,
-    EmpBDate date not null,
-    EmpAge varchar(3) not null,
-    EmpSex varchar(1) not null 
-        check(EmpSex = 'M'or EmpSex = 'F'),
-    EmpContactNo varchar(11) not null,
-    EmpAddress varchar(255) not null,
-    RatePHour float not null,
-)--select * from EMPLOYEE
 create table SUPPLIER(
     SupName varchar(100) not null primary key,
     SupContactNo varchar(11) not null,
@@ -50,8 +39,6 @@ create table INVOICE(
     InvcID int not null identity(1,1) primary key,
     CustomerID int not null 
     foreign key references CUSTOMER(CustID),
-    EmployeeID int not null 
-    foreign key references EMPLOYEE(EmpID),
     InvcTotal float default 0,
     InvcPay float default 0,
     InvcChange float default 0,
