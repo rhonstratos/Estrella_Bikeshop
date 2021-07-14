@@ -71,14 +71,14 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Supplier Name");
 
-        SupName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        SupName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         SupName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel5.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Contact Number");
 
-        SupConNum.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        SupConNum.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         SupConNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -86,7 +86,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
         jLabel7.setText("Address");
 
         SupAddress.setColumns(20);
-        SupAddress.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        SupAddress.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         SupAddress.setLineWrap(true);
         SupAddress.setRows(5);
         SupAddress.setWrapStyleWord(true);
@@ -231,7 +231,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
             !SupAddress.getText().trim().isBlank()&&
             checkConNum(SupConNum.getText())&&
             SupConNum.getText().replaceAll("[^0-9]", "").length()==11&&
-            caution("Are you sure that you want to register: "+SupName.getText().trim())==0){
+            caution("Are you sure that you want to register:<br>"+SupName.getText().trim())==0){
             String  
             sqlcommand = "insert into SUPPLIER "+
                         "values ('"+SupName.getText().toUpperCase().trim()+

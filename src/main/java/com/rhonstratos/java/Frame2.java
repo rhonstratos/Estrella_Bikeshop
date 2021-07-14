@@ -337,10 +337,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel26.setText("Customer");
 
         CashierCustomer.setEditable(true);
-        CashierCustomer.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CashierCustomer.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         CashierItemName.setEditable(true);
-        CashierItemName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CashierItemName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         jLabel1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -355,7 +355,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel29.setText("PUNCH ORDER");
 
         CashierStock.setEditable(false);
-        CashierStock.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CashierStock.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         CashierStock.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         PunchOrder.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -388,10 +388,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         CashierQuantity.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         CashierQuantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        CashierQuantity.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CashierQuantity.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         CashierPrice.setEditable(false);
-        CashierPrice.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CashierPrice.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         CashierPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel23.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -613,14 +613,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel2.setText("First Name");
 
         CustFNamebx.setEditable(true);
-        CustFNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CustFNamebx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         jLabel4.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Last Name");
 
         CustLNamebx.setEditable(true);
-        CustLNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CustLNamebx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         CustLNamebx.setVerifyInputWhenFocusTarget(false);
 
         jLabel5.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -628,11 +628,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel5.setText("Contact Number");
 
         CustConNumbx.setEditable(false);
-        CustConNumbx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CustConNumbx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         CustAddressbx.setEditable(false);
         CustAddressbx.setColumns(20);
-        CustAddressbx.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 12));
+        CustAddressbx.setFont(new Font("Product Sans Bold Regular",Font.PLAIN, 16));
         CustAddressbx.setRows(5);
         jScrollPane1.setViewportView(CustAddressbx);
 
@@ -805,15 +805,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel9.setText("Search Item");
 
         InvItmName.setEditable(true);
-        InvItmName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        InvItmName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         InvQuan.setEditable(false);
-        InvQuan.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        InvQuan.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         InvQuan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         InvDesc.setEditable(false);
         InvDesc.setColumns(20);
-        InvDesc.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 12));
+        InvDesc.setFont(new Font("Product Sans Bold Regular",Font.PLAIN, 16));
         InvDesc.setLineWrap(true);
         InvDesc.setRows(5);
         jScrollPane3.setViewportView(InvDesc);
@@ -979,10 +979,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel11.setText("Search Item");
 
         ItmName.setEditable(true);
-        ItmName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         ItmSupplier.setEditable(true);
-        ItmSupplier.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmSupplier.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         jLabel20.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -992,20 +992,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Category");
 
-        ItmCategory.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmCategory.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmCategory.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         ItmSRP.setEditable(false);
-        ItmSRP.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmSRP.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmSRP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         ItmUPrice.setEditable(false);
-        ItmUPrice.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmUPrice.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmUPrice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         ItmDesc.setEditable(false);
         ItmDesc.setColumns(20);
-        ItmDesc.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 12));
+        ItmDesc.setFont(new Font("Product Sans Bold Regular",Font.PLAIN, 16));
         ItmDesc.setLineWrap(true);
         ItmDesc.setRows(5);
         jScrollPane5.setViewportView(ItmDesc);
@@ -1180,15 +1180,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel17.setText("Search Supplier");
 
         SupplierName.setEditable(true);
-        SupplierName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        SupplierName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
 
         SupplierConNum.setEditable(false);
-        SupplierConNum.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        SupplierConNum.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         SupplierConNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         SupplierAddress.setEditable(false);
         SupplierAddress.setColumns(20);
-        SupplierAddress.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 12));
+        SupplierAddress.setFont(new Font("Product Sans Bold Regular",Font.PLAIN, 16));
         SupplierAddress.setLineWrap(true);
         SupplierAddress.setRows(5);
         jScrollPane6.setViewportView(SupplierAddress);
@@ -1573,9 +1573,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         try {
             int row = CustTable.getSelectedRow();
                 CustFNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 0).toString()); 
-                CustLNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 2).toString()); 
-                CustConNumbx.setText(CustTable.getModel().getValueAt(row, 4).toString()); 
-                CustAddressbx.setText(CustTable.getModel().getValueAt(row, 3).toString()); 
+                CustLNamebx.setSelectedItem(CustTable.getModel().getValueAt(row, 1).toString()); 
+                CustConNumbx.setText(CustTable.getModel().getValueAt(row, 3).toString()); 
+                CustAddressbx.setText(CustTable.getModel().getValueAt(row, 2).toString()); 
             
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
@@ -1606,7 +1606,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }//GEN-LAST:event_CustSearchActionPerformed
     
     private void SupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierUpdateActionPerformed
-        updateSupplier();
+        if (SupplierName.getSelectedItem().toString().trim().isBlank()&&
+            SupplierConNum.getText().trim().isBlank()&&
+            SupplierAddress.getText().trim().isBlank())
+            warning("Please fill all of the FIELDS first then try again!");
+        else updateSupplier();
     }//GEN-LAST:event_SupplierUpdateActionPerformed
     private void SupplierSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierSearchActionPerformed
         LoadTableSup(SupplierName.getSelectedItem().toString(),
@@ -1658,7 +1662,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             InvDesc.getText().trim());
     }//GEN-LAST:event_InvSeasrchActionPerformed
     private void InvUpdateActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        updateInven();
+        if (InvItmName.getSelectedItem().toString().trim().isBlank()&&
+            InvQuan.getText().trim().isBlank()&&
+            InvDesc.getText().trim().isBlank())
+            warning("Please fill all of the FIELDS first then try again!");
+        else updateInven();
     }                                            
     
     private void PunchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PunchOrderActionPerformed
@@ -1694,7 +1702,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         deleteItem();
     }//GEN-LAST:event_ItmDeleteActionPerformed
     private void ItmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItmUpdateActionPerformed
-        updateItem();
+        if(ItmName.getSelectedItem().toString().trim().isBlank()&&
+            ItmSupplier.getSelectedItem().toString().trim().isBlank()&&
+            ItmSRP.getText().trim().isBlank()&&
+            ItmUPrice.getText().trim().isBlank()&&
+            ItmDesc.getText().trim().isBlank())
+            warning("Please fill all of the FIELDS first then try again!");
+        else updateItem();
     }//GEN-LAST:event_ItmUpdateActionPerformed
     private void ItmSearchActionPerformed(java.awt.event.ActionEvent evt) {                                          
         LoadTableItm(
@@ -2163,9 +2177,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             "Contact #:", contact,
             "Address:", address
         };
-
-        int result = JOptionPane.showConfirmDialog(this, message,
-            "Update Customer", JOptionPane.OK_CANCEL_OPTION);
+        boolean chckcust = true;
+        int result =10;
+        if (!f.isBlank()&&!a.isBlank()&&!a.isBlank()&&!c.isBlank()){
+            result= JOptionPane.showConfirmDialog(this, message,
+                "Update Customer", JOptionPane.OK_CANCEL_OPTION);
+                chckcust=true;
+        }else chckcust=false; 
         if(contact.getText().length()!=11){
             Object[] yy = {"OK"};
             int x=javax.swing.JOptionPane.showOptionDialog(
@@ -2176,7 +2194,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 javax.swing.JOptionPane.WARNING_MESSAGE,null,yy,yy[0]);
             if(x==JOptionPane.OK_OPTION)updateCust();
         }
-        else if(Double.parseDouble(contact.getText())<0){
+        else if(chckcust&&Double.parseDouble(contact.getText())<0){
             warning("Invalid Contact Number! \nPlease enter a valid Contact Number and try again!");
             CustFNamebx.setSelectedItem("");
             CustLNamebx.setSelectedItem("");
@@ -2184,7 +2202,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             CustAddressbx.setText("");
             LoadTableCust("", "");
         }
-        else if (result == JOptionPane.OK_OPTION) {
+        else if (chckcust&&result == JOptionPane.OK_OPTION) {
             String  
             sqlUpdate="update CUSTOMER set "+
                     "CFName='"+fname.getText()+"',"+
@@ -2230,8 +2248,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             "Description:", itmdesc
         };
 
-        int result = JOptionPane.showConfirmDialog(this, message,
-            "Update Inventory", JOptionPane.OK_CANCEL_OPTION);
+        int result = 10;
+        boolean up= true;
+        if (!ItmName.isBlank()&&!ItmQuan.isBlank()&&!ItemDesc.isBlank()){
+            result = JOptionPane.showConfirmDialog(this, message,
+                "Update Inventory", JOptionPane.OK_CANCEL_OPTION);
+                up=true;
+        }else up =false;
+        
         boolean run=false;
         if(!checkInt(itmquan.getText(), "Quantity!")){
             RefreshTable();
@@ -2259,7 +2283,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             InvDesc.setText("");
             LoadTableInv("", "", "");
         }
-        else if (result == JOptionPane.OK_OPTION) {
+        else if (up&&result == JOptionPane.OK_OPTION) {
               
             sqlUpdate="update INVENTORY set "+
                     "InvQuantity='"+itmquan.getText()+"',"+
@@ -2316,10 +2340,17 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             "Item Category: ",ITMCatg,
             "Item Description: ",ITMDesc
         };
+        boolean checkitm = true;
+        int result =10;
+        if(!ItmName.isBlank()&&!ItmCateg.isBlank()&&
+            !ItmDesc.isBlank()&&!ItmSRP.isBlank()&&!ItmUPrice.isBlank() ){
+            result = JOptionPane.showConfirmDialog(this, message,
+                "Update Item", JOptionPane.OK_CANCEL_OPTION);
+            checkitm=true;
+        } else checkitm=false;
+        
 
-        int result = JOptionPane.showConfirmDialog(this, message,
-            "Update Item", JOptionPane.OK_CANCEL_OPTION);
-        if(result == JOptionPane.OK_OPTION&&!checkInt(SRP.getText(), "SRP!")&&
+        if(checkitm&&result == JOptionPane.OK_OPTION&&!checkInt(SRP.getText(), "SRP!")&&
             !checkInt(UPrice.getText(), "Unit Price!")){
             CustFNamebx.setSelectedItem("");
             CustLNamebx.setSelectedItem("");
@@ -2370,11 +2401,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             "Contact Number:", supConNum,
             "Address",supAdd
         };
-
-        int result = JOptionPane.showConfirmDialog(this, message,
+        boolean checksup = true;
+        int result=1;
+        if(!SupName.isBlank()&&!SupConNum.isBlank()&&!SuppAddress.isBlank()){
+            result = JOptionPane.showConfirmDialog(this, message,
             "Update Item", JOptionPane.OK_CANCEL_OPTION);
+            checksup=true;
+        }else checksup = false;
 
-        if(result == JOptionPane.OK_OPTION&&!checkInt(supConNum.getText(), "SRP!")){
+        if(checksup&&result == JOptionPane.OK_OPTION&&!checkInt(supConNum.getText(), "SRP!")){
             SupplierName.setSelectedItem("");
             SupplierAddress.setText("");
             SupplierConNum.setText("");
@@ -2564,6 +2599,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             if(!((String)vector.get(0)).isBlank()&&
                 ((DefaultComboBoxModel<String>)InvItmName.getModel()).getIndexOf((String)vector.get(0))<0){
                     ((DefaultComboBoxModel<String>)InvItmName.getModel()).addElement((String)vector.get(0));
+                    ((DefaultComboBoxModel<String>)CashierItemName.getModel()).addElement((String)vector.get(0));
                 }
             data.add(vector);
         }
@@ -2728,7 +2764,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         String 
         SQLCommand="select "+
         "InvItemName as 'Item Name',"+
-        "InvQuantity as 'Item Quantity', InvCondition as 'Item Description' from INVENTORY ";     
+        "InvQuantity as 'Item Quantity', InvCondition as 'Item Condition' from INVENTORY ";     
         try (Connection connection = DriverManager.getConnection(test);
             Statement stmt = connection.createStatement();) {
 

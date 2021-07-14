@@ -152,7 +152,7 @@
         <Component class="javax.swing.JTextField" name="SupName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new Font(&quot;Product Sans Italic&quot;,Font.PLAIN, 12)" type="code"/>
+              <Connection code="new Font(&quot;Product Sans Regular&quot;,Font.PLAIN, 16)" type="code"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
@@ -169,7 +169,7 @@
         <Component class="javax.swing.JTextField" name="SupConNum">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new Font(&quot;Product Sans Italic&quot;,Font.PLAIN, 12)" type="code"/>
+              <Connection code="new Font(&quot;Product Sans Regular&quot;,Font.PLAIN, 16)" type="code"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
@@ -194,7 +194,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new Font(&quot;Product Sans Italic&quot;,Font.PLAIN, 12)" type="code"/>
+                  <Connection code="new Font(&quot;Product Sans Regular&quot;,Font.PLAIN, 16)" type="code"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>

@@ -92,20 +92,20 @@ public class NewItem extends javax.swing.JDialog implements warn{
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Unit Price");
 
-        ItmNamebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmNamebx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmNamebx.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        ItmCategorybx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmCategorybx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmCategorybx.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        ItmSRPbx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmSRPbx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmSRPbx.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        ItmUnitPricebx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmUnitPricebx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmUnitPricebx.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         ItmDescbx.setColumns(20);
-        ItmDescbx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        ItmDescbx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmDescbx.setLineWrap(true);
         ItmDescbx.setRows(5);
         ItmDescbx.setWrapStyleWord(true);
@@ -114,7 +114,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
         jScrollPane1.setViewportView(ItmDescbx);
 
         supplierComboBx.setEditable(true);
-        supplierComboBx.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        supplierComboBx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         supplierComboBx.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -122,15 +122,15 @@ public class NewItem extends javax.swing.JDialog implements warn{
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(supplierComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(supplierComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ItmCategorybx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ItmNamebx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ItmSRPbx, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ItmUnitPricebx, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ItmCategorybx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItmNamebx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ItmSRPbx, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ItmUnitPricebx, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -145,7 +145,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
                 .addGap(18, 18, 18)
                 .addComponent(ItmUnitPricebx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(supplierComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -183,13 +183,16 @@ public class NewItem extends javax.swing.JDialog implements warn{
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,15 +210,15 @@ public class NewItem extends javax.swing.JDialog implements warn{
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -308,7 +311,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
             !supplierComboBx.getSelectedItem().toString().trim().isBlank()&&
             checkPeso(ItmSRPbx.getText().replaceAll("[^0-9]", ""), "SRP!")&&
             checkPeso(ItmUnitPricebx.getText().replaceAll("[^0-9]", ""), "Unit Price!")&&
-            caution("Are you sure that you want to register: "+ItmNamebx.getText().trim())==0){
+            caution("Are you sure that you want to register:<br>"+ItmNamebx.getText().trim())==0){
             String 
             sqlcommand = "insert into ITEM "+
                         "values ('"+ItmNamebx.getText().trim().toUpperCase()+
@@ -318,8 +321,8 @@ public class NewItem extends javax.swing.JDialog implements warn{
                         ","+ItmUnitPricebx.getText().replaceAll("[^0-9]", "")+
                         ",'"+supplierComboBx.getSelectedItem().toString().trim()
                         +"'); insert into INVENTORY(InvItemName,InvQuantity,InvCondition)values "+
-                        "('"+ItmNamebx.getText().trim().toUpperCase()+"',0,'"+
-                        ItmDescbx.getText().trim().toUpperCase()+"')",
+                        "('"+ItmNamebx.getText().trim().toUpperCase()+
+                        "',1,'GOOD')",
             sqlcheck=   "select ItmName from ITEM";
             boolean check=false;  
             try (Connection connection = DriverManager.getConnection(test);
