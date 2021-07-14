@@ -30,6 +30,7 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
         super(parent, modal);
         try {          
             initComponents();
+            this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
         }
@@ -62,6 +63,8 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 248, 220));
 
         jLabel1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

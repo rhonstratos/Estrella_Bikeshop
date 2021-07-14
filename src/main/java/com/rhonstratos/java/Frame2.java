@@ -32,7 +32,10 @@ package com.rhonstratos.java;
     import java.time.format.*;  
     import java.time.*;
     import java.awt.*;
-    import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+    import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  * Inventory System Management: Main Menu Frame
  * @author rhonstratos
@@ -48,7 +51,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         ErrorMessage=ErrorMessage.replaceAll("An error has occurred!", "An error has occurred!<br>");
         JOptionPane.showOptionDialog(
                 this, 
-                "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>"+ErrorMessage+" </p></body></html>", 
+                "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>"+
+                ErrorMessage+" </p></body></html>", 
                 "Inventory Managemen System: Warning!", 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -145,6 +149,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 new Font("Product Sans Bold Italic",Font.PLAIN, 16)));  
                     
             initComponents();
+            this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
             SwingUtilities.updateComponentTreeUI(this);
             
             ArrayList<java.awt.Image> ico = new ArrayList<>();
@@ -312,7 +317,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inventory Management System: Main Menu");
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(250, 250, 210));
         setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
@@ -322,12 +327,18 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             }
         });
 
-        MainFrame.setBackground(new java.awt.Color(153, 153, 153));
+        MainFrame.setBackground(new java.awt.Color(255, 248, 220));
         MainFrame.setFont(new Font("Product Sans Italic",Font.PLAIN, 14));
+        MainFrame.setOpaque(true);
 
+        CashierPanel.setBackground(new java.awt.Color(255, 248, 220));
+
+        jPanel6.setBackground(new java.awt.Color(255, 248, 220));
+
+        CashierPane.setBackground(new java.awt.Color(255, 248, 220));
         CashierPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel24.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16)
+        jLabel24.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 36)
         );
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("CASHIER & CUSTOMER");
@@ -350,7 +361,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("Quantity");
 
-        jLabel29.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        jLabel29.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 36));
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("PUNCH ORDER");
 
@@ -484,6 +495,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         );
 
         CashierTable.setAutoCreateRowSorter(true);
+        CashierTable.setBackground(new java.awt.Color(255, 248, 220));
         CashierTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -507,10 +519,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         CashierTable.getColumnModel().getColumn(1).setCellRenderer(r);
         CashierTable.getColumnModel().getColumn(2).setCellRenderer(r);
         CashierTable.getColumnModel().getColumn(3).setCellRenderer(r);
+        CashierTable.setFillsViewportHeight(true);
+        CashierTable.setGridColor(java.awt.Color.black);
         CashierTable.setRowHeight(35);
         CashierTable.setShowGrid(true);
         jScrollPane9.setViewportView(CashierTable);
 
+        CashierTablePane.setBackground(new java.awt.Color(255, 248, 220));
         CashierTablePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel28.setFont(new Font("Product Sans Bold",Font.PLAIN, 36));
@@ -589,8 +604,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Cashier", CashierPanel);
 
+        CustomerPanel.setBackground(new java.awt.Color(255, 248, 220));
+
+        jPanel9.setBackground(new java.awt.Color(255, 248, 220));
+
         CustTable.setAutoCreateRowSorter(true);
+        CustTable.setBackground(new java.awt.Color(255, 248, 220));
         CustTable.setToolTipText("");
+        CustTable.setFillsViewportHeight(true);
+        CustTable.setGridColor(java.awt.Color.black);
         CustTable.setRowHeight(35);
         CustTable.setRowSelectionAllowed(false);
         CustTable.setShowGrid(true);
@@ -601,10 +623,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
         jScrollPane2.setViewportView(CustTable);
 
+        jPanel1.setBackground(new java.awt.Color(255, 248, 220));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setPreferredSize(new java.awt.Dimension(508, 653));
 
-        jLabel7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        jLabel7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 36));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("MANAGE CUSTOMERS");
 
@@ -749,7 +772,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -766,9 +789,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -794,9 +815,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Customer", CustomerPanel);
 
+        InventoryPanel.setBackground(new java.awt.Color(255, 248, 220));
+
+        jPanel7.setBackground(new java.awt.Color(255, 248, 220));
+
+        jPanel2.setBackground(new java.awt.Color(255, 248, 220));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel8.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        jLabel8.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 36));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("MANAGE INVENTORY");
 
@@ -905,8 +931,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
-        InvTable.setAutoCreateRowSorter(true);
+        InvTable.setBackground(new java.awt.Color(255, 248, 220));
         InvTable.setToolTipText("");
+        InvTable.setFillsViewportHeight(true);
+        InvTable.setGridColor(java.awt.Color.black);
         InvTable.setRowHeight(35);
         InvTable.setShowGrid(true);
         InvTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -956,8 +984,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Inventory", InventoryPanel);
 
+        ItemPanel.setBackground(new java.awt.Color(255, 248, 220));
+
+        jPanel8.setBackground(new java.awt.Color(255, 248, 220));
+
         ItmTable.setAutoCreateRowSorter(true);
+        ItmTable.setBackground(new java.awt.Color(255, 248, 220));
         ItmTable.setToolTipText("");
+        ItmTable.setFillsViewportHeight(true);
+        ItmTable.setGridColor(java.awt.Color.black);
         ItmTable.setRowHeight(35);
         ItmTable.setShowGrid(true);
         ItmTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -967,10 +1002,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         });
         jScrollPane7.setViewportView(ItmTable);
 
+        jPanel11.setBackground(new java.awt.Color(255, 248, 220));
         jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel11.setPreferredSize(new java.awt.Dimension(508, 653));
 
-        jLabel10.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        jLabel10.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 36));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("MANAGE ITEMS");
 
@@ -1169,9 +1205,14 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Items", ItemPanel);
 
+        SupplierPanel.setBackground(new java.awt.Color(255, 248, 220));
+
+        jPanel3.setBackground(new java.awt.Color(255, 248, 220));
+
+        jPanel10.setBackground(new java.awt.Color(255, 248, 220));
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel12.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
+        jLabel12.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 36));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("MANAGE SUPPLIERS");
 
@@ -1292,7 +1333,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         );
 
         SupplierTable.setAutoCreateRowSorter(true);
+        SupplierTable.setBackground(new java.awt.Color(255, 248, 220));
         SupplierTable.setToolTipText("");
+        SupplierTable.setFillsViewportHeight(true);
+        SupplierTable.setGridColor(java.awt.Color.black);
         SupplierTable.setRowHeight(35);
         SupplierTable.setShowGrid(true);
         SupplierTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1342,7 +1386,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         MainFrame.addTab("Suppliers", SupplierPanel);
 
-        Frame2Clock.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 12));
+        Frame2Clock.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         Frame2Clock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         Frame2Clock.setText("Time:");
 
@@ -1473,14 +1517,15 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Frame2Clock, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainFrame)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(MainFrame)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Frame2Clock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2047,7 +2092,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             if(((DefaultTableModel)CashierTable.getModel()).getRowCount()>0){
                 Object[] y = {"Yes","No","Cancel"};
                 int x = JOptionPane.showOptionDialog(this,
-                    "message",
+                    null,
                     "Are you sure that you want to continue?",
                     JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.INFORMATION_MESSAGE,

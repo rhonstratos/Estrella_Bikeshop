@@ -31,6 +31,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
         super(parent, modal);
         try {
             initComponents();
+            this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
             loadCbx();
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
@@ -64,6 +65,8 @@ public class NewItem extends javax.swing.JDialog implements warn{
         setModal(true);
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 248, 220));
+
         jLabel1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NEW ITEM");
@@ -91,6 +94,8 @@ public class NewItem extends javax.swing.JDialog implements warn{
         jLabel7.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Unit Price");
+
+        jPanel2.setBackground(new java.awt.Color(255, 248, 220));
 
         ItmNamebx.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         ItmNamebx.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -172,7 +177,7 @@ public class NewItem extends javax.swing.JDialog implements warn{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()

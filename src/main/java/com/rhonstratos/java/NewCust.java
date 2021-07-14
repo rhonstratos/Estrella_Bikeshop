@@ -30,6 +30,7 @@ public class NewCust extends javax.swing.JDialog implements warn {
         super(parent, modal);
         try {
             initComponents();
+            this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
         }finally{
@@ -56,8 +57,11 @@ public class NewCust extends javax.swing.JDialog implements warn {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inventory Management System: New Customer");
         setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 248, 220));
         setModal(true);
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 248, 220));
 
         jLabel1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
