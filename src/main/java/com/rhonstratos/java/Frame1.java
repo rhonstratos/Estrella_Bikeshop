@@ -25,8 +25,10 @@ package com.rhonstratos.java;
     import javax.swing.*;
     import java.awt.Color;
     import java.io.*;
+    import javax.imageio.ImageIO;
     import java.sql.*;
-    import java.awt.*;
+import java.util.ArrayList;
+import java.awt.*;
 
 public class Frame1 extends javax.swing.JFrame implements warn {
     private void printlcs(){
@@ -115,6 +117,10 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 ));  
             printlcs();
             initComponents();
+            ArrayList<java.awt.Image> ico = new ArrayList<>();
+            ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/20x20.png").toString())));
+            ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/40x40.png").toString())));
+            setIconImages(ico);
             this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
             SwingUtilities.updateComponentTreeUI(this);
             setVisible(true);

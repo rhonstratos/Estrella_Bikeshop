@@ -23,6 +23,8 @@
  */
 package com.rhonstratos.java;
     import java.sql.*;
+    import java.util.ArrayList;
+    import javax.imageio.ImageIO;
     import javax.swing.*;
     import java.awt.*;
 public class NewSupplier extends javax.swing.JDialog implements warn{
@@ -30,6 +32,10 @@ public class NewSupplier extends javax.swing.JDialog implements warn{
         super(parent, modal);
         try {          
             initComponents();
+            ArrayList<java.awt.Image> ico = new ArrayList<>();
+            ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/20x20.png").toString())));
+            ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/40x40.png").toString())));
+            setIconImages(ico);
             this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());

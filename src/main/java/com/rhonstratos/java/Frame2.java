@@ -1789,8 +1789,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         JTextField us = new JTextField();
             us.setHorizontalAlignment(JTextField.CENTER);
             us.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
-        JTextField ps = new JTextField();
-            ps.setHorizontalAlignment(JTextField.CENTER);
+        JPasswordField ps = new JPasswordField();
+            ps.setHorizontalAlignment(JPasswordField.CENTER);
             ps.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         Object[] message={
             "Enter your CURRENT Username:",us,
@@ -1803,7 +1803,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 JOptionPane.INFORMATION_MESSAGE,
                 new ImageIcon(getClass().getResource("/resources/woggy_cool.png")),
                 new Object[]{"Proceed"}, null),
-            us.getText().trim(),ps.getText().trim()
+            us.getText().trim(),new String(ps.getPassword()).trim()
         );
     }//GEN-LAST:event_MgLoginMenutemActionPerformed
   
@@ -1887,8 +1887,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         JTextField us = new JTextField();
             us.setHorizontalAlignment(JTextField.CENTER);
             us.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
-        JTextField ps = new JTextField();
-            ps.setHorizontalAlignment(JTextField.CENTER);
+        JPasswordField ps = new JPasswordField();
+            ps.setHorizontalAlignment(JPasswordField.CENTER);
             ps.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         Object[] message={
             "Enter your NEW Username:",us,
@@ -1902,7 +1902,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             new ImageIcon(getClass().getResource("/resources/woggy_cool.png")),
             new Object[]{"Proceed"}, null)),
             us.getText().trim(),
-            ps.getText().trim()};
+            new String(ps.getPassword()).trim()};
     }
     /**from  www.java2s.com
      * Copyright (c) 2003-2012 Fred Hutchinson Cancer Research Center
