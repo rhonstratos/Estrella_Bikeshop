@@ -3,5 +3,6 @@ target
 .vscode
 clean-build-clean.bat
 bugs.txt
+Print-Outs
 ExecutableJAR/Print-Outs
 ExecutableJAR/MSSQL-DLL-DRIVER

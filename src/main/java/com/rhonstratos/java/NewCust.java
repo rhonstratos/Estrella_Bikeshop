@@ -23,13 +23,20 @@
  */
 package com.rhonstratos.java;
     import java.sql.*;
+    import java.util.ArrayList;
     import java.awt.*;
+    import javax.imageio.ImageIO;
     import javax.swing.*;
 public class NewCust extends javax.swing.JDialog implements warn {
     public NewCust(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         try {
             initComponents();
+            ArrayList<java.awt.Image> ico = new ArrayList<>();
+            ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/20x20.png").toString())));
+            ico.add(ImageIO.read(new java.net.URL(getClass().getResource("/resources/icons/40x40.png").toString())));
+            setIconImages(ico);
+            this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
         } catch (Exception e) {
             warning("An error has occured! <br>"+e.getMessage());
         }finally{
@@ -56,8 +63,11 @@ public class NewCust extends javax.swing.JDialog implements warn {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inventory Management System: New Customer");
         setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 248, 220));
         setModal(true);
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 248, 220));
 
         jLabel1.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -67,10 +77,10 @@ public class NewCust extends javax.swing.JDialog implements warn {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("First Name");
 
-        CFName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CFName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         CFName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        CLName.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CLName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         CLName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel4.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -81,11 +91,11 @@ public class NewCust extends javax.swing.JDialog implements warn {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Contact Number");
 
-        CConNum.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CConNum.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         CConNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         CAddress.setColumns(20);
-        CAddress.setFont(new Font("Product Sans Italic",Font.PLAIN, 12));
+        CAddress.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         CAddress.setLineWrap(true);
         CAddress.setRows(5);
         CAddress.setWrapStyleWord(true);
@@ -162,9 +172,9 @@ public class NewCust extends javax.swing.JDialog implements warn {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -252,7 +262,7 @@ public class NewCust extends javax.swing.JDialog implements warn {
         if( !fname.isBlank()&&!lname.isBlank()&&
             checkInt(contactnum,"Contact Nulber [11 digits] and try again!")&&
             contactnum.length()==11 &&
-            caution("Are you sure that you want to register, "+fname+" "+lname+"?")==0){
+            caution("Are you sure that you want to register:<br>"+fname+" "+lname+"?")==0){
             try (Connection connection = DriverManager.getConnection(test);
                 Statement stmt = connection.createStatement();) {
                 
