@@ -39,9 +39,9 @@ create table INVOICE(
     InvcID int not null identity(1,1) primary key,
     CustomerID int not null 
     foreign key references CUSTOMER(CustID),
-    InvcTotal float default 0,
-    InvcPay float default 0,
-    InvcChange float default 0,
+    InvcTotal float not null,
+    InvcPay float not null,
+    InvcChange float not null,
     InvcOrderDate varchar(100) not null 
         default cast(datepart(year,getdate()) as varchar)+'-'+cast(datepart(month,getdate()) as varchar)+'-'+cast(datepart(day,getdate()) as varchar),
 )--select * from INVOICE
