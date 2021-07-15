@@ -33,9 +33,7 @@ package com.rhonstratos.java;
     import java.time.*;
     import java.awt.*;
     import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
-
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+    import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  * Inventory System Management: Main Menu Frame
  * @author rhonstratos
@@ -1787,8 +1785,26 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         printSupplier();
     }//GEN-LAST:event_prntSuppliersActionPerformed
 
-    private void MgLoginMenutemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgLoginMenutemActionPerformed
-        // TODO add your handling code here:
+    private void MgLoginMenutemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgLoginMenutemActionPerformed     
+        JTextField us = new JTextField();
+            us.setHorizontalAlignment(JTextField.CENTER);
+            us.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+        JTextField ps = new JTextField();
+            ps.setHorizontalAlignment(JTextField.CENTER);
+            ps.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+        Object[] message={
+            "Enter your CURRENT Username:",us,
+            "Enter your CURRENT Password:",ps
+        };
+        changeCred(
+            JOptionPane.showOptionDialog(this,
+                message, "Invnetory Management System: Change Password", 
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                new ImageIcon(getClass().getResource("/resources/woggy_cool.png")),
+                new Object[]{"Proceed"}, null),
+            us.getText().trim(),ps.getText().trim()
+        );
     }//GEN-LAST:event_MgLoginMenutemActionPerformed
   
     private boolean checkInt(String x,String title){
@@ -1822,7 +1838,72 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             warning("An error has occured! <br>"+e.getMessage());
         }
     }
-
+    private void changeCred(int result,String user,String pass){
+        try {
+            if(result==0&&!user.isBlank()&&!pass.isBlank()){
+                Connection connection = DriverManager.getConnection(test);
+                Statement stmt = connection.createStatement();
+                String kekl = "SELECT * from LOGIN where \"user\" ='"+user.trim()+"' and pass = '"+pass.trim()+"'";
+                System.out.println(kekl);
+                ResultSet kek = stmt.executeQuery(kekl);
+                String sqlUPDATE="";
+                boolean proceed=true;
+                while(kek.next()){
+                    if(kek.wasNull()){
+                        warning("An error has occurred! <br>Credentials doesnt match!");
+                        proceed=false;
+                        break;
+                    }
+                    if(kek.getString(1).equals(user.trim())&&kek.getString(2).equals(pass.trim())){
+                        String[] newc = newCred();
+                        if(newc[0].equals("0")&&!newc[1].trim().isBlank()&&!newc[2].trim().isBlank()){
+                            sqlUPDATE="UPDATE LOGIN set \"user\" = '"+newc[1].trim()+"', pass = '"+newc[2].trim()+"'"+
+                            " where \"user\" ='"+user.trim()+"' and pass ='"+pass.trim()+"'";
+                            proceed=true;
+                            break;
+                        }else{
+                            warning("An error has occurred! <br>Please enter a valid credentials then try again!");
+                            proceed=false;
+                            break;
+                        }
+                    }
+                }
+                if(proceed){
+                    System.out.println(sqlUPDATE);
+                    stmt.executeUpdate(sqlUPDATE);
+                    success("Credentials changed!");
+                }
+                kek.close(); stmt.close();
+            }
+            else{
+                warning("An error has occurred! <br>Please try again!");
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
+           warning("An error has occurred! <br>Please try again!");
+        }
+    }
+    private String[] newCred(){
+        JTextField us = new JTextField();
+            us.setHorizontalAlignment(JTextField.CENTER);
+            us.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+        JTextField ps = new JTextField();
+            ps.setHorizontalAlignment(JTextField.CENTER);
+            ps.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+        Object[] message={
+            "Enter your NEW Username:",us,
+            "Enter your NEW Password:",ps
+        };
+        return new String[]{
+            Integer.toString(JOptionPane.showOptionDialog(this,
+            message, "Invnetory Management System: Change Password", 
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            new ImageIcon(getClass().getResource("/resources/woggy_cool.png")),
+            new Object[]{"Proceed"}, null)),
+            us.getText().trim(),
+            ps.getText().trim()};
+    }
     /**from  www.java2s.com
      * Copyright (c) 2003-2012 Fred Hutchinson Cancer Research Center
      *

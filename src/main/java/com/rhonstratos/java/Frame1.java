@@ -113,7 +113,7 @@ public class Frame1 extends javax.swing.JFrame implements warn {
                 new javax.swing.plaf.FontUIResource(
                 new Font("Product Sans Regular",Font.PLAIN, 16)
                 ));  
-            //printlcs();
+            printlcs();
             initComponents();
             this.getContentPane().setBackground(Color.decode("#fff8dc".toUpperCase()));
             SwingUtilities.updateComponentTreeUI(this);
