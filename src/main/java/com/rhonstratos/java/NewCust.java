@@ -208,7 +208,7 @@ public class NewCust extends javax.swing.JDialog implements warn {
         Object[] yy = {"OK"};
         JOptionPane.showOptionDialog(
                 this, 
-                "<html><body><p style='width: 300px;'>"+ErrorMessage+" </p></body></html>", 
+                "<html><body><p style='width: 300px;font-family:Product Sans Regular;font-size:12px'>"+ErrorMessage+" </p></body></html>", 
                 this.getTitle(), 
                 JOptionPane.OK_OPTION, 
                 JOptionPane.WARNING_MESSAGE,
@@ -250,9 +250,9 @@ public class NewCust extends javax.swing.JDialog implements warn {
         return check;
     }
     private void Save(){
-        String  fname=CFName.getText().toUpperCase().trim(),
-                lname=CLName.getText().toUpperCase().trim(),
-                address=CAddress.getText().toUpperCase().trim(),
+        String  fname=CFName.getText().trim().toUpperCase().replaceAll(" ", "_"),
+                lname=CLName.getText().trim().toUpperCase().replaceAll(" ", "_"),
+                address=CAddress.getText().trim().toUpperCase(),
                 contactnum=CConNum.getText().replaceAll("[^0-9]", "");
         String 
         sqlcommand = "insert into CUSTOMER(CFName,CLName,Address,ContactNo) "+
@@ -260,7 +260,7 @@ public class NewCust extends javax.swing.JDialog implements warn {
         sqlcheck=   "select CFName , CLName from CUSTOMER order by CFName asc";
         boolean check=false;   
         if( !fname.isBlank()&&!lname.isBlank()&&
-            checkInt(contactnum,"Contact Nulber [11 digits] and try again!")&&
+            checkInt(contactnum,"Contact Number [11 digits] and try again!")&&
             contactnum.length()==11 &&
             caution("Are you sure that you want to register:<br>"+fname+" "+lname+"?")==0){
             try (Connection connection = DriverManager.getConnection(test);
@@ -299,7 +299,7 @@ public class NewCust extends javax.swing.JDialog implements warn {
         }
         else if (CConNum.getText().replaceAll("[^0-9]", "").length()!=11){
             warning("An error has occurred!<br><br>Please enter a proper "+
-                "Contact Nulber [11 digits] and try again!");
+                "Contact Number [11 digits] and try again!");
             CConNum.setText("");
         }
     }

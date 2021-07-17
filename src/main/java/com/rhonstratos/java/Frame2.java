@@ -844,7 +844,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         jLabel13.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Quantiy");
+        jLabel13.setText("Quantity");
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         InvUpdate.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
@@ -872,7 +872,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
         jLabel14.setFont(new Font("Product Sans Bold Italic",Font.PLAIN, 16));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Description");
+        jLabel14.setText("Condition");
         jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -916,9 +916,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     .addComponent(InvQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1785,7 +1785,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         printSupplier();
     }//GEN-LAST:event_prntSuppliersActionPerformed
 
-    private void MgLoginMenutemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgLoginMenutemActionPerformed     
+    private void MgLoginMenutemActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         JTextField us = new JTextField();
             us.setHorizontalAlignment(JTextField.CENTER);
             us.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
@@ -1805,7 +1805,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 new Object[]{"Proceed"}, null),
             us.getText().trim(),new String(ps.getPassword()).trim()
         );
-    }//GEN-LAST:event_MgLoginMenutemActionPerformed
+    }                                              
   
     private boolean checkInt(String x,String title){
         try {
@@ -1848,28 +1848,26 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                 ResultSet kek = stmt.executeQuery(kekl);
                 String sqlUPDATE="";
                 boolean proceed=true;
-                while(kek.next()){
-                    if(kek.wasNull()){
-                        warning("An error has occurred! <br>Credentials doesnt match!");
+                kek.next();
+                if(kek.wasNull()){
+                    warning("An error has occurred! <br>Credentials doesnt match!");
+                    proceed=false;
+                }
+                else if(kek.getString(1).equals(user.trim())&&kek.getString(2).equals(pass.trim())){
+                    String[] newc = newCred();
+                    if(newc[0].equals("0")&&!newc[1].trim().isBlank()&&!newc[2].trim().isBlank()){
+                        sqlUPDATE="UPDATE LOGIN set \"user\" = '"+newc[1].trim()+"', pass = '"+newc[2].trim()+"'"+
+                        " where \"user\" ='"+user.trim()+"' and pass ='"+pass.trim()+"'";
+                        proceed=true;
+                    }else{
+                        warning("An error has occurred! <br>Please enter a valid credentials then try again!");
                         proceed=false;
-                        break;
-                    }
-                    if(kek.getString(1).equals(user.trim())&&kek.getString(2).equals(pass.trim())){
-                        String[] newc = newCred();
-                        if(newc[0].equals("0")&&!newc[1].trim().isBlank()&&!newc[2].trim().isBlank()){
-                            sqlUPDATE="UPDATE LOGIN set \"user\" = '"+newc[1].trim()+"', pass = '"+newc[2].trim()+"'"+
-                            " where \"user\" ='"+user.trim()+"' and pass ='"+pass.trim()+"'";
-                            proceed=true;
-                            break;
-                        }else{
-                            warning("An error has occurred! <br>Please enter a valid credentials then try again!");
-                            proceed=false;
-                            break;
-                        }
                     }
                 }
+                else{
+                    proceed=false;
+                }
                 if(proceed){
-                    System.out.println(sqlUPDATE);
                     stmt.executeUpdate(sqlUPDATE);
                     success("Credentials changed!");
                 }
@@ -2170,7 +2168,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     }
     private void saveInvcOrder(){
         try {
-            if(((DefaultTableModel)CashierTable.getModel()).getRowCount()>0){
+            if(CashierCustomer.getSelectedItem().toString().trim().isBlank()){
+                warning("An error has occurred! <br>Please select a Customer!");
+            }
+            else if(((DefaultTableModel)CashierTable.getModel()).getRowCount()>0){
                 Object[] y = {"Yes","No","Cancel"};
                 int x = JOptionPane.showOptionDialog(this,
                     null,
@@ -2222,10 +2223,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
 
                             String SQLInvoice =
                             "insert into INVOICE (CustomerID,InvcTotal,InvcPay,InvcChange) "+
-                            "values( cast("+custID+" as int),"+
+                            "values( "+custID+","+
                             invcTotal+","+
                             payment+","+
                             (payment-invcTotal)+")";
+                            //System.out.print(SQLInvoice);
                             stmt.executeUpdate(SQLInvoice);
                             
                             ResultSet invc = stmt.executeQuery("select InvcID,InvcOrderDate from INVOICE where "+
@@ -2293,10 +2295,19 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         a=CustAddressbx.getText(),
         c=CustConNumbx.getText();
         JTextField fname = new JTextField(f);
+            fname.setFont(
+                new Font("Product Sans Regular",Font.PLAIN, 16)
+            );
+            fname.setHorizontalAlignment(JTextField.CENTER);
         JTextField lname = new JTextField(l);
+            lname.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+            lname.setHorizontalAlignment(JTextField.CENTER);
         JTextField contact = new JTextField(c);
+            contact.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+            contact.setHorizontalAlignment(JTextField.CENTER);
         JTextArea address = new JTextArea(a,5,0);
-        address.setLineWrap(true);
+            address.setLineWrap(true);
+            address.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         Object[] message={
             "First Name:", fname,
             "Last Name:", lname,
@@ -2331,10 +2342,10 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         else if (chckcust&&result == JOptionPane.OK_OPTION) {
             String  
             sqlUpdate="update CUSTOMER set "+
-                    "CFName='"+fname.getText()+"',"+
-                    "CLName='"+lname.getText()+"',"+
-                    "Address='"+address.getText()+"',"+
-                    "ContactNo='"+contact.getText()+"' "+
+                    "CFName='"+fname.getText().trim().toUpperCase()+"',"+
+                    "CLName='"+lname.getText().trim().toUpperCase()+"',"+
+                    "Address='"+address.getText().trim().toUpperCase()+"',"+
+                    "ContactNo='"+contact.getText().trim().toUpperCase()+"' "+
                     "where "+
                     "CFName='"+f+"' and "+
                     "CLName='"+l+"' and "+
@@ -2366,9 +2377,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         JTextField itmName = new JTextField(ItmName);
             itmName.setHorizontalAlignment(JTextField.CENTER);
             itmName.setEditable(false);
+            itmName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         JTextField itmquan = new JTextField(ItmQuan);
+            itmquan.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+            itmquan.setHorizontalAlignment(JTextField.CENTER);
         JTextArea itmdesc = new JTextArea(ItemDesc,5,0);
-        itmdesc.setLineWrap(true);
+            itmdesc.setLineWrap(true);
+            itmdesc.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         Object[] message={
             "Quantity:", itmquan,
             "Description:", itmdesc
@@ -2412,8 +2427,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         else if (up&&result == JOptionPane.OK_OPTION) {
               
             sqlUpdate="update INVENTORY set "+
-                    "InvQuantity='"+itmquan.getText()+"',"+
-                    "InvCondition='"+itmdesc.getText()+"' "+
+                    "InvQuantity='"+itmquan.getText().trim().toUpperCase()+"',"+
+                    "InvCondition='"+itmdesc.getText().trim().toUpperCase()+"' "+
                     "where "+
                     "InvItemName='"+ItmName+"' and "+
                     "InvQuantity='"+ItmQuan+"' and "+
@@ -2450,14 +2465,20 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         JTextField ITMName =new JTextField(ItmName);
             ITMName.setEditable(false);
             ITMName.setHorizontalAlignment(JTextField.CENTER);
+            ITMName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         JTextField ITMCatg = new JTextField(ItmCateg);
+            ITMCatg.setHorizontalAlignment(JTextField.CENTER);
+            ITMCatg.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
             ITMCatg.setHorizontalAlignment(JTextField.CENTER);
         JTextArea ITMDesc = new JTextArea(ItmDesc,5,0);
             ITMDesc.setLineWrap(true);
+            ITMDesc.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         JTextField SRP = new JTextField(ItmSRP);
             SRP.setHorizontalAlignment(JTextField.CENTER);
+            SRP.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         JTextField UPrice = new JTextField(ItmUPrice);
             UPrice.setHorizontalAlignment(JTextField.CENTER);
+            UPrice.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
             
         Object[] message={
             "Item Name: ",ITMName,
@@ -2487,8 +2508,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         else if (result == JOptionPane.OK_OPTION) {
             String  
             sqlUpdate="update ITEM set "+
-                    "ItmCategory='"+ITMCatg.getText().trim()+"', "+
-                    "ItmDescription='"+ITMDesc.getText().trim()+"', "+
+                    "ItmCategory='"+ITMCatg.getText().trim().toUpperCase()+"', "+
+                    "ItmDescription='"+ITMDesc.getText().trim().toUpperCase()+"', "+
                     "ItmSRP="+SRP.getText().trim()+", "+
                     "ItmUnitPrice="+UPrice.getText().trim()+" "+
                     "where "+
@@ -2519,9 +2540,13 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         JTextField supName = new JTextField(SupName);
             supName.setEditable(false);
             supName.setHorizontalAlignment(JTextField.CENTER);
+            supName.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         JTextField supConNum = new JTextField(SupConNum);
+            supConNum.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
+            supConNum.setHorizontalAlignment(JTextField.CENTER);
         JTextArea supAdd = new JTextArea(SuppAddress,5,0);
             supAdd.setLineWrap(true);
+            supAdd.setFont(new Font("Product Sans Regular",Font.PLAIN, 16));
         Object[] message={
             "Supplier Name: ", supName,
             "Contact Number:", supConNum,
@@ -2544,9 +2569,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         else if (result == JOptionPane.OK_OPTION) {
             String  
             sqlUpdate="update SUPPLIER set "+
-                    "SupName='"+supName.getText().trim()+"', "+
+                    "SupName='"+supName.getText().trim().toUpperCase()+"', "+
                     "SupContactNo='"+supConNum.getText().trim()+"', "+
-                    "SupAddress="+supAdd.getText().trim()+" "+
+                    "SupAddress='"+supAdd.getText().trim().toUpperCase()+"' "+
                     "where "+
                     "SupName='"+SupName+"' ";
 
@@ -2579,8 +2604,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     "Address='"+contact+"' and "+
                     "ContactNo='"+address+"'";
         int delete = JOptionPane.showConfirmDialog(this, 
-            "Are you sure you want to delete CUSTOMER["+fname+" "+lname+"]?\n"+
-            "",
+            "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>Are you sure you want to delete CUSTOMER["+fname+" "+lname+"]?</p></body></html>"+
+            "Delete Customer:",
             "Delete Customer", JOptionPane.OK_CANCEL_OPTION);
         if(delete==JOptionPane.OK_OPTION){
             try (Connection connection = DriverManager.getConnection(test);
@@ -2604,8 +2629,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     "ItmName='"+itmname+"'";
 
         int delete = JOptionPane.showConfirmDialog(this, 
-            "Are you sure you want to delete ITEM["+itmname+"]? \n"+
-            "",
+            "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>Are you sure you want to delete ITEM["+itmname+"]?</p></body></html>"+
+            "Delete Item:",
             "Delete Customer", JOptionPane.OK_CANCEL_OPTION);
         if(delete==JOptionPane.OK_OPTION){
             try (Connection connection = DriverManager.getConnection(test);
@@ -2634,8 +2659,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
                     "SupName='"+SupName+"'";
 
         int delete = JOptionPane.showConfirmDialog(this, 
-            "Are you sure you want to delete Supplier["+SupName+"]? \n"+
-            "",
+            "<html><body><p style='width: 300px; font-family:Product Sans Regular;font-size:12px'>Are you sure you want to delete Supplier["+SupName+"]? </p></body></html>"+
+            "Delete Supplier:",
             "Delete Supplier", JOptionPane.OK_CANCEL_OPTION);
         if(delete==JOptionPane.OK_OPTION){
             try (Connection connection = DriverManager.getConnection(test);
@@ -2855,6 +2880,9 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }
     }
     private void LoadTableCust(String cfname, String clname){
+        ((DefaultComboBoxModel<String>)CashierCustomer.getModel()).removeAllElements();
+        ((DefaultComboBoxModel<String>)CustFNamebx.getModel()).removeAllElements();
+        ((DefaultComboBoxModel<String>)CustLNamebx.getModel()).removeAllElements();
         String 
         SQLCommand="select CFName as 'First Name',"+
         "CLName as 'Last Name', Address, ContactNo as 'Contact #' from CUSTOMER ";
