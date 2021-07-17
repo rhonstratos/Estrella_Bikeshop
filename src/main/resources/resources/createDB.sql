@@ -54,7 +54,8 @@ create table "ORDER"(
         foreign key references ITEM(ItmName),
     OrdQuantity int not null,
     OrdPrice float not null,
-    OrdSubtotal float not null
+    OrdSubtotal float not null,
+    primary key(OrdID,CustID,ItmName)
 )--select * from "ORDER"
 SELECT
   *
