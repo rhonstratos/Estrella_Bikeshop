@@ -32,7 +32,7 @@ create table INVENTORY(
     InvItemName varchar(125) not null
         foreign key references ITEM(ItmName),
     InvQuantity int not null
-        check(InvQuantity > 0),
+        check(InvQuantity > -1),
     InvCondition varchar(255) not null
 )--select * from INVENTORY
 create table INVOICE(
