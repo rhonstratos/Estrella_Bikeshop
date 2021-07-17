@@ -27,8 +27,8 @@ package com.rhonstratos.java;
     import java.io.*;
     import javax.imageio.ImageIO;
     import java.sql.*;
-import java.util.ArrayList;
-import java.awt.*;
+    import java.util.ArrayList;
+    import java.awt.*;
 
 public class Frame1 extends javax.swing.JFrame implements warn {
     private void printlcs(){
