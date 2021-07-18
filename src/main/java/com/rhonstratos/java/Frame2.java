@@ -2076,7 +2076,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
     
     private void populateCashier(String ItemName){
         String 
-        SQLCommand="select ITEM.ItmName,ITEM.ItmUnitPrice,INVENTORY.InvQuantity from ITEM "+
+        SQLCommand="select ITEM.ItmName,ITEM.ItmSRP,INVENTORY.InvQuantity from ITEM "+
         " inner join INVENTORY on INVENTORY.InvItemName=ITEM.ItmName "+
         " where ITEM.Itmname like '%"+ItemName+"%'";       
         try (Connection connection = DriverManager.getConnection(test);
@@ -2342,8 +2342,8 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         else if (chckcust&&result == JOptionPane.OK_OPTION) {
             String  
             sqlUpdate="update CUSTOMER set "+
-                    "CFName='"+fname.getText().trim().toUpperCase()+"',"+
-                    "CLName='"+lname.getText().trim().toUpperCase()+"',"+
+                    "CFName='"+fname.getText().trim().toUpperCase().replaceAll(" ", "_")+"',"+
+                    "CLName='"+lname.getText().trim().toUpperCase().replaceAll(" ", "_")+"',"+
                     "Address='"+address.getText().trim().toUpperCase()+"',"+
                     "ContactNo='"+contact.getText().trim().toUpperCase()+"' "+
                     "where "+
@@ -2417,7 +2417,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             run=true;
         }
         else if(Integer.parseInt(itmquan.getText())<0){
-            warning("Invalid Quantity! \nPlease enter a valid Quantity and try again!");
+            warning("Invalid Quantity! <br>Please enter a valid Quantity and try again!");
             InvItmName.removeAllItems();
             InvItmName.setSelectedItem("");
             InvQuan.setText("");
@@ -2893,7 +2893,7 @@ public class Frame2 extends javax.swing.JFrame implements warn{
             if(!cfname.isBlank()) SQLCommand = SQLCommand+" CFName like '%"+cfname+"%' ";
 
             if(!clname.isBlank()&&!cfname.isBlank()) SQLCommand = SQLCommand+" and CLName like '%"+clname+"%' ";
-            else if(!clname.isBlank()) SQLCommand = SQLCommand+" CLName like '%"+clname+"% '";
+            else if(!clname.isBlank()) SQLCommand = SQLCommand+" CLName like '%"+clname+"%'";
         }
         SQLCommand=SQLCommand+" order by CFName asc";
         try (Connection connection = DriverManager.getConnection(test);
@@ -2912,6 +2912,11 @@ public class Frame2 extends javax.swing.JFrame implements warn{
         }catch (Exception e) {
             e.printStackTrace();
             warning("An error has occured! <br>"+e.getMessage());
+        }
+        finally{
+            CashierCustomer.setSelectedItem("");
+            CustFNamebx.setSelectedItem("");
+            CustLNamebx.setSelectedItem("");
         }
     }
     private void LoadTableInv(String InvItemName, String InvQuantity, String InvDescription){
